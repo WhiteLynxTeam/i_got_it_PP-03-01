@@ -9,12 +9,12 @@
     tools:context=".view.auth.AuthFragment">
 
     <TextView
-        android:id="@+id/tv_enter"
+        android:id="@+id/tv_reg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:textAlignment="center"
-        android:text="Вход"
+        android:text="Регистрация"
         android:textColor="@color/black"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
@@ -26,7 +26,7 @@
         android:id="@+id/til_phone"
         android:layout_width="328dp"
         android:layout_height="56dp"
-        android:layout_marginTop="108dp"
+        android:layout_marginTop="94dp"
         android:hint="Телефон"
         app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
@@ -88,47 +88,64 @@
             android:padding="0dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/til_repass"
+        android:layout_width="328dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:hint="Пароль"
+        app:endIconMode="clear_text"
+        android:textColorHint="@color/inp_border"
+        app:layout_constraintTop_toBottomOf="@+id/til_pass"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_repass"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_input"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:padding="0dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
     <Button
-        android:id="@+id/btn_enter"
+        android:id="@+id/btn_reg"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/btn_active"
         android:fontFamily="sans-serif"
-        android:text="Вход"
+        android:text="Регистрация"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/til_pass"
+        app:layout_constraintTop_toBottomOf="@+id/til_repass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
 
-    <TextView
-        android:id="@+id/tv_reg"
+    <ImageView
+        android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:textAlignment="center"
-        android:text="Регистрация"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_enter" />
+        android:layout_marginTop="23dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/img_chkbox"
+        app:layout_constraintLeft_toLeftOf="@+id/btn_reg"
+        app:layout_constraintTop_toBottomOf="@+id/btn_reg"/>
 
     <TextView
-        android:id="@+id/tv_forget"
+        android:id="@+id/tv_agree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="54dp"
+        android:layout_marginStart="11dp"
         android:textAlignment="center"
-        android:text="Не помню пароль"
+        android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
         android:textColor="@color/black"
         android:fontFamily="sans-serif"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_reg" />
+        android:textSize="10sp"
+        app:layout_constraintStart_toEndOf="@+id/checkbox"
+        app:layout_constraintTop_toTopOf="@+id/checkbox"
+        app:layout_constraintBottom_toBottomOf="@+id/checkbox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
