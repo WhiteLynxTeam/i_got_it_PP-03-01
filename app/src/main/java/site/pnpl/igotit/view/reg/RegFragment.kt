@@ -1,31 +1,43 @@
 package site.pnpl.igotit.view.reg
 
-import androidx.fragment.app.viewModels
+import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
+import site.pnpl.igotit.databinding.FragmentRegBinding
 
 class RegFragment : Fragment() {
+    private var _binding: FragmentRegBinding? = null
+    private val binding get() = _binding!!
 
-    companion object {
-        fun newInstance() = RegFragment()
-    }
+    private lateinit var viewModel: RegViewModel
 
-    private val viewModel: RegViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
+    override fun onAttach(context: Context) {
+        AndroidSupportInjection.inject(this)
+        super.onAttach(context)
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_reg, container, false)
+        _binding = FragmentRegBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.btnReg.setOnClickListener {
+        }
+
+        binding.arrLeft.setOnClickListener {
+            findNavController().navigate(R.id.action_regFragment_to_authFragment)
+        }
     }
 }

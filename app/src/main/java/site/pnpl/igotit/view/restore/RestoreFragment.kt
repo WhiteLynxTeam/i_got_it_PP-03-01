@@ -1,4 +1,4 @@
-package site.pnpl.igotit.view.auth
+package site.pnpl.igotit.view.restore
 
 import android.content.Context
 import android.os.Bundle
@@ -9,13 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
-import site.pnpl.igotit.databinding.FragmentAuthBinding
+import site.pnpl.igotit.databinding.FragmentRestoreBinding
 
-class AuthFragment : Fragment() {
-    private var _binding: FragmentAuthBinding? = null
+class RestoreFragment : Fragment() {
+    private var _binding: FragmentRestoreBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: AuthViewModel
+    private lateinit var viewModel: RestoreViewModel
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -26,23 +26,19 @@ class AuthFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAuthBinding.inflate(inflater, container, false)
+        _binding = FragmentRestoreBinding.inflate(inflater, container, false)
         return binding.root
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnEnter.setOnClickListener {
-            findNavController().navigate(R.id.action_authFragment_to_homeFragment)
+        binding.btnRestore.setOnClickListener {
         }
 
-        binding.tvReg.setOnClickListener {
-            findNavController().navigate(R.id.action_authFragment_to_regFragment)
-        }
-
-        binding.tvForget.setOnClickListener {
-            findNavController().navigate(R.id.action_authFragment_to_restoreFragment)
+        binding.arrLeft.setOnClickListener {
+            findNavController().navigate(R.id.action_restoreFragment_to_authFragment)
         }
     }
 }

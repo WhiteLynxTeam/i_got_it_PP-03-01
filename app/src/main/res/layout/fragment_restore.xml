@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:textAlignment="center"
-        android:text="Регистрация"
+        android:text="Восстановление пароля"
         android:textColor="@color/black"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
@@ -76,86 +76,18 @@
             android:padding="0dp" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_pass"
-        android:layout_width="328dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:hint="Пароль"
-        app:endIconMode="clear_text"
-        android:textColorHint="@color/inp_border"
-        app:layout_constraintTop_toBottomOf="@+id/til_email"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_pass"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:padding="0dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/til_repass"
-        android:layout_width="328dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="20dp"
-        android:hint="Пароль"
-        app:endIconMode="clear_text"
-        android:textColorHint="@color/inp_border"
-        app:layout_constraintTop_toBottomOf="@+id/til_pass"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_repass"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@drawable/background_input"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:padding="0dp" />
-    </com.google.android.material.textfield.TextInputLayout>
-
     <Button
-        android:id="@+id/btn_reg"
+        android:id="@+id/btn_restore"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/btn_active"
         android:fontFamily="sans-serif"
-        android:text="Регистрация"
+        android:text="Сбросить пароль"
         android:textColor="@color/white"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/til_repass"
+        app:layout_constraintTop_toBottomOf="@+id/til_email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"/>
-
-    <ImageView
-        android:id="@+id/checkbox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        android:layout_marginStart="16dp"
-        android:background="@drawable/img_chkbox"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_reg"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reg"/>
-
-    <TextView
-        android:id="@+id/tv_agree"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
-        android:textAlignment="center"
-        android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
-        android:textColor="@color/black"
-        android:fontFamily="sans-serif"
-        android:textSize="10sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox"
-        app:layout_constraintTop_toTopOf="@+id/checkbox"
-        app:layout_constraintBottom_toBottomOf="@+id/checkbox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
