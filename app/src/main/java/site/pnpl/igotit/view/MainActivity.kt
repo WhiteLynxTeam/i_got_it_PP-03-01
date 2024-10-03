@@ -62,6 +62,11 @@ class MainActivity : AppCompatActivity() {
                         true
                     }
 
+                    R.id.coursesFragment -> {
+                        navController.navigate(R.id.coursesFragment)
+                        true
+                    }
+
                     R.id.catalogueFragment -> {
                         navController.navigate(R.id.catalogueFragment)
                         true

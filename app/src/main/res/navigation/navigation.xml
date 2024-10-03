@@ -87,4 +87,9 @@
             android:id="@+id/action_profileFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/coursesFragment"
+        android:name="site.pnpl.igotit.view.courses.CoursesFragment"
+        android:label="fragment_courses"
+        tools:layout="@layout/fragment_courses" />
 </navigation>
