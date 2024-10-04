@@ -63,11 +63,11 @@
             android:id="@+id/action_homeFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
         <action
-            android:id="@+id/action_homeFragment_to_homeTrainingFragment"
-            app:destination="@id/homeTrainingFragment" />
-        <action
             android:id="@+id/action_homeFragment_to_homeFavoritesCoursesFragment"
             app:destination="@id/homeFavoritesCoursesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_coursesFragment"
+            app:destination="@id/coursesFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalogueFragment"
@@ -94,25 +94,18 @@
             app:destination="@id/catalogueFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeTrainingFragment"
-        android:name="site.pnpl.igotit.view.home.HomeTrainingFragment"
-        android:label="fragment_home_training"
-        tools:layout="@layout/fragment_home_training" >
-        <action
-            android:id="@+id/action_homeTrainingFragment_to_homeFavoritesCoursesFragment"
-            app:destination="@id/homeFavoritesCoursesFragment" />
-        <action
-            android:id="@+id/action_homeTrainingFragment_to_homeFavoritesCoursesFragment2"
-            app:destination="@id/homeFavoritesCoursesFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/homeFavoritesCoursesFragment"
         android:name="site.pnpl.igotit.view.home.HomeFavoritesCoursesFragment"
         android:label="fragment_home_favorites_courses"
         tools:layout="@layout/fragment_home_favorites_courses" />
 
+    <fragment
         android:id="@+id/coursesFragment"
         android:name="site.pnpl.igotit.view.courses.CoursesFragment"
         android:label="fragment_courses"
-        tools:layout="@layout/fragment_courses" />
+        tools:layout="@layout/fragment_courses" >
+        <action
+            android:id="@+id/action_coursesFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>
