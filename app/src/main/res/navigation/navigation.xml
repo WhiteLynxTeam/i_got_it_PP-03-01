@@ -110,4 +110,9 @@
         android:name="site.pnpl.igotit.view.home.HomeFavoritesCoursesFragment"
         android:label="fragment_home_favorites_courses"
         tools:layout="@layout/fragment_home_favorites_courses" />
+
+        android:id="@+id/coursesFragment"
+        android:name="site.pnpl.igotit.view.courses.CoursesFragment"
+        android:label="fragment_courses"
+        tools:layout="@layout/fragment_courses" />
 </navigation>

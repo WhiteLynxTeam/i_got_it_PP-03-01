@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="btn_active">#FF6D45B3</color>
     <color name="inp_border">#FF79747E</color>
+    <color name="fiolet_main">#FFA44DE8</color>
 </resources>

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">i_got_it</string>
+
+    <string name="login">Login</string>
+    <string name="pass">Password</string>
+    <string name="reg">Register</string>
+    <string name="log_in">LOG IN</string>
+    <string name="sign_up">SIGN UP</string>
+
+    <string name="yes">Да</string>
+    <string name="decline">Нет</string>
+    <string name="no">Нет</string>
+    <string name="ok">Ок</string>
+    <string name="main">Главная</string>
+
+    <string name="lessons">Уроки</string>
+    <string name="calendar">Календарь</string>
+    <string name="remove">Удаление</string>
+    <string name="scheduler">Расписание</string>
+    <string name="catalogue">Каталог</string>
+    <string name="profile">Профиль</string>
 </resources>

@@ -5,6 +5,10 @@ import dagger.android.ContributesAndroidInjector
 import site.pnpl.igotit.view.MainActivity
 import site.pnpl.igotit.view.auth.AuthFragment
 import site.pnpl.igotit.view.catalogue.CatalogueFragment
+import site.pnpl.igotit.view.courses.CoursesFragment
+import site.pnpl.igotit.view.courses.calendar.CalendarFragment
+import site.pnpl.igotit.view.courses.lessons.LessonsFragment
+import site.pnpl.igotit.view.courses.remove.RemoveCourseFragment
 import site.pnpl.igotit.view.home.HomeFragment
 import site.pnpl.igotit.view.intro.IntroFragment
 import site.pnpl.igotit.view.profile.ProfileFragment
@@ -29,4 +33,12 @@ interface MainModule {
     fun bindCatalogueFragment(): CatalogueFragment
     @ContributesAndroidInjector
     fun bindProfileFragment(): ProfileFragment
+    @ContributesAndroidInjector
+    fun bindCoursesFragment(): CoursesFragment
+    @ContributesAndroidInjector
+    fun bindLessonsFragment(): LessonsFragment
+    @ContributesAndroidInjector
+    fun bindCalendarFragment(): CalendarFragment
+    @ContributesAndroidInjector
+    fun bindRemoveCourseFragment(): RemoveCourseFragment
 }

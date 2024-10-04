@@ -11,10 +11,6 @@ import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
-
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var binding: FragmentHomeBinding
