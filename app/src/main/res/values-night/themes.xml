@@ -1,7 +1,25 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.I_got_it" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+    <style name="Base.Theme.I_got_it" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/fiolet_main</item>
+        <item name="colorPrimaryVariant">@color/fiolet_main</item>
+        <item name="colorOnPrimary">@color/black</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/green</item>
+        <item name="colorSecondaryVariant">@android:color/holo_red_dark</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- главный цвет фона для приложения -->
+        <item name="android:windowBackground">@color/black</item>
+        <!-- Основной цвет текста -->
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="Theme.I_got_it" parent="Base.Theme.I_got_it" />
+
+    <style name="Base.Theme.I_got_it.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 </resources>

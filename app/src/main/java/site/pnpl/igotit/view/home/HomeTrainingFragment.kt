@@ -22,7 +22,7 @@ class HomeTrainingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.favoritesCoursesButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeTrainingFragment_to_homeFavoritesCoursesFragment)
+//            findNavController().navigate(R.id.action_homeTrainingFragment_to_homeFavoritesCoursesFragment)
         }
     }
 }
