@@ -5,20 +5,20 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_home"
-        android:title="Главная"/>
+        android:title="@string/main"/>
+    <item
+        android:id="@+id/coursesFragment"
+        android:icon="@drawable/ic_schedule"
+        android:title="@string/scheduler"
+        app:showAsAction="withText" />
     <item
         android:id="@+id/catalogueFragment"
         android:icon="@drawable/ic_catalogue"
-        android:title="Каталог"
-        app:showAsAction="withText" />
-    <item
-        android:id="@+id/catalogueFragment2"
-        android:icon="@drawable/ic_catalogue"
-        android:title="Каталог"
+        android:title="@string/catalogue"
         app:showAsAction="withText" />
     <item
         android:id="@+id/profileFragment"
         android:icon="@drawable/ic_profile"
-        android:title="Профиль"
+        android:title="@string/profile"
         app:showAsAction="withText" />
 </menu>

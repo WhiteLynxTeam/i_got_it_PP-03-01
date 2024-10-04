@@ -1,23 +1,18 @@
 package site.pnpl.igotit.view.home
 
-import android.graphics.Color
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import site.pnpl.igotit.adapters.CoursesListRecyclerAdapter
 import site.pnpl.igotit.databinding.FragmentHomeBinding
 import site.pnpl.igotit.items.Courses
-import site.pnpl.igotit.view.MainActivity
 
 class HomeFragment : Fragment() {
-    companion object {
-        fun newInstance() = HomeFragment()
-    }
     private val viewModel: HomeViewModel by viewModels()
 
     private lateinit var binding: FragmentHomeBinding
