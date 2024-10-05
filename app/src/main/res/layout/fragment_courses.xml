@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:tabBackground="@color/tap_layout"
-        app:tabIndicatorColor="@color/btn_enable"
+        app:tabIndicatorColor="@color/main_green"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="4dp"
         app:tabMode="fixed"

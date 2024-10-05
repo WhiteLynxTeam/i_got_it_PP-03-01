@@ -2,11 +2,11 @@
 
     <style name="Base.Theme.I_got_it" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/fiolet_main</item>
+        <item name="colorPrimary">@color/main_green</item>
         <item name="colorPrimaryVariant">@color/fiolet</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/btn_enable</item>
+        <item name="colorSecondary">@color/main_green</item>
         <item name="colorSecondaryVariant">@android:color/holo_red_dark</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
