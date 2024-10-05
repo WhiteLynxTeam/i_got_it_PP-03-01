@@ -14,6 +14,7 @@
         android:layout_marginTop="112dp"
         android:layout_marginEnd="16dp"
         android:text="Ближайшее занятие"
+        android:textColor="@color/btn_disable"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -27,6 +28,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/view_background"
         android:elevation="1dp"
         app:cardCornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -42,6 +44,7 @@
             android:paddingEnd="16dp"
             android:paddingBottom="20dp"
             android:text="У вас пока нет занятий"
+            android:textColor="@color/no_act_btn"
             android:textSize="16sp" />
 
     </androidx.cardview.widget.CardView>
@@ -54,6 +57,7 @@
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
         android:text="Мои курсы"
+        android:textColor="@color/btn_disable"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -68,6 +72,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/view_background"
         android:clickable="true"
         android:elevation="2dp"
         android:focusable="true"
@@ -108,6 +113,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
+        android:backgroundTint="@color/view_background"
         android:clickable="true"
         android:elevation="2dp"
         android:focusable="true"

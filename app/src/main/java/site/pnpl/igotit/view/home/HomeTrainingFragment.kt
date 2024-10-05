@@ -1,16 +1,14 @@
 package site.pnpl.igotit.view.home
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import site.pnpl.igotit.R
+import androidx.fragment.app.Fragment
 import site.pnpl.igotit.databinding.FragmentHomeTrainingBinding
 
 class HomeTrainingFragment : Fragment() {
-    private lateinit var binding:FragmentHomeTrainingBinding
+    private lateinit var binding: FragmentHomeTrainingBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

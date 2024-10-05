@@ -25,6 +25,7 @@
         android:layout_height="68dp"
         android:clickable="false"
         android:focusable="true"
+        android:background="@color/bottom_bar"
         app:itemActiveIndicatorStyle="@android:color/transparent"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="@+id/fragment_placeholder"

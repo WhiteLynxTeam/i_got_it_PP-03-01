@@ -19,26 +19,37 @@ import site.pnpl.igotit.view.restore.RestoreFragment
 interface MainModule {
     @ContributesAndroidInjector
     fun bindMainActivity(): MainActivity
+
     @ContributesAndroidInjector
     fun bindIntroFragment(): IntroFragment
+
     @ContributesAndroidInjector
     fun bindAuthFragment(): AuthFragment
+
     @ContributesAndroidInjector
     fun bindRegFragment(): RegFragment
+
     @ContributesAndroidInjector
     fun bindRestoreFragment(): RestoreFragment
+
     @ContributesAndroidInjector
     fun bindHomeFragment(): HomeFragment
+
     @ContributesAndroidInjector
     fun bindCatalogueFragment(): CatalogueFragment
+
     @ContributesAndroidInjector
     fun bindProfileFragment(): ProfileFragment
+
     @ContributesAndroidInjector
     fun bindCoursesFragment(): CoursesFragment
+
     @ContributesAndroidInjector
     fun bindLessonsFragment(): LessonsFragment
+
     @ContributesAndroidInjector
     fun bindCalendarFragment(): CalendarFragment
+
     @ContributesAndroidInjector
     fun bindRemoveCourseFragment(): RemoveCourseFragment
 }

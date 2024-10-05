@@ -90,7 +90,7 @@ dependencies {
     annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
 
     /** SnapHelper - выравнивание элементов recyclerview */
-    implementation ("com.github.rubensousa:gravitysnaphelper:2.2.2")
+    implementation("com.github.rubensousa:gravitysnaphelper:2.2.2")
 
     /** ROOM */
     implementation("androidx.room:room-runtime:2.6.1")
