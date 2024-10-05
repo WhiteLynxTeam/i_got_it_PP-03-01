@@ -2,7 +2,7 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-<!--    <color name="btn_active">#FF6D45B3</color>-->
+    <!--    <color name="btn_active">#FF6D45B3</color>-->
     <color name="inp_border">#FF79747E</color>
     <color name="fiolet">#FFA44DE8</color>
     <color name="fiolet_main">#FF7648B7</color>
@@ -10,4 +10,15 @@
     <color name="btn_enable">#FFAEEE8A</color>
     <color name="btn_disable">#FFC1C0C6</color>
     <color name="btn_text">#FF212121</color>
+
+    <color name="bottom_bar">#222330</color>
+
+    <color name="view_background">#3A333F</color>
+    <color name="tap_layout">#1E1226</color>
+    <color name="status_bar">#CF67FF</color>
+    
+    <color name="divider">#989DA0</color>
+
+    <color name="no_active_lesson">#666666</color>
+    <color name="no_act_btn">#7D7D7D</color>
 </resources>

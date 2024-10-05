@@ -1,12 +1,8 @@
 package site.pnpl.igotit.view
 
-import android.content.pm.ActivityInfo
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -76,6 +72,7 @@ class MainActivity : AppCompatActivity() {
                         navController.navigate(R.id.profileFragment)
                         true
                     }
+
                     else -> false
                 }
             }
