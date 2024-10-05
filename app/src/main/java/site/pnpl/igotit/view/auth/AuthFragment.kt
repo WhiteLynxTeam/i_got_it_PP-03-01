@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.redmadrobot.inputmask.MaskedTextChangedListener
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAuthBinding
@@ -44,5 +45,10 @@ class AuthFragment : Fragment() {
         binding.tvForget.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_restoreFragment)
         }
+
+        val listener = MaskedTextChangedListener( "+7 ([000]) [000]-[00]-[00]", binding.etPhone)
+        binding.etPhone.addTextChangedListener(listener)
+        binding.etPhone.onFocusChangeListener = listener
+
     }
 }

@@ -12,6 +12,9 @@ import site.pnpl.igotit.view.courses.remove.RemoveCourseFragment
 import site.pnpl.igotit.view.home.HomeFragment
 import site.pnpl.igotit.view.intro.IntroFragment
 import site.pnpl.igotit.view.profile.ProfileFragment
+import site.pnpl.igotit.view.profile.about.AboutFragment
+import site.pnpl.igotit.view.profile.data.UserDataFragment
+import site.pnpl.igotit.view.profile.setting.SettingsFragment
 import site.pnpl.igotit.view.reg.RegFragment
 import site.pnpl.igotit.view.restore.RestoreFragment
 
@@ -52,4 +55,14 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindRemoveCourseFragment(): RemoveCourseFragment
+
+    @ContributesAndroidInjector
+    fun bindUserDataFragment(): UserDataFragment
+
+    @ContributesAndroidInjector
+    fun bindSettingsFragment(): SettingsFragment
+
+    @ContributesAndroidInjector
+    fun bindAboutFragment(): AboutFragment
+
 }
