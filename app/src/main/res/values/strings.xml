@@ -21,4 +21,8 @@
     <string name="profile">Профиль</string>
 
     <string name="test">Тест</string>
+
+    <string name="conflict">Конфликт</string>
+
+
 </resources>
