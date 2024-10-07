@@ -96,7 +96,7 @@
 
     <Button
         android:id="@+id/btn_enter"
-        style="@style/IgotitButton"
+        style="@style/RoundedButton"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"

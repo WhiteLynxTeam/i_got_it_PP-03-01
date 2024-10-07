@@ -126,7 +126,7 @@
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
         android:text="Регистрация"
-        style="@style/IgotitButton"
+        style="@style/RoundedButton"
         android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/til_repass"
         app:layout_constraintEnd_toEndOf="parent"
