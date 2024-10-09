@@ -94,9 +94,9 @@
             android:textColor="@color/white" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_enter"
-        style="@style/RoundedButton"
+        style="@style/ButtonBigStyle"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"

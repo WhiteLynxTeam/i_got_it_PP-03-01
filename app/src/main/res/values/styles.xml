@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="RoundedButton" parent="Widget.AppCompat.Button">
-        <item name="android:background">@drawable/rounded_button</item>
+    <style name="ButtonBigStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_big</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textAllCaps">false</item>
         <item name="fontFamily">@font/roboto_regular</item>
-        <item name="cornerRadius">20dp</item>
         <!-- Другие стили для кнопки -->
+    </style>
+
+    <style name="ButtonSmallStyle" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/bg_btn_small</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="fontFamily">@font/roboto_black</item>
+
     </style>
     <style name="CustomDateTextAppearance" parent="Widget.MaterialComponents.MaterialCalendar">
         <item name="android:textSize">16sp</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:color">@color/btn_background</item>
+        <item name="android:color">@color/btn_background_big</item>
     </style>
 
 </resources>

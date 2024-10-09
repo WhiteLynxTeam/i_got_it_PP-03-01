@@ -41,9 +41,9 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_begin"
-        style="@style/RoundedButton"
+        style="@style/ButtonBigStyle"
         android:layout_width="328dp"
         android:layout_height="48dp"
         android:layout_marginTop="344dp"

@@ -44,8 +44,8 @@ class CatalogueFragment : Fragment() {
     private fun addViewPager(){
         binding.vpCatalog.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                ClubsFragment.newInstance(),
                 CoursesCatalogueFragment.newInstance(),
+                ClubsFragment.newInstance(),
                 IndividuallyFragment.newInstance()
             )
         )
@@ -54,10 +54,10 @@ class CatalogueFragment : Fragment() {
         TabLayoutMediator(binding.tabsCatalog,binding.vpCatalog){tab,position ->
             when(position){
                 0 -> {
-                    tab.text = getString(R.string.clubs)
+                    tab.text = getString(R.string.courses)
                 }
                 1 -> {
-                    tab.text = getString(R.string.courses)
+                    tab.text = getString(R.string.clubs)
                 }
                 2 -> {
                     tab.text = getString(R.string.individually)

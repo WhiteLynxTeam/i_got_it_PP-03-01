@@ -59,11 +59,11 @@
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
         android:hint="Почта"
-        app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
-        app:layout_constraintTop_toBottomOf="@+id/til_phone"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_phone">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
@@ -81,11 +81,11 @@
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
         android:hint="Пароль"
-        app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
-        app:layout_constraintTop_toBottomOf="@+id/til_email"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pass"
@@ -103,11 +103,11 @@
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
         android:hint="Пароль"
-        app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
-        app:layout_constraintTop_toBottomOf="@+id/til_pass"
+        app:endIconMode="clear_text"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_pass">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_repass"
@@ -121,23 +121,23 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_reg"
+        style="@style/ButtonBigStyle"
         android:layout_width="320dp"
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
         android:text="Регистрация"
-        style="@style/RoundedButton"
         android:textSize="14sp"
-        app:layout_constraintTop_toBottomOf="@+id/til_repass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/til_repass" />
 
     <ImageView
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="23dp"
         android:background="@drawable/img_chkbox"
         app:layout_constraintLeft_toLeftOf="@+id/btn_reg"
         app:layout_constraintTop_toBottomOf="@+id/btn_reg" />
@@ -147,13 +147,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="11dp"
-        android:textAlignment="center"
-        android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
-        android:textColor="@color/white"
         android:fontFamily="sans-serif"
+        android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="@+id/checkbox"
         app:layout_constraintStart_toEndOf="@+id/checkbox"
-        app:layout_constraintTop_toTopOf="@+id/checkbox"
-        app:layout_constraintBottom_toBottomOf="@+id/checkbox" />
+        app:layout_constraintTop_toTopOf="@+id/checkbox" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

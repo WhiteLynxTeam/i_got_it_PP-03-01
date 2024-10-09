@@ -5,6 +5,10 @@
     android:layout_height="match_parent"
     tools:context=".view.catalogue.individually.IndividuallyFragment">
 
-
-
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Индивидуально"
+        android:textSize="40sp" />
 </FrameLayout>
