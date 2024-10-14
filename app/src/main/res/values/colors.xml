@@ -4,7 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <!--    <color name="btn_active">#FF6D45B3</color>-->
     <color name="inp_border">#FF79747E</color>
-    <color name="fiolet">#FFA44DE8</color>
+    <color name="fiolet">#9854D2</color> <!--заменил фиол цвет с #FFA44DE8 на  -->
     <color name="fiolet_main">#FF7648B7</color>
 
     <color name="main_green">#FFAEEE8A</color>
@@ -21,4 +21,6 @@
 
     <color name="no_active_lesson">#666666</color>
     <color name="no_act_btn">#7D7D7D</color>
+
+    <color name="description_skill">#C1C0C6</color>
 </resources>

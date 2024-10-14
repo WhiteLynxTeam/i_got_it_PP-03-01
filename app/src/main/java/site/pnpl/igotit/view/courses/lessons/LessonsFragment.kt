@@ -57,6 +57,10 @@ class LessonsFragment : Fragment() {
             Lesson(2L,System.currentTimeMillis(),"Урок2"),
             Lesson(3L,System.currentTimeMillis(),"Урок3"),
             Lesson(4L,System.currentTimeMillis(),"Урок4"),
+            Lesson(5L,System.currentTimeMillis(),"Урок5"),
+            Lesson(6L,System.currentTimeMillis(),"Урок6"),
+            Lesson(7L,System.currentTimeMillis(),"Урок7"),
+            Lesson(8L,System.currentTimeMillis(),"Урок8"),
             )
         lessonAdapter.setData(list)
     }
