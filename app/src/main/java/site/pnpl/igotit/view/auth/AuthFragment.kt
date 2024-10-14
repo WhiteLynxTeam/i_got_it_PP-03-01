@@ -46,7 +46,7 @@ class AuthFragment : Fragment() {
             findNavController().navigate(R.id.action_authFragment_to_restoreFragment)
         }
 
-        val listener = MaskedTextChangedListener( "+7 ([000]) [000]-[00]-[00]", binding.etPhone)
+        val listener = MaskedTextChangedListener( "[0] ([000]) [000]-[00]-[00]", binding.etPhone)
         binding.etPhone.addTextChangedListener(listener)
         binding.etPhone.onFocusChangeListener = listener
 

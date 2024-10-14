@@ -40,7 +40,7 @@
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:textColor="@color/divider"
-                android:background="@drawable/bg_text_view_outline"
+                android:background="@drawable/bg_text_outline"
                 android:layout_weight="1"/>
             <TextView
                 android:layout_width="53dp"
@@ -50,7 +50,7 @@
                 android:layout_marginEnd="8dp"
                 android:gravity="center"
                 android:textSize="8sp"
-                android:background="@drawable/bg_text_view_outline"
+                android:background="@drawable/bg_text_outline"
                 android:layout_weight="1"/>
             <TextView
                 android:textColor="@color/divider"
@@ -60,7 +60,7 @@
                 android:text="2 занятие"
                 android:layout_marginEnd="8dp"
                 android:textSize="8sp"
-                android:background="@drawable/bg_text_view_outline"
+                android:background="@drawable/bg_text_outline"
                 android:layout_weight="1"/>
             <TextView
                 android:textColor="@color/divider"
@@ -70,7 +70,7 @@
                 android:text="2 занятие"
                 android:layout_marginEnd="8dp"
                 android:textSize="8sp"
-                android:background="@drawable/bg_text_view_outline"
+                android:background="@drawable/bg_text_outline"
                 android:layout_weight="1"/>
             <TextView
                 android:textColor="@color/divider"
@@ -79,7 +79,7 @@
                 android:gravity="center"
                 android:text="2 занятие"
                 android:textSize="8sp"
-                android:background="@drawable/bg_text_view_outline"
+                android:background="@drawable/bg_text_outline"
                 android:layout_weight="1"/>
         </LinearLayout>
 

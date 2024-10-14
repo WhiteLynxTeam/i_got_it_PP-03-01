@@ -29,7 +29,7 @@ class UserDataFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val listener = MaskedTextChangedListener( "+7 ([000]) [000]-[00]-[00]", binding.numberEdit)
+        val listener = MaskedTextChangedListener( "[0] ([000]) [000]-[00]-[00]", binding.numberEdit)
         binding.numberEdit.addTextChangedListener(listener)
         binding.numberEdit.onFocusChangeListener = listener
     }
