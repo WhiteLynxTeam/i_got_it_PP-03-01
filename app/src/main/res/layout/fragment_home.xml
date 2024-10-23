@@ -13,7 +13,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="16dp"
-        android:text="Ближайшее занятие"
+        android:text="@string/the_next_lesson"
         android:textColor="@color/btn_disable"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -44,7 +44,7 @@
             android:paddingTop="20dp"
             android:paddingEnd="16dp"
             android:paddingBottom="20dp"
-            android:text="У вас пока нет занятий"
+            android:text="@string/you_dont_have_any_classes_yet"
             android:textColor="@color/no_act_btn"
             android:textSize="16sp" />
 
@@ -57,7 +57,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="16dp"
-        android:text="Мои курсы"
+        android:text="@string/my_courses"
         android:textColor="@color/btn_disable"
         android:textSize="14sp"
         android:textStyle="bold"
@@ -95,7 +95,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center_vertical"
-                android:text="Выбрать обучение"
+                android:text="@string/choose_training"
                 android:textSize="16sp" />
 
             <ImageButton
@@ -137,7 +137,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="start|center_vertical"
-                android:text="Избранные курсы"
+                android:text="@string/favorites_courses"
                 android:textSize="16sp" />
 
             <ImageButton

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentHomeTrainingBinding
 import site.pnpl.igotit.domain.models.FavoritesCourses
@@ -31,7 +33,7 @@ class HomeTrainingFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentHomeTrainingBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -47,6 +49,8 @@ class HomeTrainingFragment : Fragment() {
         /*viewModel =
             ViewModelProvider(this,vmFactory)[HomeTrainingViewModel::class.java]*/
 
+        binding.rv.adapter = myCoursesAdapter
+        initCoursesRV()
 
         binding.btnMyCourses.setOnClickListener {
             binding.btnMyCourses.isSelected = true.also {
@@ -55,9 +59,7 @@ class HomeTrainingFragment : Fragment() {
             binding.btnFavoritesCourses.isSelected = false.also {
                 binding.btnFavoritesCourses.setTextColor(resources.getColor(R.color.white))
             }
-            binding.rv.adapter = myCoursesAdapter
 
-            initCoursesRV()
         }
 
         binding.btnFavoritesCourses.setOnClickListener {
@@ -74,6 +76,26 @@ class HomeTrainingFragment : Fragment() {
 
     private fun initCoursesRV() {
         val list: List<MyCourses> = listOf(
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
+            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
             MyCourses("Например - Клуб по новелле «История Кицунэ»"),
             MyCourses("Например - Клуб по новелле «История Кицунэ»"),
             MyCourses("Например - Клуб по новелле «История Кицунэ»"),
