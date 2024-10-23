@@ -47,6 +47,7 @@
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -69,6 +70,7 @@
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -80,6 +82,7 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
+        android:textColor="@color/white"
         android:hint="Пароль"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
@@ -91,6 +94,7 @@
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -114,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_input"
+            android:textColor="@color/white"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:padding="0dp" />
@@ -132,21 +137,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_repass" />
 
-    <ImageView
+
+
+    <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="23dp"
-        android:background="@drawable/img_chkbox"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_reg"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reg" />
+        app:layout_constraintStart_toStartOf="@id/btn_reg"
+        app:layout_constraintTop_toBottomOf="@id/btn_reg"/>
 
     <TextView
         android:id="@+id/tv_agree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
         android:fontFamily="sans-serif"
         android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
         android:textAlignment="center"
