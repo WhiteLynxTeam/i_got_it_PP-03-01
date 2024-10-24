@@ -7,50 +7,218 @@
     android:layout_height="match_parent"
     tools:context=".view.intro.IntroFragment">
 
-    <ImageView
-        android:id="@+id/img_intro"
+    <ViewFlipper
+        android:id="@+id/view_flip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
-        android:background="@drawable/img_intro"
-        android:contentDescription="Интро1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:autoStart="true"
+        android:flipInterval="2500"
+        android:inAnimation="@anim/slide_in_right"
+        android:outAnimation="@anim/slide_in_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <TextView
-        android:id="@+id/tv_intro"
+        <LinearLayout
+            android:id="@+id/flip_01"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_intro_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.3"
+                android:layout_gravity="center"
+                android:src="@drawable/img_intro" />
+
+            <TextView
+                android:id="@+id/tv_intro_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:layout_marginTop="11dp"
+                android:text="@string/sign_up_for_lesson"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/flip_02"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_intro_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:alpha="0.7"
+                android:src="@drawable/img_intro" />
+
+            <TextView
+                android:id="@+id/tv_intro_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"
+                android:padding="10dp"
+                android:text="@string/sign_up_for_lesson"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/flip_03"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            tools:ignore="UseCompoundDrawables">
+
+            <ImageView
+                android:id="@+id/img_intro_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@drawable/img_intro" />
+
+            <TextView
+                android:id="@+id/tv_intro_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="11dp"
+                android:padding="10dp"
+                android:text="@string/sign_up_for_lesson"
+                android:textAlignment="center"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </ViewFlipper>
+
+    <ViewFlipper
+        android:id="@+id/view_flip_02"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="236dp"
-        android:textAlignment="center"
-        android:text="Записывайся на уроки через\nудобное приложение"
-        android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:autoStart="true"
+        android:flipInterval="2500"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_flip">
 
-    <ImageView
-        android:id="@+id/iv_points"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="308dp"
-        android:background="@drawable/three_kruzhochka"
-        android:contentDescription="Интро1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:id="@+id/indicatorLayout_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <View
+                    android:id="@+id/indicator_01_01"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_selected" />
+
+                <View
+                    android:id="@+id/indicator_02_01"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+
+                <View
+                    android:id="@+id/indicator_03_01"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/indicatorLayout_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <View
+                    android:id="@+id/indicator_01_02"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+
+                <View
+                    android:id="@+id/indicator_02_02"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_selected" />
+
+                <View
+                    android:id="@+id/indicator_03_02"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/indicatorLayout_03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <View
+                    android:id="@+id/indicator_01_03"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+
+                <View
+                    android:id="@+id/indicator_02_03"
+                    android:layout_width="14dp"
+                    android:layout_height="14dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_unselected" />
+
+                <View
+                    android:id="@+id/indicator_03_03"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_margin="6dp"
+                    android:background="@drawable/circle_selected" />
+            </LinearLayout>
+    </ViewFlipper>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_begin"
         style="@style/ButtonBigStyle"
         android:layout_width="328dp"
         android:layout_height="48dp"
-        android:layout_marginTop="344dp"
-        android:text=" Начать"
+        android:layout_marginTop="24dp"
+        android:text="@string/to_begin"
         android:textSize="14sp"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/view_flip_02" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

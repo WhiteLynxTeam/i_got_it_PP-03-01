@@ -25,7 +25,7 @@
             android:dateTextAppearance="@style/CustomDateTextAppearance"
             android:gravity="center"
             android:showWeekNumber="true"
-            android:text="Календарь" />
+            android:text="@string/calendar" />
 
     </androidx.cardview.widget.CardView>
 
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:padding="16dp"
-            android:text="Дата и время занятия"
+            android:text="@string/date_and_time_of_the_lesson"
             android:textSize="16sp" />
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

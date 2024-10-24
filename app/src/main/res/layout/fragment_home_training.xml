@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/main"
     tools:context=".view.home.HomeTrainingFragment">
 
     <TextView
@@ -13,7 +14,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="16dp"
-        android:text="Ближайшее занятие"
+        android:text="@string/the_next_lesson"
         android:textSize="14sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -45,27 +46,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
-                android:text="дата и время"
+                android:text="@string/date_and_time"
                 android:textColor="@color/main_green"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/tv_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="end"
-                android:text="# занятиe"
+                android:text="@string/lesson"
                 android:textColor="@color/main_green"
-                android:textSize="12dp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/title_lesson"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
-                android:text="Здесь будет выбранный урок"
+                android:text="@string/selected_lesson"
                 android:textColor="@color/white"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </FrameLayout>
 
@@ -89,14 +90,14 @@
             style="@style/ButtonSmallStyle"
             android:layout_width="0dp"
             android:layout_height="28dp"
-            android:layout_gravity="left|center"
+            android:layout_gravity="start|center"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="16dp"
             android:layout_weight="1"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
             android:state_activated="true"
-            android:text="Мои курсы"
+            android:text="@string/my_courses"
             android:textSize="14sp"
             android:textStyle="bold" />
 
@@ -110,7 +111,7 @@
             android:layout_weight="1"
             android:paddingStart="12dp"
             android:paddingEnd="12dp"
-            android:text="Избранные курсы"
+            android:text="@string/favorites_courses"
             android:textSize="14sp"
             android:textStyle="bold" />
     </LinearLayout>
@@ -118,14 +119,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/container_button_home"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_my_courses" />
 
     <!--<FrameLayout

@@ -13,12 +13,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:fontFamily="sans-serif"
-        android:text="Вход"
+        android:text="@string/entrance"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -26,11 +26,11 @@
         android:layout_width="328dp"
         android:layout_height="60dp"
         android:layout_marginTop="108dp"
-        android:hint="Телефон"
+        android:hint="@string/phone"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -51,11 +51,11 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:hint="Почта"
+        android:hint="@string/mail"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_phone">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -75,11 +75,11 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:hint="Пароль"
+        android:hint="@string/password"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -101,7 +101,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
-        android:text="Вход"
+        android:text="@string/entrance"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -113,9 +113,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
         android:fontFamily="sans-serif"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:textAlignment="center"
-        android:textColor="#989DA0"
+        android:textColor="@color/description_skill"
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -128,9 +128,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="54dp"
         android:fontFamily="sans-serif"
-        android:text="Не помню пароль"
+        android:text="@string/i_do_not_remember_password"
         android:textAlignment="center"
-        android:textColor="#212121"
+        android:textColor="@color/description_skill"
         android:textSize="16sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

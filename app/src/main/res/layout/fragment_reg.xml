@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/img_arrow_left"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -23,12 +23,12 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="18dp"
         android:textAlignment="center"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -36,17 +36,18 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="94dp"
-        android:hint="Телефон"
+        android:hint="@string/phone"
         app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_phone"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -58,17 +59,18 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:hint="Почта"
+        android:hint="@string/mail"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_phone">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -80,17 +82,19 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:hint="Пароль"
+        android:textColor="@color/white"
+        android:hint="@string/password"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pass"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:textColor="@color/white"
             android:background="@drawable/background_input"
             android:gravity="center_vertical"
             android:maxLines="1"
@@ -102,11 +106,11 @@
         android:layout_width="328dp"
         android:layout_height="56dp"
         android:layout_marginTop="20dp"
-        android:hint="Пароль"
+        android:hint="@string/password"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_pass">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -114,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/background_input"
+            android:textColor="@color/white"
             android:gravity="center_vertical"
             android:maxLines="1"
             android:padding="0dp" />
@@ -126,29 +131,26 @@
         android:layout_height="48dp"
         android:layout_marginTop="40dp"
         android:fontFamily="sans-serif"
-        android:text="Регистрация"
+        android:text="@string/registration"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_repass" />
 
-    <ImageView
+    <CheckBox
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:layout_marginTop="23dp"
-        android:background="@drawable/img_chkbox"
-        app:layout_constraintLeft_toLeftOf="@+id/btn_reg"
-        app:layout_constraintTop_toBottomOf="@+id/btn_reg" />
+        app:layout_constraintStart_toStartOf="@id/btn_reg"
+        app:layout_constraintTop_toBottomOf="@id/btn_reg"/>
 
     <TextView
         android:id="@+id/tv_agree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
         android:fontFamily="sans-serif"
-        android:text="Даю согласие на обработку персональных данных \nв соответствии с политикой конфиденциальности"
+        android:text="@string/consent_to_processing"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="10sp"
