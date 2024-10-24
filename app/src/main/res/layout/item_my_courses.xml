@@ -28,7 +28,7 @@
             android:textAllCaps="false"
             android:singleLine="true"
             android:ellipsize="end"
-            android:text="@string/example"
+            android:text="Например - Клуб по новелле «История Кицунэ»"
             android:textSize="16sp"/>
 
         <ImageView

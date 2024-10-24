@@ -14,7 +14,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginStart="16dp"
         android:background="@drawable/img_arrow_left"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -27,8 +27,8 @@
         android:textColor="@color/white"
         android:fontFamily="sans-serif"
         android:textSize="16sp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
@@ -40,8 +40,8 @@
         app:endIconMode="clear_text"
         android:textColorHint="@color/inp_border"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_phone"
@@ -62,8 +62,8 @@
         android:hint="@string/mail"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_phone">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -86,8 +86,8 @@
         android:hint="@string/password"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_email">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -109,8 +109,8 @@
         android:hint="@string/password"
         android:textColorHint="@color/inp_border"
         app:endIconMode="clear_text"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_pass">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -136,8 +136,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_repass" />
-
-
 
     <CheckBox
         android:id="@+id/checkbox"

@@ -11,15 +11,15 @@
         android:id="@+id/tabs_courses"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:tabBackground="@color/tap_layout"
         app:tabIndicatorColor="@color/main_green"
         app:tabIndicatorFullWidth="true"
         app:tabIndicatorHeight="4dp"
         app:tabMode="fixed"
-        app:tabTextColor="@color/white">
+        app:tabTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="match_parent"

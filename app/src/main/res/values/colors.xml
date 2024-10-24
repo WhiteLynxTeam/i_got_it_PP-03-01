@@ -23,4 +23,6 @@
     <color name="no_act_btn">#7D7D7D</color>
 
     <color name="description_skill">#C1C0C6</color>
+    <color name="circle_selected">#6D45B3</color>
+    <color name="circle_unselected">#C1C0C6</color>
 </resources>

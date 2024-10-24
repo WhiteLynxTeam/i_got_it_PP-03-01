@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentHomeTrainingBinding
 import site.pnpl.igotit.domain.models.FavoritesCourses
@@ -59,6 +57,8 @@ class HomeTrainingFragment : Fragment() {
             binding.btnFavoritesCourses.isSelected = false.also {
                 binding.btnFavoritesCourses.setTextColor(resources.getColor(R.color.white))
             }
+            binding.rv.adapter = myCoursesAdapter
+            initCoursesRV()
 
         }
 
@@ -109,6 +109,11 @@ class HomeTrainingFragment : Fragment() {
 
     private fun initFavorRV() {
         val list: List<FavoritesCourses> = listOf(
+            FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
+            FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
+            FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
+            FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
+            FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
             FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
             FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
             FavoritesCourses("Например - Клуб по новелле «История Кицунэ»","Интенсивный разговорный английский для начальных уровней"),
