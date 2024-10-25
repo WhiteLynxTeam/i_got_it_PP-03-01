@@ -35,7 +35,7 @@ class HomeFragment : Fragment() {
 
         //переход во фрагмент с "выбрать обучение"
         binding.chooseTrainingButton.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_homeTrainingFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_catalogueFragment)
         }
 
         //переход во фрагмент с "избранными курсами"

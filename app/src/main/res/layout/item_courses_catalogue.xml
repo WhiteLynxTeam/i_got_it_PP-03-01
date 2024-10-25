@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_marginBottom="16dp"
+    android:backgroundTint="@color/view_background"
+    android:elevation="6dp"
+    android:outlineSpotShadowColor="@color/white"
+    app:cardCornerRadius="20dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/title_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:text="Courses name"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/cont_skill_courses"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title_course">
+
+            <TextView
+                android:id="@+id/level"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_text_outline"
+                android:gravity="center"
+                android:text="уровень скила"
+                android:textColor="@color/divider"
+                android:textSize="8sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/number_classes"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_text_outline"
+                android:gravity="center"
+                android:text="колл. занятий"
+                android:textColor="@color/divider"
+                android:textSize="8sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/per_week"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_text_outline"
+                android:gravity="center"
+                android:text="колл. в неделю"
+                android:textColor="@color/divider"
+                android:textSize="8sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/duration"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_text_outline"
+                android:gravity="center"
+                android:text="продол. занятий"
+                android:textColor="@color/divider"
+                android:textSize="8sp"
+                android:layout_weight="1"/>
+
+            <TextView
+                android:id="@+id/total_quantity"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginEnd="8dp"
+                android:background="@drawable/bg_text_outline"
+                android:gravity="center"
+                android:text="общее колл."
+                android:textColor="@color/divider"
+                android:textSize="8sp"
+                android:layout_weight="1"/>
+        </LinearLayout>
+        <TextView
+            android:id="@+id/description_course"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/description_skill"
+            app:layout_constraintTop_toBottomOf="@+id/cont_skill_courses"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="6dp"
+            tools:text="Краткое описание курса!"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
