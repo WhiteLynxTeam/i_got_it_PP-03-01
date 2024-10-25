@@ -14,7 +14,7 @@ import site.pnpl.igotit.databinding.ActivityMainBinding
 import site.pnpl.igotit.utils.uiextensions.hide
 import site.pnpl.igotit.utils.uiextensions.show
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
     private lateinit var binding: ActivityMainBinding
 
     private val navController by lazy {
@@ -28,15 +28,18 @@ class MainActivity : AppCompatActivity() {
         R.id.restoreFragment,
     )
 
+    private val fragmentsWithoutHeader = listOf(
+        R.id.introFragment,
+    )
+
+    private val fragmentsWithoutBackArrow = listOf(
+        R.id.authFragment,
+        R.id.homeFragment,
+
+    )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//        enableEdgeToEdge()
-//        setContentView(R.layout.activity_main)
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -47,6 +50,11 @@ class MainActivity : AppCompatActivity() {
 
         initMenu()
         initShowOrHideMainBottomBar()
+        initShowOrHideHeader()
+
+        binding.arrLeft.setOnClickListener {
+            onBackClick()
+        }
     }
 
     private fun initMenu() {
@@ -79,6 +87,29 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+    private fun initShowOrHideHeader() {
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                navController.addOnDestinationChangedListener { _, destination, _ ->
+                    with(binding) {
+                        if (fragmentsWithoutHeader.contains(destination.id)) {
+                            header.hide()
+                        } else {
+                            header.show()
+                        }
+
+                        if (fragmentsWithoutBackArrow.contains(destination.id)) {
+                            arrLeft.hide()
+                        } else {
+                            arrLeft.show()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     private fun initShowOrHideMainBottomBar() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -92,7 +123,23 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             }
-
         }
+    }
+
+    override fun onTitleTextChange(newTitle: String) {
+        binding.headerTitle.text = newTitle
+    }
+
+    override fun onBackClick() {
+        navController.popBackStack()
+    }
+
+    override fun hideBackArrow() {
+        binding.arrLeft.hide()
+    }
+
+    override fun showBackArrow() {
+        binding.arrLeft.show()
+
     }
 }
