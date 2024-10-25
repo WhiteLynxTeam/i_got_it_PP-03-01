@@ -36,8 +36,8 @@ class RegFragment : Fragment() {
         binding.btnReg.setOnClickListener {
         }
 
-        binding.arrLeft.setOnClickListener {
-            findNavController().navigate(R.id.action_regFragment_to_authFragment)
-        }
+//        binding.arrLeft.setOnClickListener {
+//            findNavController().navigate(R.id.action_regFragment_to_authFragment)
+//        }
     }
 }

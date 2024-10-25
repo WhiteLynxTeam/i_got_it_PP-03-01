@@ -11,6 +11,7 @@ import com.redmadrobot.inputmask.MaskedTextChangedListener
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAuthBinding
+import site.pnpl.igotit.view.OnHeaderChangeListener
 
 class AuthFragment : Fragment() {
     private var _binding: FragmentAuthBinding? = null
@@ -18,9 +19,19 @@ class AuthFragment : Fragment() {
 
     private lateinit var viewModel: AuthViewModel
 
+    private var listener: OnHeaderChangeListener? = null
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
+
+        /***Сделать базовый класс фрагмента и перенести весь повторяющийся код для фрагментов*/
+        /***И для активити на будущее тоже*/
+        if (context is OnHeaderChangeListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement OnTextChangeListener")
+        }
     }
 
     override fun onCreateView(
@@ -33,6 +44,9 @@ class AuthFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        /***Перенести в string AuthFragmentTitle*/
+        listener?.onTitleTextChange("Вход")
 
         binding.btnEnter.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_homeFragment)
