@@ -17,15 +17,14 @@ import javax.inject.Inject
 
 
 class CoursesCatalogueFragment : Fragment() {
-    private var _binding : FragmentCoursesCatalogueBinding? = null
+    private var _binding: FragmentCoursesCatalogueBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel : CoursesCatalogueViewModel by viewModels()
+    private val viewModel: CoursesCatalogueViewModel by viewModels()
 
-    private val coursesCatalogue = CoursesCatalogueAdapter{ title ->
-        val bundle = Bundle()
-        bundle.putString("title",title)
-        findNavController().navigate(R.id.action_catalogueFragment_to_detailsCoursesCatalogueFragment, bundle)
+    private val coursesCatalogue = CoursesCatalogueAdapter { title ->
+        findNavController().navigate(R.id.action_catalogueFragment_to_detailsCoursesCatalogueFragment,
+            Bundle().apply { putString("title", title) })
     }
 
     /*@Inject
@@ -40,7 +39,7 @@ class CoursesCatalogueFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentCoursesCatalogueBinding.inflate(inflater,container,false)
+        _binding = FragmentCoursesCatalogueBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -53,14 +52,39 @@ class CoursesCatalogueFragment : Fragment() {
         initRV()
     }
 
-    private fun initRV(){
+    private fun initRV() {
         val list: List<CoursesCatalogue> = listOf(
-            CoursesCatalogue("Хочу заговорить","A1 - A2","2 занятия", "2 раза в неделю","1,5 часа", "20 занятий", "Интенсивный разговорный английский для начальных уровней"),
-            CoursesCatalogue("Хочу в айти", "B1+","2 занятия", "2 раза в неделю","1,5 часа", "24 занятий","Айтишная лексика и бизнес-английский"),
-            CoursesCatalogue("Качаю софт-скиллы","B1+","2 занятия", "2 раза в неделю","1 часа", "30 занятий", "Разговорный рабочий английский"),
+            CoursesCatalogue(
+                "Хочу заговорить",
+                "A1 - A2",
+                "2 занятия",
+                "2 раза в неделю",
+                "1,5 часа",
+                "20 занятий",
+                "Интенсивный разговорный английский для начальных уровней"
+            ),
+            CoursesCatalogue(
+                "Хочу в айти",
+                "B1+",
+                "2 занятия",
+                "2 раза в неделю",
+                "1,5 часа",
+                "24 занятий",
+                "Айтишная лексика и бизнес-английский"
+            ),
+            CoursesCatalogue(
+                "Качаю софт-скиллы",
+                "B1+",
+                "2 занятия",
+                "2 раза в неделю",
+                "1 часа",
+                "30 занятий",
+                "Разговорный рабочий английский"
+            ),
         )
         coursesCatalogue.setData(list)
     }
+
     companion object {
         fun newInstance() = CoursesCatalogueFragment()
     }

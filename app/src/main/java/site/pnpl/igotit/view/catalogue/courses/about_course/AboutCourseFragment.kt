@@ -6,9 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import site.pnpl.igotit.R
+import site.pnpl.igotit.databinding.FragmentAboutCourseBinding
+import site.pnpl.igotit.databinding.FragmentAuthBinding
 import site.pnpl.igotit.view.courses.lessons.LessonsFragment
 
 class AboutCourseFragment : Fragment() {
+    private var _binding: FragmentAboutCourseBinding? = null
+    private val binding get() = _binding!!
+
+    private val title: String? by lazy { arguments?.getString("title") }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -18,6 +24,10 @@ class AboutCourseFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_about_course, container, false)
     }
     companion object {
-        fun newInstance() = AboutCourseFragment()
+        fun newInstance(title: String?):AboutCourseFragment = AboutCourseFragment().apply {
+            arguments = Bundle().apply {
+                putString("title", title)
+            }
+        }
     }
 }
