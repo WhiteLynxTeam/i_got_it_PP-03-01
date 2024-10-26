@@ -11,21 +11,23 @@ import com.google.android.material.tabs.TabLayoutMediator
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCatalogueBinding
+import site.pnpl.igotit.view.auth.AuthViewModel
+import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.base.BaseViewPagerAdapter
 import site.pnpl.igotit.view.catalogue.clubs.ClubsFragment
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueFragment
 import site.pnpl.igotit.view.catalogue.individually.IndividuallyFragment
 
-class CatalogueFragment : Fragment() {
+class CatalogueFragment : BaseFragment() {
     private var _binding: FragmentCatalogueBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel: CatalogueViewModel by viewModels()
+    private lateinit var viewModel: AuthViewModel
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+//    override fun onAttach(context: Context) {
+//        AndroidSupportInjection.inject(this)
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

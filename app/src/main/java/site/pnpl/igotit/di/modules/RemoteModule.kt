@@ -7,6 +7,8 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import site.pnpl.igotit.data.api.ClubApi
+import site.pnpl.igotit.data.api.TagApi
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -37,8 +39,16 @@ class RemoteModule {
         .client(okHttpClient)
         .build()
 
+    @Provides
+    @Singleton
+    fun provideTagApi(retrofit: Retrofit): TagApi = retrofit.create(TagApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideClubApi(retrofit: Retrofit): ClubApi = retrofit.create(ClubApi::class.java)
+
     companion object {
         private const val HALF_MINUTE_FOR_SLOW_INTERNET = 30L
-        const val BASE_URL = "https://overnightapp.pythonanywhere.com/"
+        const val BASE_URL = "http://vm4.mogilevich.net:8080/"
     }
 }

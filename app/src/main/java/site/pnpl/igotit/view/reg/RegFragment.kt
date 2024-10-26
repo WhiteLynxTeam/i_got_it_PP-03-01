@@ -10,22 +10,26 @@ import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRegBinding
+import site.pnpl.igotit.view.OnHeaderChangeListener
+import site.pnpl.igotit.view.base.BaseFragment
 
-class RegFragment : Fragment() {
+class RegFragment : BaseFragment() {
     private var _binding: FragmentRegBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: RegViewModel
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+//    override fun onAttach(context: Context) {
+//        AndroidSupportInjection.inject(this)
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        listener?.onTitleTextChange(R.string.regFragmentTitle)
+
         _binding = FragmentRegBinding.inflate(inflater, container, false)
         return binding.root
     }
