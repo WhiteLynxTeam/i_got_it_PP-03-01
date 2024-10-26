@@ -83,6 +83,9 @@
         <action
             android:id="@+id/action_catalogueFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_catalogueFragment_to_detailsCoursesCatalogueFragment"
+            app:destination="@id/detailsCoursesCatalogueFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -116,4 +119,8 @@
         android:name="site.pnpl.igotit.view.home.HomeTrainingFragment"
         android:label="fragment_home_training"
         tools:layout="@layout/fragment_home_training" />
+    <fragment
+        android:id="@+id/detailsCoursesCatalogueFragment"
+        android:name="site.pnpl.igotit.view.catalogue.courses.DetailsCoursesCatalogueFragment"
+        android:label="DetailsCoursesCatalogueFragment" />
 </navigation>

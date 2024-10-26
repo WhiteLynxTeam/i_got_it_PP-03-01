@@ -27,6 +27,9 @@
     <string name="clubs">Клубы</string>
     <string name="courses">Курсы</string>
     <string name="individually">Индивидуально</string>
+    <string name="about_course">О курсе</string>
+    <string name="record">Запись</string>
+
 
     <string name="my_courses">Мои курсы</string>
     <string name="choose_training">Выбрать обучение</string>
