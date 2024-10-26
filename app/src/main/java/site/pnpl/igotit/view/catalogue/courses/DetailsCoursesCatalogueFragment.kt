@@ -18,6 +18,8 @@ class DetailsCoursesCatalogueFragment : Fragment() {
     private var _binding: FragmentDetailsCoursesCatalogueBinding? = null
     private val binding get() = _binding!!
 
+    private val title: String? by lazy { arguments?.getString("title") }
+
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
         super.onAttach(context)
@@ -33,13 +35,12 @@ class DetailsCoursesCatalogueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val title = arguments?.getString("title")
         addViewPager()
     }
     private fun addViewPager(){
         binding.vpDetailsCourses.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                AboutCourseFragment.newInstance(),
+                AboutCourseFragment.newInstance(title),
                 RecordFragment.newInstance()
             )
         )
