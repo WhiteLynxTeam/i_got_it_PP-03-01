@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".view.catalogue.courses.about_course.AboutCourseFragment">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="#1E1226"
+        android:fitsSystemWindows="true">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <TextView
+                android:id="@+id/details_title_course"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:fitsSystemWindows="true"
+                android:text="Courses name"
+                android:textSize="20sp"
+                app:layout_collapseMode="parallax" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:backgroundTint="@color/divider"
+        app:borderWidth="0dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="center|end"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        app:tint="@color/main_green" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView
+            android:id="@+id/details_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@tools:sample/lorem/random"
+            android:textSize="16sp" />
+
+    </androidx.core.widget.NestedScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_gravity="bottom|center"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="#1E1226">
+
+        <TextView
+            android:id="@+id/level"
+            android:layout_width="104dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_text_outline"
+            android:gravity="center"
+            android:text="уровень скила"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/number_classes"
+            android:layout_width="104dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_text_outline"
+            android:gravity="center"
+            android:text="колл. занятий"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/level"
+            app:layout_constraintTop_toTopOf="@+id/level" />
+
+        <TextView
+            android:id="@+id/per_week"
+            android:layout_width="104dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_text_outline"
+            android:gravity="center"
+            android:text="колл. в неделю"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toEndOf="@+id/number_classes"
+            app:layout_constraintTop_toTopOf="@+id/level" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="160dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_text_outline"
+            android:gravity="center"
+            app:layout_constraintTop_toBottomOf="@+id/level"
+            app:layout_constraintStart_toStartOf="@+id/level"
+            android:text="продол. занятий"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/total_quantity"
+            android:layout_width="160dp"
+            android:layout_height="20dp"
+            android:background="@drawable/bg_text_outline"
+            android:gravity="center"
+            android:text="общее колл."
+            app:layout_constraintStart_toEndOf="@+id/duration"
+            app:layout_constraintTop_toBottomOf="@+id/level"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

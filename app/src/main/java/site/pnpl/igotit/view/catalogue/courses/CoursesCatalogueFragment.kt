@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
@@ -21,7 +22,11 @@ class CoursesCatalogueFragment : Fragment() {
 
     private val viewModel : CoursesCatalogueViewModel by viewModels()
 
-    private val coursesCatalogue = CoursesCatalogueAdapter()
+    private val coursesCatalogue = CoursesCatalogueAdapter{ title ->
+        val bundle = Bundle()
+        bundle.putString("title",title)
+        findNavController().navigate(R.id.action_catalogueFragment_to_detailsCoursesCatalogueFragment, bundle)
+    }
 
     /*@Inject
     lateinit var vmFactory: CoursesCatalogueViewModel.Factory*/

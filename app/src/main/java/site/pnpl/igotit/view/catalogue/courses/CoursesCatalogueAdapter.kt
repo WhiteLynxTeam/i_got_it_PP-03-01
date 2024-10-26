@@ -3,16 +3,18 @@ package site.pnpl.igotit.view.catalogue.courses
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemCoursesCatalogueBinding
 import site.pnpl.igotit.domain.models.CoursesCatalogue
 
-class CoursesCatalogueAdapter() :
+class CoursesCatalogueAdapter(private val onImgClick:(title:String) -> Unit,) :
     RecyclerView.Adapter<CoursesCatalogueAdapter.InnerCoursesCatalogueViewHolder>() {
     private var coursesCatalogue: MutableList<CoursesCatalogue> = mutableListOf()
 
     inner class InnerCoursesCatalogueViewHolder(binding: ItemCoursesCatalogueBinding) :
         RecyclerView.ViewHolder(binding.root) {
+        var root = binding.root
         var title = binding.titleCourse
         var level = binding.level
         var numberClasses = binding.numberClasses
@@ -23,9 +25,12 @@ class CoursesCatalogueAdapter() :
 
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerCoursesCatalogueViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int
+    ): InnerCoursesCatalogueViewHolder {
         val binding = ItemCoursesCatalogueBinding.inflate(
-            LayoutInflater.from(parent.context),parent,false
+            LayoutInflater.from(parent.context), parent, false
         )
         return InnerCoursesCatalogueViewHolder(binding)
     }
@@ -40,12 +45,15 @@ class CoursesCatalogueAdapter() :
         holder.totalQuantity.text = coursesCatalogue[position].totalQuantity
         holder.description.text = coursesCatalogue[position].description
 
+        holder.root.setOnClickListener {
+            onImgClick(coursesCatalogue[position].title)
+        }
     }
 
     override fun getItemCount(): Int = coursesCatalogue.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(title:List<CoursesCatalogue>){
+    fun setData(title: List<CoursesCatalogue>) {
         this.coursesCatalogue = title.toMutableList()
         notifyDataSetChanged()
     }
