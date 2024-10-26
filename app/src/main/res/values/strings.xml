@@ -27,6 +27,11 @@
     <string name="clubs">Клубы</string>
     <string name="courses">Курсы</string>
     <string name="individually">Индивидуально</string>
+    <string name="text_for_individually">На занятиях я использую учебники\nи методические пособия британских\nи американских издательств, собственные\nразработки и аутентичные материалы.</string>
+    <string name="individually_variable_01">1, 2 или 3 раза в неделю</string>
+    <string name="individually_variable_02">1 час</string>
+    <string name="individually_variable_03">Онлайн</string>
+    <string name="individually_question">Выберите день, когда хотите начать учиться</string>
     <string name="about_course">О курсе</string>
     <string name="record">Запись</string>
 

@@ -1,14 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.catalogue.individually.IndividuallyFragment">
 
     <TextView
+        android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="@string/individually"
-        android:textSize="40sp" />
-</FrameLayout>
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="80dp"
+        android:fontFamily="@font/roboto_light"
+        android:text="@string/text_for_individually"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/radio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="start"
+        android:orientation="vertical"
+        app:layout_constraintStart_toStartOf="@id/text"
+        app:layout_constraintTop_toBottomOf="@+id/text">
+
+        <RadioButton
+            android:id="@+id/radio_btn_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="12dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="@string/individually_variable_01"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_black"
+            android:paddingStart="12dp"
+            android:text="@string/individually_variable_02"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <RadioButton
+            android:id="@+id/radio_btn_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto_black"
+            android:paddingStart="12dp"
+            android:text="@string/individually_variable_03"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_register"
+        android:padding="12dp"
+        android:text="@string/record"
+        android:textColor="@color/btn_text"
+        android:textStyle="bold"
+        android:stateListAnimator="@animator/btn_register_anim"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

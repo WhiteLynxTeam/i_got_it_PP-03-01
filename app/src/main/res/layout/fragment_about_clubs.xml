@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.catalogue.clubs.about_club.AboutClubFragment">
+
+    <TextView
+        android:id="@+id/number_classes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:textColor="@color/divider"
+        android:text="Сейчас 2 занятие"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Разговорный клуб Extra"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/number_classes"
+        app:layout_constraintTop_toBottomOf="@id/number_classes"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/details_fab_favorites"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/divider"
+        app:borderWidth="0dp"
+        app:layout_anchorGravity="center|end"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        app:tint="@color/main_green"
+        app:layout_constraintTop_toTopOf="@id/number_classes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/title"/>
+
+    <TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:textSize="16sp"
+        android:text="Перед каждым занятием вы самостоятельно смотрите одну серию сериала и делаете несколько упражнений в специальном воркбуке. На самом занятии мы обсуждаем произошедшее в серии, анализируем события, обсуждаем вопросы, которые поднимаются в серии, высказываем своё мнение. В результате в естественных условиях учимся общаться на базовые темы. Сериал снят специально для изучающих английский, поэтому подойдёт для начальных уровней (А1/А2)."
+        app:layout_constraintStart_toStartOf="@id/number_classes"
+        app:layout_constraintTop_toBottomOf="@id/title"
+        app:layout_constraintEnd_toEndOf="@id/details_fab_favorites"/>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:constraint_referenced_ids="level,total_quantity,duration,limit,peer_week"
+        app:flow_wrapMode="chain"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_verticalGap="12dp"
+        app:layout_constraintStart_toStartOf="@id/number_classes"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/details_fab_favorites"/>
+
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
+        android:textAlignment="center"
+        android:text="A1-A2"
+        android:background="@drawable/bg_text_about_club"
+        />
+
+    <TextView
+        android:id="@+id/total_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
+        android:textAlignment="center"
+        android:text="A1-A2"
+        android:background="@drawable/bg_text_about_club"
+        />
+
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.3"
+        android:textAlignment="center"
+        android:text="A1-A2"
+        android:background="@drawable/bg_text_about_club"
+        />
+
+    <TextView
+        android:id="@+id/limit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.45"
+        android:textAlignment="center"
+        android:text="10 человек в группе"
+        android:background="@drawable/bg_text_about_club"
+        />
+
+    <TextView
+        android:id="@+id/peer_week"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintWidth_percent="0.45"
+        android:textAlignment="center"
+        android:text="1 раз в неделю"
+        android:background="@drawable/bg_text_about_club"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
