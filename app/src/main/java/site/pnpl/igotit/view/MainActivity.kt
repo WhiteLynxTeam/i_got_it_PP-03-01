@@ -1,5 +1,6 @@
 package site.pnpl.igotit.view
 
+import android.content.res.Resources
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -140,6 +141,13 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
 
     override fun showBackArrow() {
         binding.arrLeft.show()
+    }
 
+    override fun onTitleTextChange(idRes: Int) {
+        try {
+            binding.headerTitle.setText(idRes)
+        } catch (e: Resources.NotFoundException) {
+            binding.headerTitle.text = ""
+        }
     }
 }
