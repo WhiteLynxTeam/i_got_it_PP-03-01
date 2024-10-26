@@ -1,38 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     tools:context=".view.catalogue.courses.about_course.AboutCourseFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/number_classes"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="16dp"
-        android:background="#1E1226"
-        android:fitsSystemWindows="true">
+        android:layout_margin="16dp"
+        android:text="Сейчас 2 занятие"
+        android:textColor="@color/divider"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <TextView
-                android:id="@+id/details_title_course"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:fitsSystemWindows="true"
-                android:text="Courses name"
-                android:textSize="20sp"
-                app:layout_collapseMode="parallax" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Качаю софт-скиллы"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="@id/number_classes"
+        app:layout_constraintTop_toBottomOf="@id/number_classes" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/details_fab_favorites"
@@ -41,96 +32,90 @@
         android:layout_margin="16dp"
         android:backgroundTint="@color/divider"
         app:borderWidth="0dp"
-        app:layout_anchor="@id/app_bar"
         app:layout_anchorGravity="center|end"
+        app:layout_constraintBottom_toBottomOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/number_classes"
         app:srcCompat="@drawable/ic_baseline_favorite_border_24"
         app:tint="@color/main_green" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="wrap_content"
+        android:id="@+id/scroll_course"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
 
         <TextView
             android:id="@+id/details_description"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@tools:sample/lorem/random"
+            android:layout_height="0dp"
+            android:text="Нужен английский для общения с коллегами, клиентами и начальством? Тогда этот курс для тебя. Разберём фразовые глаголы и подходящую лексику, потренируем small talk, обсудим такие ситуации как непринуждённое общение с коллегами во время перерыва или корпоратива, как вообще начать разговор, как корректно спорить и доказывать свою точку зрения без драк, как делать комплименты и давать обратную связь. Всего в курсе будет 70(!) мини-тем. На курсе прокачиваем не только устную речь, но и навыки понимания речи на слух (аудио и видео материалы от носителей языка), а также вспоминаем грамматику (она логично вплетена в темы курса)."
             android:textSize="16sp" />
 
     </androidx.core.widget.NestedScrollView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="bottom|center"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:background="#1E1226">
 
-        <TextView
-            android:id="@+id/level"
-            android:layout_width="104dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_text_outline"
-            android:gravity="center"
-            android:text="уровень скила"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        app:constraint_referenced_ids="level,total_quantity,duration,limit,peer_week"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_verticalGap="12dp"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/details_fab_favorites"
+        app:layout_constraintStart_toStartOf="@id/number_classes" />
 
-        <TextView
-            android:id="@+id/number_classes"
-            android:layout_width="104dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_text_outline"
-            android:gravity="center"
-            android:text="колл. занятий"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/level"
-            app:layout_constraintTop_toTopOf="@+id/level" />
+    <TextView
+        android:id="@+id/level"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_text_about_club"
+        android:text="B2"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
-            android:id="@+id/per_week"
-            android:layout_width="104dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_text_outline"
-            android:gravity="center"
-            android:text="колл. в неделю"
-            android:textColor="@color/white"
-            android:textSize="12sp"
-            app:layout_constraintStart_toEndOf="@+id/number_classes"
-            app:layout_constraintTop_toTopOf="@+id/level" />
+    <TextView
+        android:id="@+id/total_quantity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_text_about_club"
+        android:text="24 занятий"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
-            android:id="@+id/duration"
-            android:layout_width="160dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_text_outline"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/level"
-            app:layout_constraintStart_toStartOf="@+id/level"
-            android:text="продол. занятий"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
+    <TextView
+        android:id="@+id/duration"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_text_about_club"
+        android:text="1,5 часа"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.3" />
 
-        <TextView
-            android:id="@+id/total_quantity"
-            android:layout_width="160dp"
-            android:layout_height="20dp"
-            android:background="@drawable/bg_text_outline"
-            android:gravity="center"
-            android:text="общее колл."
-            app:layout_constraintStart_toEndOf="@+id/duration"
-            app:layout_constraintTop_toBottomOf="@+id/level"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:id="@+id/limit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_text_about_club"
+        android:text="4-6 человек в группе"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.45" />
 
+    <TextView
+        android:id="@+id/peer_week"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_text_about_club"
+        android:text="2 раз в неделю"
+        android:textAlignment="center"
+        app:layout_constraintWidth_percent="0.45" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
