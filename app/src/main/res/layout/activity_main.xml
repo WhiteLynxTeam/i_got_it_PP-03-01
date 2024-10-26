@@ -26,6 +26,17 @@
             app:layout_constraintTop_toTopOf="@id/header_title"
             app:layout_constraintBottom_toBottomOf="@id/header_title"/>
 
+        <ImageView
+            android:id="@+id/avatar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/ic_avatar"
+            android:visibility="invisible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/header_title"
+            app:layout_constraintBottom_toBottomOf="@id/header_title"/>
+
         <TextView
             android:id="@+id/header_title"
             android:layout_width="wrap_content"

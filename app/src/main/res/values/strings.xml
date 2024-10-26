@@ -70,6 +70,9 @@
 
     <!--    Титулы для фрагментов-->
     <string name="authFragmentTitle">Вход</string>
+    <string name="regFragmentTitle">Регистрация</string>
+    <string name="restoreFragmentTitle">Восстановление пароля</string>
+    <string name="profileFragmentTitle">Профиль</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

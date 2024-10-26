@@ -10,22 +10,25 @@ import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRestoreBinding
+import site.pnpl.igotit.view.base.BaseFragment
 
-class RestoreFragment : Fragment() {
+class RestoreFragment : BaseFragment() {
     private var _binding: FragmentRestoreBinding? = null
     private val binding get() = _binding!!
 
     private lateinit var viewModel: RestoreViewModel
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+//    override fun onAttach(context: Context) {
+//        AndroidSupportInjection.inject(this)
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        listener?.onTitleTextChange(R.string.restoreFragmentTitle)
+
         _binding = FragmentRestoreBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -37,8 +40,8 @@ class RestoreFragment : Fragment() {
         binding.btnRestore.setOnClickListener {
         }
 
-        binding.arrLeft.setOnClickListener {
-            findNavController().navigate(R.id.action_restoreFragment_to_authFragment)
-        }
+//        binding.arrLeft.setOnClickListener {
+//            findNavController().navigate(R.id.action_restoreFragment_to_authFragment)
+//        }
     }
 }

@@ -33,9 +33,16 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
         R.id.introFragment,
     )
 
+    private val fragmentsWithAvatar = listOf(
+        R.id.homeFragment,
+    )
+
     private val fragmentsWithoutBackArrow = listOf(
         R.id.authFragment,
         R.id.homeFragment,
+        R.id.catalogueFragment,
+        R.id.profileFragment,
+        R.id.coursesFragment,
 
     )
 
@@ -105,6 +112,12 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
                         } else {
                             arrLeft.show()
                         }
+
+                        if (fragmentsWithAvatar.contains(destination.id)) {
+                            avatar.show()
+                        } else {
+                            avatar.hide()
+                        }
                     }
                 }
             }
@@ -141,6 +154,14 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
 
     override fun showBackArrow() {
         binding.arrLeft.show()
+    }
+
+    override fun hideAvatar() {
+        binding.avatar.hide()
+    }
+
+    override fun showAvatar() {
+        binding.avatar.show()
     }
 
     override fun onTitleTextChange(idRes: Int) {
