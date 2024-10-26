@@ -86,6 +86,12 @@
         <action
             android:id="@+id/action_catalogueFragment_to_detailsCoursesCatalogueFragment"
             app:destination="@id/detailsCoursesCatalogueFragment" />
+        <action
+            android:id="@+id/action_catalogueFragment_to_individuallyRegisterFragment"
+            app:destination="@id/individuallyRegisterFragment" />
+        <action
+            android:id="@+id/action_catalogueFragment_to_detailsClubsFragment"
+            app:destination="@id/detailsClubsFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -123,4 +129,14 @@
         android:id="@+id/detailsCoursesCatalogueFragment"
         android:name="site.pnpl.igotit.view.catalogue.courses.DetailsCoursesCatalogueFragment"
         android:label="DetailsCoursesCatalogueFragment" />
+    <fragment
+        android:id="@+id/individuallyRegisterFragment"
+        android:name="site.pnpl.igotit.view.catalogue.individually.record.IndividuallyRegisterFragment"
+        android:label="fragment_individually_register"
+        tools:layout="@layout/fragment_individually_register" />
+    <fragment
+        android:id="@+id/detailsClubsFragment"
+        android:name="site.pnpl.igotit.view.catalogue.clubs.DetailsClubsFragment"
+        android:label="fragment_details_clubs"
+        tools:layout="@layout/fragment_details_clubs" />
 </navigation>

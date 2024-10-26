@@ -5,4 +5,5 @@ interface OnHeaderChangeListener {
     fun onBackClick()
     fun hideBackArrow()
     fun showBackArrow()
+    fun onTitleTextChange(idRes: Int)
 }
