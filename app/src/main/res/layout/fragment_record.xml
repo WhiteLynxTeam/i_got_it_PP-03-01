@@ -1,14 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.catalogue.courses.record.RecordFragment">
+    tools:context=".view.catalogue.clubs.record_club.RecordClubFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:text="@string/individually_question"
+        android:textColor="@color/no_active_lesson"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/card_calendar"
+        app:layout_constraintStart_toStartOf="@id/card_calendar"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_calendar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:backgroundTint="@color/view_background"
+        app:cardCornerRadius="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text">
+
+        <CalendarView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:dateTextAppearance="@style/CustomDateTextAppearance"
+            android:gravity="center"
+            android:showWeekNumber="true"
+            android:text="@string/calendar" />
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="time_to_record_1,time_to_record_2,time_to_record_3,time_to_record_4,time_to_record_5,time_to_record_6"
+        app:flow_horizontalStyle="spread_inside"
+        app:flow_wrapMode="chain"
+        app:layout_constraintBottom_toTopOf="@id/btn_register"
+        app:layout_constraintEnd_toEndOf="@id/card_calendar"
+        app:layout_constraintStart_toStartOf="@id/card_calendar"
+        app:layout_constraintTop_toBottomOf="@id/card_calendar" />
+
+    <TextView
+        android:id="@+id/time_to_record_1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.26" />
+
+    <TextView
+        android:id="@+id/time_to_record_2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.26" />
+
+    <TextView
+        android:id="@+id/time_to_record_3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.26" />
+
+    <TextView
+        android:id="@+id/time_to_record_4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.26" />
+
+    <TextView
+        android:id="@+id/time_to_record_5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <TextView
+        android:id="@+id/time_to_record_6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_time"
+        android:paddingStart="24dp"
+        android:paddingTop="6dp"
+        android:paddingEnd="24dp"
+        android:paddingBottom="6dp"
+        android:text="9:30"
+        android:textSize="24sp"
+        app:layout_constraintWidth_percent="0.25" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_register"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_register"
+        android:padding="12dp"
+        android:stateListAnimator="@animator/btn_register_anim"
+        android:text="@string/record"
+        android:textColor="@color/btn_text"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
