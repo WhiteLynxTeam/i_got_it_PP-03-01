@@ -14,6 +14,7 @@ class AboutCourseFragment : Fragment() {
     private var _binding: FragmentAboutCourseBinding? = null
     private val binding get() = _binding!!
 
+    private val title: String? by lazy { arguments?.getString("title") }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
