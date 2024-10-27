@@ -128,24 +128,27 @@
     <fragment
         android:id="@+id/detailsCoursesCatalogueFragment"
         android:name="site.pnpl.igotit.view.catalogue.courses.DetailsCoursesCatalogueFragment"
-        android:label="DetailsCoursesCatalogueFragment" />
+        android:label="DetailsCoursesCatalogueFragment" >
+        <action
+            android:id="@+id/action_detailsCoursesCatalogueFragment_to_homeTrainingFragment"
+            app:destination="@id/homeTrainingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/individuallyRegisterFragment"
         android:name="site.pnpl.igotit.view.catalogue.individually.record.IndividuallyRegisterFragment"
         android:label="fragment_individually_register"
-        tools:layout="@layout/fragment_individually_register" />
+        tools:layout="@layout/fragment_individually_register" >
+        <action
+            android:id="@+id/action_individuallyRegisterFragment_to_homeTrainingFragment"
+            app:destination="@id/homeTrainingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/detailsClubsFragment"
         android:name="site.pnpl.igotit.view.catalogue.clubs.DetailsClubsFragment"
         android:label="fragment_details_clubs"
-        tools:layout="@layout/fragment_details_clubs" />
-    <fragment
-        android:id="@+id/recordClubFragment2"
-        android:name="site.pnpl.igotit.view.catalogue.clubs.record_club.RecordClubFragment"
-        android:label="fragment_record"
-        tools:layout="@layout/fragment_record" >
+        tools:layout="@layout/fragment_details_clubs" >
         <action
-            android:id="@+id/action_recordClubFragment2_to_homeTrainingFragment"
+            android:id="@+id/action_detailsClubsFragment_to_homeTrainingFragment"
             app:destination="@id/homeTrainingFragment" />
     </fragment>
 </navigation>

@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
 
     private val fragmentsWithAvatar = listOf(
         R.id.homeFragment,
+        R.id.homeTrainingFragment,
     )
 
     private val fragmentsWithoutBackArrow = listOf(

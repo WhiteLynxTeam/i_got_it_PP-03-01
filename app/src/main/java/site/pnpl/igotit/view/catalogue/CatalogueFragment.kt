@@ -33,6 +33,8 @@ class CatalogueFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        listener?.onTitleTextChange(R.string.catalogue)
+
         _binding = FragmentCatalogueBinding.inflate(inflater,container,false)
         return binding.root
     }

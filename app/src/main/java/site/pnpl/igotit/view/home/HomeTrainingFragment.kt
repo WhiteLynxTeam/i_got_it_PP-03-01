@@ -4,15 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentHomeTrainingBinding
 import site.pnpl.igotit.domain.models.FavoritesCourses
 import site.pnpl.igotit.domain.models.MyCourses
+import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.home.favorites_courses.FavoritesCoursesAdapter
 import site.pnpl.igotit.view.home.my_courses.MyCoursesAdapter
 
-class HomeTrainingFragment : Fragment() {
+class HomeTrainingFragment : BaseFragment() {
 
     private var _binding: FragmentHomeTrainingBinding? = null
     private val binding get() = _binding!!
@@ -32,6 +32,8 @@ class HomeTrainingFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        listener?.onTitleTextChange("Имя Пользователя")
+
         _binding = FragmentHomeTrainingBinding.inflate(inflater, container, false)
         return binding.root
     }
