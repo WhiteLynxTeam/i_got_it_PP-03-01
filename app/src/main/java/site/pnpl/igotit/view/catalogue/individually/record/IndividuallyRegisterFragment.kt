@@ -34,6 +34,7 @@ class IndividuallyRegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        //устанавливаем индикатор tablayout на раздел "Запись"
         binding.tlIndividually.getTabAt(1)?.select()
     }
 
