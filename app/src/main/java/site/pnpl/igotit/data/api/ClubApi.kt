@@ -6,7 +6,7 @@ import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.data.dto.tag.response.TagDtoOut
 
 interface ClubApi {
-    @GET("tags")
+    @GET("club")
     suspend fun getClubs(
-    ): Result<ResponseDto<ClubDtoOut>>
+    ): Result<List<ClubDtoOut>>
 }

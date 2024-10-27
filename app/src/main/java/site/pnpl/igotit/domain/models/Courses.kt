@@ -1,6 +1,6 @@
 package site.pnpl.igotit.domain.models
 
-data class CoursesCatalogue(
+data class Courses(
     val title: String,
     val level : String,
     val numberClasses: String,
