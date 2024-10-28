@@ -4,11 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.redmadrobot.inputmask.MaskedTextChangedListener
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAuthBinding
 import site.pnpl.igotit.view.base.BaseFragment
+import site.pnpl.igotit.view.catalogue.CatalogueViewModel
+import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {
     private var _binding: FragmentAuthBinding? = null
@@ -16,20 +19,8 @@ class AuthFragment : BaseFragment() {
 
     private lateinit var viewModel: AuthViewModel
 
-//    private var listener: OnHeaderChangeListener? = null
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//
-//        /***Сделать базовый класс фрагмента и перенести весь повторяющийся код для фрагментов*/
-//        /***И для активити на будущее тоже*/
-//        if (context is OnHeaderChangeListener) {
-//            listener = context
-//        } else {
-//            throw RuntimeException("$context must implement OnTextChangeListener")
-//        }
-//    }
+    @Inject
+    lateinit var vmFactory: AuthViewModel.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,6 +35,9 @@ class AuthFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel =
+            ViewModelProvider(this, vmFactory)[AuthViewModel::class.java]
+
         binding.btnEnter.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_homeFragment)
         }
@@ -54,6 +48,9 @@ class AuthFragment : BaseFragment() {
 
         binding.tvForget.setOnClickListener {
             findNavController().navigate(R.id.action_authFragment_to_restoreFragment)
+        }
+        binding.tvSampleDb.setOnClickListener {
+            viewModel.fillDb()
         }
 
         val listener = MaskedTextChangedListener( "[0] ([000]) [000]-[00]-[00]", binding.etPhone)

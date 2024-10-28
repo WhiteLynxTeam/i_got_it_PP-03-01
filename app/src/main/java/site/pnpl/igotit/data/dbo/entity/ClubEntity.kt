@@ -18,7 +18,7 @@ data class ClubEntity(
     @field: ColumnInfo(name = "isFavorites") var isFavorites: Boolean = false,
 )
 
-val listOfClubs = listOf(
+val sampleListOfClubs = listOf(
     ClubEntity(
         type = "club",
         clubName = "Хочу заговорить",
