@@ -1,18 +1,46 @@
 package site.pnpl.igotit.data.repository
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import site.pnpl.igotit.data.api.ClubApi
-import site.pnpl.igotit.data.api.TagApi
 import site.pnpl.igotit.data.dbo.dao.ClubsDao
-import site.pnpl.igotit.data.dbo.dao.TagsDao
-import site.pnpl.igotit.domain.irepository.ITagRepository
+import site.pnpl.igotit.data.dbo.entity.ClubEntity
+import site.pnpl.igotit.data.dbo.entity.sampleListOfClubs
+import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
+import site.pnpl.igotit.domain.irepository.IClubRepository
+import site.pnpl.igotit.domain.models.Clubs
 
 class ClubRepository(
     private val clubApi: ClubApi,
     private val clubsDao: ClubsDao
-    ) : ITagRepository {
+) : IClubRepository {
 
-    override suspend fun getFromApi(): Boolean {
+    override suspend fun saveSampleClubsToDb(): Boolean {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.trunc()
+            clubsDao.insertAll(sampleListOfClubs)
+        }
+        return result.isNotEmpty()
+    }
+
+    override suspend fun getFromApi(): Result<List<Clubs>> {
         val result = clubApi.getClubs()
-        return result.isSuccess
+        val outResult = result.map { mapperClubDtoOutToClubs(it) }
+        return outResult
+    }
+
+    private fun mapperClubDtoOutToClubs(listClubs: List<ClubDtoOut>): List<Clubs> {
+        return listClubs.map {
+            Clubs(
+                title = it.clubName,
+                level = it.level,
+                numberClasses = "",
+                perWeek = it.frequency,
+                duration = it.length,
+                totalQuantity = "",
+                description = it.description,
+            )
+        }
+
     }
 }

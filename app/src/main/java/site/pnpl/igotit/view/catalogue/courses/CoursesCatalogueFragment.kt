@@ -7,13 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
-import site.pnpl.igotit.domain.models.CoursesCatalogue
-import javax.inject.Inject
+import site.pnpl.igotit.domain.models.Clubs
+import site.pnpl.igotit.domain.models.Courses
+import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
 
 
 class CoursesCatalogueFragment : Fragment() {
@@ -53,8 +53,8 @@ class CoursesCatalogueFragment : Fragment() {
     }
 
     private fun initRV() {
-        val list: List<CoursesCatalogue> = listOf(
-            CoursesCatalogue(
+        val list: List<Courses> = listOf(
+            Courses(
                 "Хочу заговорить",
                 "A1 - A2",
                 "2 занятия",
@@ -63,7 +63,7 @@ class CoursesCatalogueFragment : Fragment() {
                 "20 занятий",
                 "Интенсивный разговорный английский для начальных уровней"
             ),
-            CoursesCatalogue(
+            Courses(
                 "Хочу в айти",
                 "B1+",
                 "2 занятия",
@@ -72,7 +72,7 @@ class CoursesCatalogueFragment : Fragment() {
                 "24 занятий",
                 "Айтишная лексика и бизнес-английский"
             ),
-            CoursesCatalogue(
+            Courses(
                 "Качаю софт-скиллы",
                 "B1+",
                 "2 занятия",
@@ -86,6 +86,10 @@ class CoursesCatalogueFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = CoursesCatalogueFragment()
+        fun newInstance(listClubs: List<Clubs>?): CoursesCatalogueFragment = CoursesCatalogueFragment().apply {
+//            arguments = Bundle().apply {
+//                putString("title", title)
+//            }
+        }
     }
 }
