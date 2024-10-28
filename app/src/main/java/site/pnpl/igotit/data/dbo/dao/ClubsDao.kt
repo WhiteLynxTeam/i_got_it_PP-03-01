@@ -22,7 +22,7 @@ interface ClubsDao {
 //    @Query("SELECT * FROM IMAGES  WHERE id = :id")
 //    fun getImageById(id: Int): ImageEntity
 //
-//    @Query("DELETE FROM IMAGES")
-//    fun trunc(): Int
+    @Query("DELETE FROM IMAGES")
+    fun trunc(): Int
 
 }
