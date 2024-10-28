@@ -5,9 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCatalogueBinding
+import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.base.BaseViewPagerAdapter
 import site.pnpl.igotit.view.catalogue.clubs.ClubsFragment
@@ -38,15 +41,24 @@ class CatalogueFragment : BaseFragment() {
         viewModel =
             ViewModelProvider(this, vmFactory)[CatalogueViewModel::class.java]
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.courses.collect {
+
+                println("List<Clubs> $it")
+
+                addViewPager(it)
+            }
+        }
+
         viewModel.getCourses()
 
-        addViewPager()
+        addViewPager(null)
     }
 
-    private fun addViewPager(){
+    private fun addViewPager(listClubs: List<Clubs>?){
         binding.vpCatalog.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                CoursesCatalogueFragment.newInstance(),
+                CoursesCatalogueFragment.newInstance(listClubs),
                 ClubsFragment.newInstance(),
                 IndividuallyFragment.newInstance()
             )

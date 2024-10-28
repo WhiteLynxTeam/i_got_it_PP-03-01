@@ -11,7 +11,9 @@ import androidx.navigation.fragment.findNavController
 import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
+import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
+import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
 
 
 class CoursesCatalogueFragment : Fragment() {
@@ -84,6 +86,10 @@ class CoursesCatalogueFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = CoursesCatalogueFragment()
+        fun newInstance(listClubs: List<Clubs>?): CoursesCatalogueFragment = CoursesCatalogueFragment().apply {
+//            arguments = Bundle().apply {
+//                putString("title", title)
+//            }
+        }
     }
 }

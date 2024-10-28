@@ -22,45 +22,21 @@ class ClubRepository(
 
         val result = clubApi.getClubs()
         val outResult = result.map { mapperClubDtoOutToClubs(it) }
-//        if (result.isSuccess) {
-//            val response = result.getOrNull() ?: return result
-//            val listId = withContext(Dispatchers.IO) {
-//                imagesDao.trunc()
-//                imagesDao.insertAll(mapperImagesDtoOutToImagesEntity(response.data))
-//            }
-//            count = listId.size
-//        }
-
-        return result.isSuccess
-
-
-//        var count = 0
-//        val token = tokenStorage.get()
-//        if (token.isEmpty()) return false
-//        val result = imageApi.download(token = token, 0)
-//
-//        println("ImageRepository: download result = $result")
-//
-//        if (result.isSuccess) {
-//            val response = result.getOrNull() ?: return false
-//            val listId = withContext(Dispatchers.IO) {
-//                imagesDao.trunc()
-//                imagesDao.insertAll(mapperImagesDtoOutToImagesEntity(response.data))
-//            }
-//            count = listId.size
-//        }
-//        return count != 0
+        return outResult
     }
 
-    private fun mapperClubDtoOutToClubs(club: ClubDtoOut): Clubs {
-        return Clubs(
-        title = club.clubName,
-        level = club.level,
-        numberClasses = "",
-        perWeek = club.frequency,
-        duration = club.length,
-        totalQuantity = "",
-        description = club.description,
-        )
+    private fun mapperClubDtoOutToClubs(listClubs: List<ClubDtoOut>): List<Clubs> {
+        return listClubs.map {
+            Clubs(
+                title = it.clubName,
+                level = it.level,
+                numberClasses = "",
+                perWeek = it.frequency,
+                duration = it.length,
+                totalQuantity = "",
+                description = it.description,
+            )
+        }
+
     }
 }

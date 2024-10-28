@@ -1,5 +1,7 @@
 package site.pnpl.igotit.domain.irepository
 
+import site.pnpl.igotit.domain.models.Clubs
+
 interface IClubRepository {
-    suspend fun getFromApi(): Boolean
+    suspend fun getFromApi(): Result<List<Clubs>>
 }
