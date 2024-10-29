@@ -36,9 +36,17 @@ class ClubRepository(
         return outResult
     }
 
+    override suspend fun setFavorites(id : Int): Boolean {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.setFavorites(id)
+        }
+        return true
+    }
+
     private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {
         return listClubs.map {
             Clubs(
+                id = it.id,
                 title = it.clubName,
                 level = it.level,
                 numberClasses = it.numberClasses,
@@ -54,6 +62,7 @@ class ClubRepository(
     private fun mapperClubDtoOutToClubs(listClubs: List<ClubDtoOut>): List<Clubs> {
         return listClubs.map {
             Clubs(
+                id = 0,
                 title = it.clubName,
                 level = it.level,
                 numberClasses = "",

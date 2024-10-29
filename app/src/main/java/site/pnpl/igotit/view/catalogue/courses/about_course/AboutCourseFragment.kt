@@ -5,28 +5,53 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAboutCourseBinding
 import site.pnpl.igotit.databinding.FragmentAuthBinding
+import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
+import site.pnpl.igotit.view.base.BaseFragment
+import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.courses.lessons.LessonsFragment
+import javax.inject.Inject
 
-class AboutCourseFragment : Fragment() {
+class AboutCourseFragment : BaseFragment() {
     private var _binding: FragmentAboutCourseBinding? = null
     private val binding get() = _binding!!
 
+    private lateinit var viewModel: AboutCourseViewModel
+
+    @Inject
+    lateinit var vmFactory: AboutCourseViewModel.Factory
+
     private val title: String? by lazy { arguments?.getString("title") }
+    private val id: Int? by lazy { arguments?.getInt("id") }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_course, container, false)
+        _binding = FragmentAboutCourseBinding.inflate(inflater, container, false)
+        return binding.root
     }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this,vmFactory)[AboutCourseViewModel::class.java]
+
+        binding.detailsFabFavorites.setOnClickListener {
+            id?.let { it1 -> viewModel.setFavorites(it1) }
+        }
+    }
+
     companion object {
-        fun newInstance(title: String?):AboutCourseFragment = AboutCourseFragment().apply {
+        fun newInstance(title: String?, id :Int?):AboutCourseFragment = AboutCourseFragment().apply {
             arguments = Bundle().apply {
                 putString("title", title)
+                if (id != null) {
+                    putInt("id", id)
+                }
             }
         }
     }

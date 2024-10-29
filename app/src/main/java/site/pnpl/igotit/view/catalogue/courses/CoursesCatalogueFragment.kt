@@ -31,9 +31,12 @@ class CoursesCatalogueFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: CoursesCatalogueViewModel.Factory
 
-    private val coursesCatalogue = CoursesCatalogueAdapter { title ->
+    private val coursesCatalogue = CoursesCatalogueAdapter { title , id ->
         findNavController().navigate(R.id.action_catalogueFragment_to_detailsCoursesCatalogueFragment,
-            Bundle().apply { putString("title", title) })
+            Bundle().apply {
+                putString("title", title)
+                putInt("id", id)
+            })
     }
 
 //    override fun onAttach(context: Context) {
