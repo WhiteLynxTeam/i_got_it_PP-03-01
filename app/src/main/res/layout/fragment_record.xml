@@ -41,7 +41,7 @@
 
     <androidx.constraintlayout.helper.widget.Flow
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         app:constraint_referenced_ids="time_to_record_1,time_to_record_2,time_to_record_3,time_to_record_4,time_to_record_5,time_to_record_6"
         app:flow_horizontalStyle="spread_inside"
         app:flow_wrapMode="chain"
@@ -52,83 +52,33 @@
 
     <TextView
         android:id="@+id/time_to_record_1"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.26" />
+        style="@style/time_to_record"
+        android:text="9:30" />
 
     <TextView
         android:id="@+id/time_to_record_2"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.26" />
+        style="@style/time_to_record"
+        android:text="9:30" />
 
     <TextView
         android:id="@+id/time_to_record_3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.26" />
+        style="@style/time_to_record"
+        android:text="9:30" />
 
     <TextView
         android:id="@+id/time_to_record_4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.26" />
+        style="@style/time_to_record"
+        android:text="9:30"/>
 
     <TextView
         android:id="@+id/time_to_record_5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.25" />
+        style="@style/time_to_record"
+        android:text="9:30" />
 
     <TextView
         android:id="@+id/time_to_record_6"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_time"
-        android:paddingStart="24dp"
-        android:paddingTop="6dp"
-        android:paddingEnd="24dp"
-        android:paddingBottom="6dp"
-        android:text="9:30"
-        android:textSize="24sp"
-        app:layout_constraintWidth_percent="0.25" />
+        style="@style/time_to_record"
+        android:text="9:30"/>
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
