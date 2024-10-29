@@ -63,6 +63,5 @@ class ClubRepository(
                 description = it.description,
             )
         }
-
     }
 }
