@@ -6,4 +6,5 @@ interface IClubRepository {
     suspend fun getEntities(type: String): List<Clubs>
     suspend fun getFromApi(): Result<List<Clubs>>
     suspend fun saveSampleClubsToDb(): Boolean
+    suspend fun setFavorites(id : Int): Boolean
 }

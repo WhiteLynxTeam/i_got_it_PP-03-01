@@ -19,6 +19,7 @@ class DetailsCoursesCatalogueFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val title: String? by lazy { arguments?.getString("title") }
+    private val id: Int? by lazy { arguments?.getInt("id") }
 
     override fun onAttach(context: Context) {
         AndroidSupportInjection.inject(this)
@@ -40,7 +41,7 @@ class DetailsCoursesCatalogueFragment : Fragment() {
     private fun addViewPager(){
         binding.vpDetailsCourses.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                AboutCourseFragment.newInstance(title),
+                AboutCourseFragment.newInstance(title,id),
                 RecordFragment.newInstance()
             )
         )

@@ -8,7 +8,7 @@ import site.pnpl.igotit.databinding.ItemCoursesCatalogueBinding
 import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
 
-class CoursesCatalogueAdapter(private val onImgClick:(title:String) -> Unit,) :
+class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) -> Unit,) :
     RecyclerView.Adapter<CoursesCatalogueAdapter.InnerCoursesCatalogueViewHolder>() {
     private var coursesCatalogue: MutableList<Clubs> = mutableListOf()
 
@@ -46,7 +46,7 @@ class CoursesCatalogueAdapter(private val onImgClick:(title:String) -> Unit,) :
         holder.description.text = coursesCatalogue[position].description
 
         holder.root.setOnClickListener {
-            onImgClick(coursesCatalogue[position].title)
+            onImgClick(coursesCatalogue[position].title,coursesCatalogue[position].id)
         }
     }
 
