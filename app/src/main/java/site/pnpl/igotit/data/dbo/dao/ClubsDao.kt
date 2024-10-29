@@ -13,13 +13,16 @@ interface ClubsDao {
 //    fun save(imageEntity: ImageEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(imageEntitys: List<ClubEntity>): List<Long>
+    fun insertAll(clubEntity: List<ClubEntity>): List<Long>
 
     @Query("SELECT * FROM CLUBS")
     fun getClubs(): List<ClubEntity>
 
     @Query("SELECT * FROM CLUBS  WHERE type = :type")
     fun getEntities(type: String): List<ClubEntity>
+
+    @Query("SELECT * FROM CLUBS  WHERE type = :type AND id = :id")
+    fun getEntity(type: String, id: Int): ClubEntity
 
     @Query("DELETE FROM CLUBS")
     fun trunc(): Int

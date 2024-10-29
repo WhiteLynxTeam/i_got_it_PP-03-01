@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAboutCourseBinding
 import site.pnpl.igotit.databinding.FragmentAuthBinding
@@ -40,9 +42,30 @@ class AboutCourseFragment : BaseFragment() {
 
         viewModel = ViewModelProvider(this,vmFactory)[AboutCourseViewModel::class.java]
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.club.collect {
+
+                println("Clubs $it")
+
+                with(binding) {
+                    numberClasses.text = it.numberClasses
+                    title.text = it.title
+                    detailsDescription.text = it.about
+                    level.text = it.level
+                    totalQuantity.text = it.totalQuantity
+                    duration.text = it.duration
+                    limit.text = "пустое"
+                    peerWeek.text = it.perWeek
+                }
+
+            }
+        }
+
         binding.detailsFabFavorites.setOnClickListener {
             id?.let { it1 -> viewModel.setFavorites(it1) }
         }
+
+        id?.let { viewModel.setCourseById(it) }
     }
 
     companion object {

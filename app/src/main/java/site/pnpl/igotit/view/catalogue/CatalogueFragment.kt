@@ -60,7 +60,7 @@ class CatalogueFragment : BaseFragment() {
     private fun addViewPager(listClubs: List<Clubs>?){
         binding.vpCatalog.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                CoursesCatalogueFragment.newInstance(listClubs),
+                CoursesCatalogueFragment.newInstance(),
                 ClubsFragment.newInstance(),
                 IndividuallyFragment.newInstance()
             )

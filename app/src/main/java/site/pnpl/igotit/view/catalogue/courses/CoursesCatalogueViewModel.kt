@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.domain.models.Clubs
-import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 
 class CoursesCatalogueViewModel(private val getCoursesFromDbUseCase: GetCoursesFromDbUseCase) : ViewModel() {

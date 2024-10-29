@@ -4,6 +4,7 @@ import dagger.Module
 import dagger.Provides
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
 import site.pnpl.igotit.view.auth.AuthViewModel
@@ -41,9 +42,11 @@ class AppModule() {
     )
     @Provides
     fun provideAboutCourseViewModel(
-        setCoursesFavoriteUseCase: SetCoursesFavoriteUseCase
+        setCoursesFavoriteUseCase: SetCoursesFavoriteUseCase,
+        getCourseByIdFromDbUseCase: GetCourseByIdFromDbUseCase
     ) = AboutCourseViewModel.Factory(
-        setCoursesFavoriteUseCase = setCoursesFavoriteUseCase
+        setCoursesFavoriteUseCase = setCoursesFavoriteUseCase,
+        getCourseByIdFromDbUseCase = getCourseByIdFromDbUseCase
     )
 
 }

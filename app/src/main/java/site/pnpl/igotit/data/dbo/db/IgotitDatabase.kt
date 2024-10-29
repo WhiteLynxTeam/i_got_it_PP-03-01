@@ -19,7 +19,7 @@ import site.pnpl.igotit.data.dbo.entity.TagEntity
         CrossTagClubEntity::class,
         CrossTagCoursEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class IgotitDatabase : RoomDatabase() {

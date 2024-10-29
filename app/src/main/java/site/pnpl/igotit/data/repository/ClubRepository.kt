@@ -22,6 +22,13 @@ class ClubRepository(
         return mapperClubsEntityToClubs(result)
     }
 
+    override suspend fun getEntityById(type: String, id: Int): Clubs {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getEntity(type, id)
+        }
+        return mapperClubEntityToClub(result)
+    }
+
     override suspend fun saveSampleClubsToDb(): Boolean {
         val result = withContext(Dispatchers.IO) {
             clubsDao.trunc()
@@ -36,7 +43,7 @@ class ClubRepository(
         return outResult
     }
 
-    override suspend fun setFavorites(id : Int): Boolean {
+    override suspend fun setFavorites(id: Int): Boolean {
         val result = withContext(Dispatchers.IO) {
             clubsDao.setFavorites(id)
         }
@@ -54,8 +61,24 @@ class ClubRepository(
                 duration = it.length,
                 totalQuantity = it.totalQuantity,
                 description = it.description,
+                about = it.about
             )
         }
+
+    }
+
+    private fun mapperClubEntityToClub(clubs: ClubEntity): Clubs {
+        return Clubs(
+            id = clubs.id,
+            title = clubs.clubName,
+            level = clubs.level,
+            numberClasses = clubs.numberClasses,
+            perWeek = clubs.frequency,
+            duration = clubs.length,
+            totalQuantity = clubs.totalQuantity,
+            description = clubs.description,
+            about = clubs.about
+        )
 
     }
 

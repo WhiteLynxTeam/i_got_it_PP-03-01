@@ -6,6 +6,7 @@ import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
 import javax.inject.Singleton
@@ -59,6 +60,16 @@ class DomainModule {
         repository: IClubRepository,
     ): SetCoursesFavoriteUseCase {
         return SetCoursesFavoriteUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetCourseByIdFromDbUseCase(
+        repository: IClubRepository,
+    ): GetCourseByIdFromDbUseCase {
+        return GetCourseByIdFromDbUseCase(
             repository = repository,
         )
     }

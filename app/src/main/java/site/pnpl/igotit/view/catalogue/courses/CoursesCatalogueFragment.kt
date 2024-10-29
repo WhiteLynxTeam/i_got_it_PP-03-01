@@ -1,24 +1,18 @@
 package site.pnpl.igotit.view.catalogue.courses
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import dagger.android.support.AndroidSupportInjection
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
 import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
 import site.pnpl.igotit.view.base.BaseFragment
-import site.pnpl.igotit.view.catalogue.CatalogueViewModel
-import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
 import javax.inject.Inject
 
 
@@ -38,11 +32,6 @@ class CoursesCatalogueFragment : BaseFragment() {
                 putInt("id", id)
             })
     }
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -107,10 +96,6 @@ class CoursesCatalogueFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(listClubs: List<Clubs>?): CoursesCatalogueFragment = CoursesCatalogueFragment().apply {
-//            arguments = Bundle().apply {
-//                putString("title", title)
-//            }
-        }
+        fun newInstance() = CoursesCatalogueFragment()
     }
 }
