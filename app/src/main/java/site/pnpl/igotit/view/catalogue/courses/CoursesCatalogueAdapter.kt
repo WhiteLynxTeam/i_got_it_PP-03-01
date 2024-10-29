@@ -5,11 +5,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemCoursesCatalogueBinding
+import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
 
 class CoursesCatalogueAdapter(private val onImgClick:(title:String) -> Unit,) :
     RecyclerView.Adapter<CoursesCatalogueAdapter.InnerCoursesCatalogueViewHolder>() {
-    private var coursesCatalogue: MutableList<Courses> = mutableListOf()
+    private var coursesCatalogue: MutableList<Clubs> = mutableListOf()
 
     inner class InnerCoursesCatalogueViewHolder(binding: ItemCoursesCatalogueBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -52,7 +53,7 @@ class CoursesCatalogueAdapter(private val onImgClick:(title:String) -> Unit,) :
     override fun getItemCount(): Int = coursesCatalogue.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(title: List<Courses>) {
+    fun setData(title: List<Clubs>) {
         this.coursesCatalogue = title.toMutableList()
         notifyDataSetChanged()
     }
