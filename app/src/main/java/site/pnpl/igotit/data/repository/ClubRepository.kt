@@ -15,6 +15,13 @@ class ClubRepository(
     private val clubsDao: ClubsDao
 ) : IClubRepository {
 
+    override suspend fun getEntities(type: String): List<Clubs> {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getEntities(type)
+        }
+        return mapperClubsEntityToClubs(result)
+    }
+
     override suspend fun saveSampleClubsToDb(): Boolean {
         val result = withContext(Dispatchers.IO) {
             clubsDao.trunc()
@@ -27,6 +34,21 @@ class ClubRepository(
         val result = clubApi.getClubs()
         val outResult = result.map { mapperClubDtoOutToClubs(it) }
         return outResult
+    }
+
+    private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {
+        return listClubs.map {
+            Clubs(
+                title = it.clubName,
+                level = it.level,
+                numberClasses = it.numberClasses,
+                perWeek = it.frequency,
+                duration = it.length,
+                totalQuantity = it.totalQuantity,
+                description = it.description,
+            )
+        }
+
     }
 
     private fun mapperClubDtoOutToClubs(listClubs: List<ClubDtoOut>): List<Clubs> {

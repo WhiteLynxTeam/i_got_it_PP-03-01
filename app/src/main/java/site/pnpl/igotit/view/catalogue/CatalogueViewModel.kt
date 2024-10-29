@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.domain.models.Clubs
-import site.pnpl.igotit.domain.models.Courses
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 
 class CatalogueViewModel(private val downloadCoursesUseCase: DownloadCoursesUseCase) : ViewModel() {
@@ -24,9 +23,6 @@ class CatalogueViewModel(private val downloadCoursesUseCase: DownloadCoursesUseC
             }
         }
     }
-
-
-
 
     class Factory(private val downloadCoursesUseCase: DownloadCoursesUseCase
     ) : ViewModelProvider.Factory {

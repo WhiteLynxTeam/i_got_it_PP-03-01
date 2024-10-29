@@ -10,7 +10,6 @@ import com.redmadrobot.inputmask.MaskedTextChangedListener
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAuthBinding
 import site.pnpl.igotit.view.base.BaseFragment
-import site.pnpl.igotit.view.catalogue.CatalogueViewModel
 import javax.inject.Inject
 
 class AuthFragment : BaseFragment() {

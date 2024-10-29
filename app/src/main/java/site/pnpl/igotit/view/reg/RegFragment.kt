@@ -1,16 +1,11 @@
 package site.pnpl.igotit.view.reg
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRegBinding
-import site.pnpl.igotit.view.OnHeaderChangeListener
 import site.pnpl.igotit.view.base.BaseFragment
 
 class RegFragment : BaseFragment() {
@@ -18,11 +13,6 @@ class RegFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: RegViewModel
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,9 +29,5 @@ class RegFragment : BaseFragment() {
 
         binding.btnReg.setOnClickListener {
         }
-
-//        binding.arrLeft.setOnClickListener {
-//            findNavController().navigate(R.id.action_regFragment_to_authFragment)
-//        }
     }
 }
