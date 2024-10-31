@@ -40,7 +40,7 @@ class AboutCourseFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this,vmFactory)[AboutCourseViewModel::class.java]
+        viewModel = ViewModelProvider(this, vmFactory)[AboutCourseViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.club.collect {
@@ -56,26 +56,45 @@ class AboutCourseFragment : BaseFragment() {
                     duration.text = it.duration
                     limit.text = "пустое"
                     peerWeek.text = it.perWeek
+                    if (it.isFavorite) {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    } else {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    }
+
                 }
 
             }
         }
 
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isFavorites.collect {
+                with(binding) {
+                    if (it) {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    } else {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    }
+                }
+            }
+        }
+
         binding.detailsFabFavorites.setOnClickListener {
-            id?.let { it1 -> viewModel.setFavorites(it1) }
+            id?.let { id -> viewModel.setFavorites(id) }
         }
 
         id?.let { viewModel.setCourseById(it) }
     }
 
     companion object {
-        fun newInstance(title: String?, id :Int?):AboutCourseFragment = AboutCourseFragment().apply {
-            arguments = Bundle().apply {
-                putString("title", title)
-                if (id != null) {
-                    putInt("id", id)
+        fun newInstance(title: String?, id: Int?): AboutCourseFragment =
+            AboutCourseFragment().apply {
+                arguments = Bundle().apply {
+                    putString("title", title)
+                    if (id != null) {
+                        putInt("id", id)
+                    }
                 }
             }
-        }
     }
 }

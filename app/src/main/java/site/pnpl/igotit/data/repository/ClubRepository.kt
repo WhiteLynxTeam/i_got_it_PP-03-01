@@ -5,10 +5,10 @@ import kotlinx.coroutines.withContext
 import site.pnpl.igotit.data.api.ClubApi
 import site.pnpl.igotit.data.dbo.dao.ClubsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
-import site.pnpl.igotit.data.dbo.entity.sampleListOfClubs
 import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
+import site.pnpl.igotit.domain.sampleListOfClubs
 
 class ClubRepository(
     private val clubApi: ClubApi,
@@ -43,11 +43,20 @@ class ClubRepository(
         return outResult
     }
 
-    override suspend fun setFavorites(id: Int): Boolean {
+    override suspend fun setFavorites(id: Int): Result<Boolean> {
         val result = withContext(Dispatchers.IO) {
-            clubsDao.setFavorites(id)
+            try {
+                val countRow = clubsDao.setFavorites(id)
+                if (countRow == 1) {
+                    Result.success(clubsDao.getFavoriteById(id))
+                } else {
+                    Result.failure(Exception("No rows updated"))
+                }
+            } catch (e: Exception){
+                Result.failure(e)
+            }
         }
-        return true
+        return result
     }
 
     private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {
@@ -61,7 +70,8 @@ class ClubRepository(
                 duration = it.length,
                 totalQuantity = it.totalQuantity,
                 description = it.description,
-                about = it.about
+                about = it.about,
+                isFavorite = it.isFavorites
             )
         }
 
@@ -77,7 +87,8 @@ class ClubRepository(
             duration = clubs.length,
             totalQuantity = clubs.totalQuantity,
             description = clubs.description,
-            about = clubs.about
+            about = clubs.about,
+            isFavorite = clubs.isFavorites
         )
 
     }
@@ -93,6 +104,7 @@ class ClubRepository(
                 duration = it.length,
                 totalQuantity = "",
                 description = it.description,
+                isFavorite = false
             )
         }
     }
