@@ -5,9 +5,11 @@ import dagger.Provides
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
+import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
 import javax.inject.Singleton
 
@@ -70,6 +72,26 @@ class DomainModule {
         repository: IClubRepository,
     ): GetCourseByIdFromDbUseCase {
         return GetCourseByIdFromDbUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetClubByIdFromDbUseCase(
+        repository: IClubRepository,
+    ): GetClubByIdFromDbUseCase {
+        return GetClubByIdFromDbUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideSetClubsFavoriteUseCase(
+        repository: IClubRepository,
+    ): SetClubsFavoriteUseCase {
+        return SetClubsFavoriteUseCase(
             repository = repository,
         )
     }

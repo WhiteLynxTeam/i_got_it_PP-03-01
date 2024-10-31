@@ -1,34 +1,42 @@
 package site.pnpl.igotit.view.catalogue.clubs
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import dagger.android.support.AndroidSupportInjection
+import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentClubsBinding
-import site.pnpl.igotit.domain.models.Clubs
+import site.pnpl.igotit.view.base.BaseFragment
+import javax.inject.Inject
 
-class ClubsFragment : Fragment() {
+class ClubsFragment : BaseFragment() {
 
     private var _binding: FragmentClubsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : ClubsViewModel by viewModels()
 
-    private val clubsAdapter = ClubsAdapter() { title ->
-        val bundle = Bundle()
-        bundle.putString("title",title)
-        findNavController().navigate(R.id.action_catalogueFragment_to_detailsClubsFragment, bundle)
+    private lateinit var viewModel: ClubsViewModel
+
+    @Inject
+    lateinit var vmFactory: ClubsViewModel.Factory
+
+    private val clubsAdapter = ClubsAdapter() { title, id ->
+
+        findNavController().navigate(
+            R.id.action_catalogueFragment_to_detailsClubsFragment,
+            Bundle().apply {
+                putString("title", title)
+                putInt("id", id)
+            })
     }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+//    override fun onAttach(context: Context) {
+//        AndroidSupportInjection.inject(this)
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,8 +48,23 @@ class ClubsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        viewModel = ViewModelProvider(this,vmFactory)[ClubsViewModel::class.java]
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.clubs.collect {
+
+                println("List<Clubs> $it")
+
+                clubsAdapter.setData(it)
+
+            }
+        }
+
         binding.rv.adapter = clubsAdapter
-        initClubsRV()
+
+        viewModel.getCoursesFromDb()
+//        initClubsRV()
     }
 
     companion object {
