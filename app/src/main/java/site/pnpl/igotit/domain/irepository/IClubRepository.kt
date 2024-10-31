@@ -9,5 +9,5 @@ interface IClubRepository {
     suspend fun getFromApi(): Result<List<Clubs>>
 
     suspend fun saveSampleClubsToDb(): Boolean
-    suspend fun setFavorites(id : Int): Boolean
+    suspend fun setFavorites(id : Int): Result<Boolean>
 }

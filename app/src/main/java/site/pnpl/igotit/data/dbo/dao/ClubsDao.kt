@@ -27,7 +27,11 @@ interface ClubsDao {
     @Query("DELETE FROM CLUBS")
     fun trunc(): Int
 
-    @Query("UPDATE CLUBS SET isFavorites = true WHERE id = :id")
-    fun setFavorites(id : Int)
+    //    @Query("UPDATE CLUBS SET isFavorites = true WHERE id = :id")
+    @Query("UPDATE CLUBS SET isFavorites = CASE WHEN isFavorites THEN 0 ELSE 1 END WHERE id = :id")
+    fun setFavorites(id: Int): Int
+
+    @Query("SELECT isFavorites FROM CLUBS  WHERE id = :id")
+    fun getFavoriteById(id: Int): Boolean
 
 }

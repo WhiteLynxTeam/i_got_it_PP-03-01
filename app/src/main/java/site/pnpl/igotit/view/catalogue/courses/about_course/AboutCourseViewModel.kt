@@ -28,7 +28,9 @@ class AboutCourseViewModel(
     fun setFavorites(id: Int) {
         viewModelScope.launch {
             val result = setCoursesFavoriteUseCase(id)
-            _isFavorites.emit(result)
+            if (result.isSuccess) {
+                result.getOrNull()?.let { _isFavorites.emit(it) }
+            }
         }
     }
 
