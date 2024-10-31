@@ -1,25 +1,33 @@
 package site.pnpl.igotit.view.catalogue.clubs.about_club
 
-import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.viewModels
-import dagger.android.support.AndroidSupportInjection
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAboutClubsBinding
+import site.pnpl.igotit.view.base.BaseFragment
+import javax.inject.Inject
 
-class AboutClubFragment : Fragment() {
+class AboutClubFragment : BaseFragment() {
 
     private var _binding: FragmentAboutClubsBinding? = null
     private val binding get() = _binding!!
-    private val viewModel : AboutClubViewModel by viewModels()
+    private lateinit var viewModel : AboutClubViewModel
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
+    @Inject
+    lateinit var vmFactory: AboutClubViewModel.Factory
+
+    private val title: String? by lazy { arguments?.getString("title") }
+    private val id: Int? by lazy { arguments?.getInt("id") }
+
+//    override fun onAttach(context: Context) {
+//        AndroidSupportInjection.inject(this)
+//        super.onAttach(context)
+//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,10 +40,63 @@ class AboutClubFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        viewModel = ViewModelProvider(this, vmFactory)[AboutClubViewModel::class.java]
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.club.collect {
+
+                println("Clubs $it")
+
+                with(binding) {
+                    numberClasses.text = it.numberClasses
+                    title.text = it.title
+                    description.text = it.about
+                    level.text = it.level
+                    totalQuantity.text = it.totalQuantity
+                    duration.text = it.duration
+                    limit.text = "пустое"
+                    peerWeek.text = it.perWeek
+                    if (it.isFavorite) {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    } else {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    }
+
+                }
+
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.isFavorites.collect {
+                with(binding) {
+                    if (it) {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_24)
+                    } else {
+                        detailsFabFavorites.setImageResource(R.drawable.ic_baseline_favorite_border_24)
+                    }
+                }
+            }
+        }
+
+        binding.detailsFabFavorites.setOnClickListener {
+            id?.let { id -> viewModel.setFavorites(id) }
+        }
+
+        id?.let { viewModel.setCourseById(it) }
+
     }
 
     companion object {
-        fun newInstance() = AboutClubFragment()
+        fun newInstance(title: String?, id: Int?): AboutClubFragment =
+            AboutClubFragment().apply {
+                arguments = Bundle().apply {
+                    putString("title", title)
+                    if (id != null) {
+                        putInt("id", id)
+                    }
+                }
+            }
     }
 
 }

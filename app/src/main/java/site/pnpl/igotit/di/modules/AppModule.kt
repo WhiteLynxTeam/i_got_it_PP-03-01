@@ -4,11 +4,16 @@ import dagger.Module
 import dagger.Provides
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
+import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
 import site.pnpl.igotit.view.auth.AuthViewModel
 import site.pnpl.igotit.view.catalogue.CatalogueViewModel
+import site.pnpl.igotit.view.catalogue.clubs.ClubsViewModel
+import site.pnpl.igotit.view.catalogue.clubs.about_club.AboutClubViewModel
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseViewModel
 import site.pnpl.igotit.view.courses.lessons.LessonsViewModel
@@ -25,6 +30,13 @@ class AppModule() {
         getCoursesFromDbUseCase: GetCoursesFromDbUseCase
     ) = CoursesCatalogueViewModel.Factory(
         getCoursesFromDbUseCase = getCoursesFromDbUseCase
+    )
+
+    @Provides
+    fun provideClubsViewModelFactory(
+        getClubsFromDbUseCase: GetClubsFromDbUseCase
+    ) = ClubsViewModel.Factory(
+        getClubsFromDbUseCase = getClubsFromDbUseCase
     )
 
     @Provides
@@ -47,6 +59,14 @@ class AppModule() {
     ) = AboutCourseViewModel.Factory(
         setCoursesFavoriteUseCase = setCoursesFavoriteUseCase,
         getCourseByIdFromDbUseCase = getCourseByIdFromDbUseCase
+    )
+    @Provides
+    fun provideAboutClubViewModel(
+        setClubsFavoriteUseCase: SetClubsFavoriteUseCase,
+        getClubByIdFromDbUseCase: GetClubByIdFromDbUseCase
+    ) = AboutClubViewModel.Factory(
+        setClubsFavoriteUseCase = setClubsFavoriteUseCase,
+        getClubByIdFromDbUseCase = getClubByIdFromDbUseCase
     )
 
 }
