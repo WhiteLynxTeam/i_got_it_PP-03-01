@@ -101,4 +101,9 @@ dependencies {
     /** Input Mask */
     implementation("com.redmadrobot:input-mask-android:7.2.4")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
+
+    /** identity.jvm добавилось при использовании UUID в таблице базы данных библиотеки ROOM */
+    /** проверить чем отличается UUID от такой же в java.util.UUID */
+//    implementation(libs.identity.jvm)
+
 }

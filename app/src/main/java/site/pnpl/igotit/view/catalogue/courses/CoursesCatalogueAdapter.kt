@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemCoursesCatalogueBinding
 import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
+import java.util.UUID
 
 class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) -> Unit,) :
     RecyclerView.Adapter<CoursesCatalogueAdapter.InnerCoursesCatalogueViewHolder>() {
@@ -46,7 +47,10 @@ class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) ->
         holder.description.text = coursesCatalogue[position].description
 
         holder.root.setOnClickListener {
-            onImgClick(coursesCatalogue[position].title,coursesCatalogue[position].id)
+            onImgClick(
+                coursesCatalogue[position].title,
+                coursesCatalogue[position].id,
+                )
         }
     }
 

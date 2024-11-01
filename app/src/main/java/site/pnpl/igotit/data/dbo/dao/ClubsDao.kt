@@ -5,7 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
-import site.pnpl.igotit.domain.models.Clubs
+import java.util.UUID
 
 @Dao
 interface ClubsDao {
@@ -21,6 +21,9 @@ interface ClubsDao {
     @Query("SELECT * FROM CLUBS  WHERE type = :type")
     fun getEntities(type: String): List<ClubEntity>
 
+    @Query("SELECT * FROM CLUBS  WHERE isFavorites = 1 OR isMyCourse = 1")
+    fun getMyCourses(): List<ClubEntity>
+
     @Query("SELECT * FROM CLUBS  WHERE type = :type AND id = :id")
     fun getEntity(type: String, id: Int): ClubEntity
 
@@ -33,5 +36,11 @@ interface ClubsDao {
 
     @Query("SELECT isFavorites FROM CLUBS  WHERE id = :id")
     fun getFavoriteById(id: Int): Boolean
+
+    @Query("UPDATE CLUBS SET isMyCourse = 1 WHERE id = :id")
+    fun setMyCourse(id: Int): Int
+//
+//    @Query("SELECT isMyCourse FROM CLUBS  WHERE id = :id")
+//    fun getMyCourseById(id: Int): Boolean
 
 }

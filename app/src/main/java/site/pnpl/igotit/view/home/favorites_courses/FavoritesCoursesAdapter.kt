@@ -5,12 +5,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemFavoritesCoursesBinding
-import site.pnpl.igotit.domain.models.FavoritesCourses
+import site.pnpl.igotit.domain.models.Clubs
 
 class FavoritesCoursesAdapter(
     private val onImgClick: (id: Long) -> Unit,
 ) : RecyclerView.Adapter<FavoritesCoursesAdapter.InnerFavoritesCoursesViewHolder>() {
-    private var favoritesCourses: MutableList<FavoritesCourses> = mutableListOf()
+    private var favoritesCourses: MutableList<Clubs> = mutableListOf()
+//    private var favoritesCourses: MutableList<FavoritesCourses> = mutableListOf()
 
     inner class InnerFavoritesCoursesViewHolder(binding: ItemFavoritesCoursesBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -37,8 +38,8 @@ class FavoritesCoursesAdapter(
 
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(title: List<FavoritesCourses>){
-        this.favoritesCourses = title.toMutableList()
+    fun setData(title: List<Clubs>){
+        this.favoritesCourses = title.filter { it.isFavorite }.toMutableList()
         notifyDataSetChanged()
     }
 }
