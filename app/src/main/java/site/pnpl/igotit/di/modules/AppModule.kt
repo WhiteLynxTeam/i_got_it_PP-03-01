@@ -8,7 +8,9 @@ import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
+import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
 import site.pnpl.igotit.view.auth.AuthViewModel
 import site.pnpl.igotit.view.catalogue.CatalogueViewModel
@@ -16,10 +18,19 @@ import site.pnpl.igotit.view.catalogue.clubs.ClubsViewModel
 import site.pnpl.igotit.view.catalogue.clubs.about_club.AboutClubViewModel
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseViewModel
+import site.pnpl.igotit.view.catalogue.courses.record.RecordViewModel
 import site.pnpl.igotit.view.courses.lessons.LessonsViewModel
+import site.pnpl.igotit.view.home.HomeViewModel
 
 @Module
 class AppModule() {
+    @Provides
+    fun provideHomeViewModelFactory(
+        getMyCoursesFromDbUseCase: GetMyCoursesFromDbUseCase
+    ) = HomeViewModel.Factory(
+        getMyCoursesFromDbUseCase = getMyCoursesFromDbUseCase
+    )
+
     @Provides
     fun provideLessonsViewModelFactory(
     ) = LessonsViewModel.Factory(
@@ -60,6 +71,7 @@ class AppModule() {
         setCoursesFavoriteUseCase = setCoursesFavoriteUseCase,
         getCourseByIdFromDbUseCase = getCourseByIdFromDbUseCase
     )
+
     @Provides
     fun provideAboutClubViewModel(
         setClubsFavoriteUseCase: SetClubsFavoriteUseCase,
@@ -67,6 +79,13 @@ class AppModule() {
     ) = AboutClubViewModel.Factory(
         setClubsFavoriteUseCase = setClubsFavoriteUseCase,
         getClubByIdFromDbUseCase = getClubByIdFromDbUseCase
+    )
+
+    @Provides
+    fun provideRecordViewModel(
+        setCourseAsMyUseCase: SetCourseAsMyUseCase,
+    ) = RecordViewModel.Factory(
+        setCourseAsMyUseCase = setCourseAsMyUseCase,
     )
 
 }

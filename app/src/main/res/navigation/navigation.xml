@@ -132,6 +132,9 @@
         <action
             android:id="@+id/action_detailsCoursesCatalogueFragment_to_homeTrainingFragment"
             app:destination="@id/homeTrainingFragment" />
+        <action
+            android:id="@+id/action_detailsCoursesCatalogueFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/individuallyRegisterFragment"
@@ -150,5 +153,8 @@
         <action
             android:id="@+id/action_detailsClubsFragment_to_homeTrainingFragment"
             app:destination="@id/homeTrainingFragment" />
+        <action
+            android:id="@+id/action_detailsClubsFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
 </navigation>

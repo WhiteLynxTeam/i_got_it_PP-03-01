@@ -42,7 +42,7 @@ class DetailsCoursesCatalogueFragment : Fragment() {
         binding.vpDetailsCourses.adapter = BaseViewPagerAdapter(
             this, arrayOf(
                 AboutCourseFragment.newInstance(title,id),
-                RecordFragment.newInstance()
+                RecordFragment.newInstance(id)
             )
         )
 

@@ -9,15 +9,20 @@ import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.sampleListOfClubs
+import site.pnpl.igotit.utils.randomUuid
 
 class ClubRepository(
     private val clubApi: ClubApi,
     private val clubsDao: ClubsDao
 ) : IClubRepository {
 
-    override suspend fun getEntities(type: String): List<Clubs> {
+    override suspend fun getEntities(type: String?): List<Clubs> {
         val result = withContext(Dispatchers.IO) {
-            clubsDao.getEntities(type)
+            if (type.isNullOrEmpty()) {
+                clubsDao.getMyCourses()
+            } else {
+                clubsDao.getEntities(type)
+            }
         }
         return mapperClubsEntityToClubs(result)
     }
@@ -32,6 +37,9 @@ class ClubRepository(
     override suspend fun saveSampleClubsToDb(): Boolean {
         val result = withContext(Dispatchers.IO) {
             clubsDao.trunc()
+
+            sampleListOfClubs.randomUuid()
+
             clubsDao.insertAll(sampleListOfClubs)
         }
         return result.isNotEmpty()
@@ -52,17 +60,26 @@ class ClubRepository(
                 } else {
                     Result.failure(Exception("No rows updated"))
                 }
-            } catch (e: Exception){
+            } catch (e: Exception) {
                 Result.failure(e)
             }
         }
         return result
     }
 
+    /***Здесь возвращаем успешность установки флага моего курса, поэтому возвращаем просто Boolean*/
+    override suspend fun setMyCourse(uuid: Int): Boolean {
+        return withContext(Dispatchers.IO) {
+            val countRow = clubsDao.setMyCourse(uuid)
+            countRow == 1
+        }
+    }
+
     private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {
         return listClubs.map {
             Clubs(
                 id = it.id,
+                uuid = it.uuid,
                 title = it.clubName,
                 level = it.level,
                 numberClasses = it.numberClasses,
@@ -71,7 +88,8 @@ class ClubRepository(
                 totalQuantity = it.totalQuantity,
                 description = it.description,
                 about = it.about,
-                isFavorite = it.isFavorites
+                isFavorite = it.isFavorites,
+                isMyCourse = it.isMyCourse
             )
         }
 
@@ -80,6 +98,7 @@ class ClubRepository(
     private fun mapperClubEntityToClub(clubs: ClubEntity): Clubs {
         return Clubs(
             id = clubs.id,
+            uuid = clubs.uuid,
             title = clubs.clubName,
             level = clubs.level,
             numberClasses = clubs.numberClasses,
@@ -88,7 +107,8 @@ class ClubRepository(
             totalQuantity = clubs.totalQuantity,
             description = clubs.description,
             about = clubs.about,
-            isFavorite = clubs.isFavorites
+            isFavorite = clubs.isFavorites,
+            isMyCourse = clubs.isMyCourse
         )
 
     }
@@ -104,7 +124,8 @@ class ClubRepository(
                 duration = it.length,
                 totalQuantity = "",
                 description = it.description,
-                isFavorite = false
+                isFavorite = false,
+                isMyCourse = false,
             )
         }
     }

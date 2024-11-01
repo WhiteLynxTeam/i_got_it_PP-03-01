@@ -6,147 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".view.home.HomeFragment">
 
-    <TextView
-        android:id="@+id/home_text_lesson"
+    <include
+        android:id="@+id/empty_home_layout"
+        layout="@layout/empty_home_layout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="112dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/the_next_lesson"
-        android:textColor="@color/btn_disable"
-        android:textSize="14sp"
-        android:textStyle="bold"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_lesson"
+    <include
+        android:id="@+id/home_layout"
+        layout="@layout/fragment_home_training"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="@color/view_background"
-        android:elevation="1dp"
-        android:outlineSpotShadowColor="@color/white"
-        app:cardCornerRadius="20dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/home_text_lesson"
-        app:layout_constraintTop_toBottomOf="@+id/home_text_lesson">
-
-        <TextView
-            android:id="@+id/lesson"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="16dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="20dp"
-            android:text="@string/you_dont_have_any_classes_yet"
-            android:textColor="@color/no_act_btn"
-            android:textSize="16sp" />
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
-        android:id="@+id/my_courses"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="16dp"
-        android:text="@string/my_courses"
-        android:textColor="@color/btn_disable"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/home_text_lesson"
-        app:layout_constraintTop_toBottomOf="@id/card_lesson" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/choose_training_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/view_background"
-        android:clickable="true"
-        android:elevation="2dp"
-        android:focusable="true"
-        android:outlineSpotShadowColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/home_text_lesson"
-        app:layout_constraintTop_toBottomOf="@+id/my_courses">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start|center_vertical"
-                android:text="@string/choose_training"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="end|center_vertical"
-                android:background="@drawable/background_ic_play_arrow"
-                android:src="@drawable/ic_arrow_right_24" />
-        </FrameLayout>
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/favorites_courses_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="24dp"
-        android:backgroundTint="@color/view_background"
-        android:clickable="true"
-        android:elevation="2dp"
-        android:focusable="true"
-        android:outlineSpotShadowColor="@color/white"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/home_text_lesson"
-        app:layout_constraintTop_toBottomOf="@+id/choose_training_button">
-
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingStart="16dp"
-            android:paddingTop="20dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="20dp">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="start|center_vertical"
-                android:text="@string/favorites_courses"
-                android:textSize="16sp" />
-
-            <ImageButton
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="end|center_vertical"
-                android:background="@drawable/background_ic_play_arrow"
-                android:src="@drawable/ic_arrow_right_24" />
-        </FrameLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
