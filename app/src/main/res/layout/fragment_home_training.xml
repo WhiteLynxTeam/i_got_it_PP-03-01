@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/root"
-    tools:context=".view.home.HomeTrainingFragment">
+    android:id="@+id/root">
 
     <TextView
         android:id="@+id/home_text_lesson"

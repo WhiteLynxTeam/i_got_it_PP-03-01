@@ -68,9 +68,6 @@
         <action
             android:id="@+id/action_homeFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_homeTrainingFragment"
-            app:destination="@id/homeTrainingFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalogueFragment"
@@ -121,17 +118,9 @@
             app:destination="@id/homeFragment" />
     </fragment>
     <fragment
-        android:id="@+id/homeTrainingFragment"
-        android:name="site.pnpl.igotit.view.home.HomeTrainingFragment"
-        android:label="fragment_home_training"
-        tools:layout="@layout/fragment_home_training" />
-    <fragment
         android:id="@+id/detailsCoursesCatalogueFragment"
         android:name="site.pnpl.igotit.view.catalogue.courses.DetailsCoursesCatalogueFragment"
         android:label="DetailsCoursesCatalogueFragment" >
-        <action
-            android:id="@+id/action_detailsCoursesCatalogueFragment_to_homeTrainingFragment"
-            app:destination="@id/homeTrainingFragment" />
         <action
             android:id="@+id/action_detailsCoursesCatalogueFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -142,17 +131,14 @@
         android:label="fragment_individually_register"
         tools:layout="@layout/fragment_individually_register" >
         <action
-            android:id="@+id/action_individuallyRegisterFragment_to_homeTrainingFragment"
-            app:destination="@id/homeTrainingFragment" />
+            android:id="@+id/action_individuallyRegisterFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/detailsClubsFragment"
         android:name="site.pnpl.igotit.view.catalogue.clubs.DetailsClubsFragment"
         android:label="fragment_details_clubs"
         tools:layout="@layout/fragment_details_clubs" >
-        <action
-            android:id="@+id/action_detailsClubsFragment_to_homeTrainingFragment"
-            app:destination="@id/homeTrainingFragment" />
         <action
             android:id="@+id/action_detailsClubsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />

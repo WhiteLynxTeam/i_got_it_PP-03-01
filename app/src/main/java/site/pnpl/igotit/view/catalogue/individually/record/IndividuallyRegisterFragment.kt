@@ -35,7 +35,7 @@ class IndividuallyRegisterFragment : BaseFragment() {
         binding.tlIndividually.getTabAt(1)?.select()
         //переходим в раздел мои курсы
         binding.btnRegister.setOnClickListener {
-            findNavController().navigate(R.id.action_individuallyRegisterFragment_to_homeTrainingFragment)
+            findNavController().navigate(R.id.action_individuallyRegisterFragment_to_homeFragment)
         }
     }
 

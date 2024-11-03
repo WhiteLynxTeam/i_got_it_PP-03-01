@@ -44,7 +44,7 @@ class DetailsClubsFragment : BaseFragment() {
         binding.vpDetailsClubs.adapter = BaseViewPagerAdapter(
             this, arrayOf(
                 AboutClubFragment.newInstance(title,id),
-                RecordClubFragment.newInstance()
+                RecordClubFragment.newInstance(id)
             )
         )
 
