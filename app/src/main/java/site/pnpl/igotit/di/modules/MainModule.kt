@@ -20,7 +20,6 @@ import site.pnpl.igotit.view.courses.calendar.CalendarFragment
 import site.pnpl.igotit.view.courses.lessons.LessonsFragment
 import site.pnpl.igotit.view.courses.remove.RemoveCourseFragment
 import site.pnpl.igotit.view.home.HomeFragment
-import site.pnpl.igotit.view.home.HomeTrainingFragment
 import site.pnpl.igotit.view.intro.IntroFragment
 import site.pnpl.igotit.view.profile.ProfileFragment
 import site.pnpl.igotit.view.profile.about.AboutFragment
@@ -105,7 +104,4 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindAboutCourseFragment(): AboutCourseFragment
-
-    @ContributesAndroidInjector
-    fun bindHomeTrainingFragment(): HomeTrainingFragment
 }

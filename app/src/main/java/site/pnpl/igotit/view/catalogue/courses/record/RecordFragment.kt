@@ -47,7 +47,6 @@ class RecordFragment : BaseFragment() {
 
         binding.btnRegister.setOnClickListener {
             id?.let { id -> viewModel.setMyCourse(id) }
-//            findNavController().navigate(R.id.action_detailsCoursesCatalogueFragment_to_homeTrainingFragment)
         }
     }
 

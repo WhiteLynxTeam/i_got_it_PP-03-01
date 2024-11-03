@@ -16,6 +16,7 @@ import site.pnpl.igotit.view.auth.AuthViewModel
 import site.pnpl.igotit.view.catalogue.CatalogueViewModel
 import site.pnpl.igotit.view.catalogue.clubs.ClubsViewModel
 import site.pnpl.igotit.view.catalogue.clubs.about_club.AboutClubViewModel
+import site.pnpl.igotit.view.catalogue.clubs.record_club.RecordClubViewModel
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseViewModel
 import site.pnpl.igotit.view.catalogue.courses.record.RecordViewModel
@@ -85,6 +86,13 @@ class AppModule() {
     fun provideRecordViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
     ) = RecordViewModel.Factory(
+        setCourseAsMyUseCase = setCourseAsMyUseCase,
+    )
+
+    @Provides
+    fun provideRecordClubViewModel(
+        setCourseAsMyUseCase: SetCourseAsMyUseCase,
+    ) = RecordClubViewModel.Factory(
         setCourseAsMyUseCase = setCourseAsMyUseCase,
     )
 
