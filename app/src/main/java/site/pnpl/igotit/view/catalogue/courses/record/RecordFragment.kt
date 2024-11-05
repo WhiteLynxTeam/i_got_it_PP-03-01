@@ -1,16 +1,20 @@
 package site.pnpl.igotit.view.catalogue.courses.record
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordBinding
+import site.pnpl.igotit.utils.toWeekDay
 import site.pnpl.igotit.view.base.BaseFragment
+import java.time.LocalDate
 import javax.inject.Inject
 
 class RecordFragment : BaseFragment() {
@@ -34,6 +38,7 @@ class RecordFragment : BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,7 +51,11 @@ class RecordFragment : BaseFragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            id?.let { id -> viewModel.setMyCourse(id) }
+            id?.let {id ->
+                val currentDate = LocalDate.now()
+                println(currentDate.toWeekDay())
+                 viewModel.setMyCourse(id)
+            }
         }
     }
 
