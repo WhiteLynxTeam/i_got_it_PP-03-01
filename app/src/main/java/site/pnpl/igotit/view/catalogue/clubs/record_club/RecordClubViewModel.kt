@@ -11,22 +11,34 @@ import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
+import site.pnpl.igotit.domain.models.CoursesSchedule
+import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
 import java.time.LocalDate
+import java.util.UUID
 
-class RecordClubViewModel(private val setCourseAsMyUseCase: SetCourseAsMyUseCase): ViewModel() {
+@RequiresApi(Build.VERSION_CODES.O)
+class RecordClubViewModel(
+    private val setCourseAsMyUseCase: SetCourseAsMyUseCase,
+    private val getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+) : ViewModel() {
     private var _isMyCourse = MutableSharedFlow<Boolean>()
     val isMyCourse: SharedFlow<Boolean>
         get() = _isMyCourse.asSharedFlow()
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private var _schedule = MutableSharedFlow<List<CoursesSchedule>>()
+    val schedule: SharedFlow<List<CoursesSchedule>>
+        get() = _schedule.asSharedFlow()
+
     private val _firstDayOfWeek = MutableStateFlow<LocalDate>(LocalDate.now())
-    @RequiresApi(Build.VERSION_CODES.O)
     val firstDayOfWeek: StateFlow<LocalDate> = _firstDayOfWeek
 
-    @RequiresApi(Build.VERSION_CODES.O)
-    fun getFirstDayOfWeek(date: LocalDate){
+    init {
+        getFirstDayOfWeek(_firstDayOfWeek.value)
+    }
+
+    fun getFirstDayOfWeek(date: LocalDate) {
         viewModelScope.launch {
             _firstDayOfWeek.emit(date.toGetFirstDayOfWeek())
         }
@@ -38,8 +50,16 @@ class RecordClubViewModel(private val setCourseAsMyUseCase: SetCourseAsMyUseCase
         }
     }
 
+    fun getCoursesScheduler(uuid: UUID) {
+        viewModelScope.launch {
+            val list = getCoursesSchedulerByUuidFromDbUseCase(uuid)
+            if (list.isNotEmpty()) _schedule.emit(list)
+        }
+    }
+
     class Factory(
         private val setCourseAsMyUseCase: SetCourseAsMyUseCase,
+        private val getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
     ) :
         ViewModelProvider.Factory {
 
@@ -47,6 +67,7 @@ class RecordClubViewModel(private val setCourseAsMyUseCase: SetCourseAsMyUseCase
             if (modelClass.isAssignableFrom(RecordClubViewModel::class.java)) {
                 return RecordClubViewModel(
                     setCourseAsMyUseCase = setCourseAsMyUseCase,
+                    getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

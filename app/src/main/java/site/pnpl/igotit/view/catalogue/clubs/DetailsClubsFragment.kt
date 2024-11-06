@@ -18,12 +18,8 @@ class DetailsClubsFragment : BaseFragment() {
     private val binding get() = _binding!!
 
     private val title: String? by lazy { arguments?.getString("title") }
+    private val uuidString: String? by lazy { arguments?.getString("uuidString") }
     private val id: Int? by lazy { arguments?.getInt("id") }
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +32,6 @@ class DetailsClubsFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val title = arguments?.getString("title")
         addViewPager()
     }
 
@@ -44,7 +39,7 @@ class DetailsClubsFragment : BaseFragment() {
         binding.vpDetailsClubs.adapter = BaseViewPagerAdapter(
             this, arrayOf(
                 AboutClubFragment.newInstance(title,id),
-                RecordClubFragment.newInstance(id)
+                RecordClubFragment.newInstance(id, uuidString)
             )
         )
 

@@ -23,20 +23,16 @@ class ClubsFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: ClubsViewModel.Factory
 
-    private val clubsAdapter = ClubsAdapter() { title, id ->
+    private val clubsAdapter = ClubsAdapter() { title, id, uuid ->
 
         findNavController().navigate(
             R.id.action_catalogueFragment_to_detailsClubsFragment,
             Bundle().apply {
                 putString("title", title)
                 putInt("id", id)
+                putString("uuidString", uuid.toString())
             })
     }
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

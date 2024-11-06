@@ -1,6 +1,7 @@
 package site.pnpl.igotit.domain.irepository
 
 import site.pnpl.igotit.domain.models.Clubs
+import site.pnpl.igotit.domain.models.CoursesSchedule
 import java.util.UUID
 
 interface IClubRepository {
@@ -12,4 +13,5 @@ interface IClubRepository {
     suspend fun saveSampleClubsToDb(): Boolean
     suspend fun setFavorites(id : Int): Result<Boolean>
     suspend fun setMyCourse(uuid: Int): Boolean
+    suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule>
 }

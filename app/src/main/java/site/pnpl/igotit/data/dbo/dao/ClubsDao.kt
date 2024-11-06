@@ -6,6 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
+import site.pnpl.igotit.domain.models.CoursesSchedule
+import java.util.UUID
 
 @Dao
 interface ClubsDao {
@@ -42,6 +44,9 @@ interface ClubsDao {
 
     @Query("UPDATE CLUBS SET isMyCourse = 1 WHERE id = :id")
     fun setMyCourse(id: Int): Int
+
+    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuidCourses = :uuid")
+    fun getCoursesSchedulerByUuid(uuid: UUID): List<CoursesScheduleEntity>
 //
 //    @Query("SELECT isMyCourse FROM CLUBS  WHERE id = :id")
 //    fun getMyCourseById(id: Int): Boolean

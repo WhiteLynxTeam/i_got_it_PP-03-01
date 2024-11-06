@@ -8,6 +8,7 @@ import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
@@ -92,8 +93,10 @@ class AppModule() {
     @Provides
     fun provideRecordClubViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
+        getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
     ) = RecordClubViewModel.Factory(
         setCourseAsMyUseCase = setCourseAsMyUseCase,
+        getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
     )
 
 }

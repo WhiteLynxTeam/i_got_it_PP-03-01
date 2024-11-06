@@ -10,8 +10,10 @@ import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
+import site.pnpl.igotit.domain.models.CoursesSchedule
 import site.pnpl.igotit.domain.sampleListOfClubs
 import site.pnpl.igotit.utils.randomUuid
+import java.util.UUID
 
 class ClubRepository(
     private val clubApi: ClubApi,
@@ -87,6 +89,32 @@ class ClubRepository(
         }
     }
 
+    override suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule> {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getCoursesSchedulerByUuid(uuid)
+        }
+        return mapperCoursesScheduleEntityToCoursesSchedule(result)
+    }
+
+    private fun mapperCoursesScheduleEntityToCoursesSchedule(
+        listCoursesSchedule: List<CoursesScheduleEntity>): List<CoursesSchedule> {
+        return listCoursesSchedule.map {
+            CoursesSchedule(
+                id = it.id,
+                uuid = it.uuid  ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+                year = it.year,
+                month = it.month,
+                day = it.day,
+                dayOfWeek = it.dayOfWeek,
+                startHour = it.startHour,
+                startMinute = it.startMinute,
+                endHour = it.endHour,
+                endMinute = it.endMinute,
+                type = it.type,
+            )
+        }
+    }
+
     private fun mapperClubsSampleToClubsEntity(listClubs: List<ClubsSample>): List<ClubEntity> {
         return listClubs.map {
             ClubEntity(
@@ -102,7 +130,6 @@ class ClubRepository(
                 about = it.about,
             )
         }
-
     }
 
     private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {

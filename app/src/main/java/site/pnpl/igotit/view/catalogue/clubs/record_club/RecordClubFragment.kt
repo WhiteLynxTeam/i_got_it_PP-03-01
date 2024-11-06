@@ -17,8 +17,8 @@ import site.pnpl.igotit.utils.toGetFirstDayOfWeek
 import site.pnpl.igotit.utils.uiextensions.hide
 import site.pnpl.igotit.utils.uiextensions.show
 import site.pnpl.igotit.view.base.BaseFragment
-import site.pnpl.igotit.view.catalogue.courses.record.RecordFragment
 import java.time.LocalDate
+import java.util.UUID
 import javax.inject.Inject
 
 class RecordClubFragment : BaseFragment() {
@@ -32,6 +32,7 @@ class RecordClubFragment : BaseFragment() {
     lateinit var vmFactory: RecordClubViewModel.Factory
 
     private val id: Int? by lazy { arguments?.getInt("id") }
+    private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,27 +57,46 @@ class RecordClubFragment : BaseFragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.firstDayOfWeek.collect {
+            viewModel.schedule.collect {
+                println(it)
                 hideShowArrow()
 
-                with(binding){
-                    day1.text = it.toDayOnly()
-                    day2.text = it.plusDays(1).toDayOnly()
-                    day3.text = it.plusDays(2).toDayOnly()
-                    day4.text = it.plusDays(3).toDayOnly()
-                    day5.text = it.plusDays(4).toDayOnly()
-                    day6.text = it.plusDays(5).toDayOnly()
-                    day7.text = it.plusDays(6).toDayOnly()
+                with(binding) {
+                    day1.text = viewModel.firstDayOfWeek.value.toDayOnly()
+                    day2.text = viewModel.firstDayOfWeek.value.plusDays(1).toDayOnly()
+                    day3.text = viewModel.firstDayOfWeek.value.plusDays(2).toDayOnly()
+                    day4.text = viewModel.firstDayOfWeek.value.plusDays(3).toDayOnly()
+                    day5.text = viewModel.firstDayOfWeek.value.plusDays(4).toDayOnly()
+                    day6.text = viewModel.firstDayOfWeek.value.plusDays(5).toDayOnly()
+                    day7.text = viewModel.firstDayOfWeek.value.plusDays(6).toDayOnly()
                 }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.firstDayOfWeek.collect {
+//                hideShowArrow()
+//
+//                with(binding){
+//                    day1.text = it.toDayOnly()
+//                    day2.text = it.plusDays(1).toDayOnly()
+//                    day3.text = it.plusDays(2).toDayOnly()
+//                    day4.text = it.plusDays(3).toDayOnly()
+//                    day5.text = it.plusDays(4).toDayOnly()
+//                    day6.text = it.plusDays(5).toDayOnly()
+//                    day7.text = it.plusDays(6).toDayOnly()
+//                }
             }
         }
 
         binding.arrowLeft.setOnClickListener {
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.minusDays(7))
+            uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }
 
         binding.arrowRight.setOnClickListener {
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.plusDays(7))
+            uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }
 
         binding.btnRegister.setOnClickListener {
@@ -84,18 +104,21 @@ class RecordClubFragment : BaseFragment() {
         }
 
         hideShowArrow()
+        uuid?.let { viewModel.getCoursesScheduler(it) }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
     fun hideShowArrow() {
-        if(viewModel.firstDayOfWeek.value.toGetFirstDayOfWeek() <= LocalDate.now()) {
+        if (viewModel.firstDayOfWeek.value.toGetFirstDayOfWeek() <= LocalDate.now()) {
 //            binding.arrowLeft.isEnabled = false
             binding.arrowLeft.hide()
         } else {
 //            binding.arrowLeft.isEnabled = true
             binding.arrowLeft.show()
         }
-        if(viewModel.firstDayOfWeek.value.plusDays(7).toGetFirstDayOfWeek().month != LocalDate.now().month) {
+        if (viewModel.firstDayOfWeek.value.plusDays(7)
+                .toGetFirstDayOfWeek().month != LocalDate.now().month
+        ) {
 //            binding.arrowRight.isEnabled = false
             binding.arrowRight.hide()
         } else {
@@ -105,12 +128,13 @@ class RecordClubFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(id: Int?): RecordClubFragment =
+        fun newInstance(id: Int?, uuidString: String?): RecordClubFragment =
             RecordClubFragment().apply {
                 arguments = Bundle().apply {
                     if (id != null) {
                         putInt("id", id)
                     }
+                    putString("uuidString", uuidString)
                 }
             }
     }

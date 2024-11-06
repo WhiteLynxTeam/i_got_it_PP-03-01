@@ -5,9 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemCoursesCatalogueBinding
 import site.pnpl.igotit.domain.models.Clubs
+import java.util.UUID
 
 class ClubsAdapter(
-    private val onImgClick: (title:String, id: Int) -> Unit,
+    private val onImgClick: (title:String, id: Int, uuid: UUID?) -> Unit,
 ): RecyclerView.Adapter<ClubsAdapter.InnerClubsViewHolder>() {
     private var clubs: MutableList<Clubs> = mutableListOf()
 
@@ -38,7 +39,7 @@ class ClubsAdapter(
         holder.description.text = clubs[position].description
 
         holder.root.setOnClickListener {
-            onImgClick(clubs[position].title, clubs[position].id)
+            onImgClick(clubs[position].title, clubs[position].id, clubs[position].uuid)
         }
 
     }
