@@ -5,15 +5,15 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
-import java.util.UUID
+import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 
 @Dao
 interface ClubsDao {
-//    @Insert(onConflict = OnConflictStrategy.REPLACE)
-//    fun save(imageEntity: ImageEntity): Long
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAllClubs(clubEntity: List<ClubEntity>): List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertAll(clubEntity: List<ClubEntity>): List<Long>
+    fun insertAllCorsesScheduler(clubEntity: List<CoursesScheduleEntity>): List<Long>
 
     @Query("SELECT * FROM CLUBS")
     fun getClubs(): List<ClubEntity>
@@ -28,7 +28,10 @@ interface ClubsDao {
     fun getEntity(type: String, id: Int): ClubEntity
 
     @Query("DELETE FROM CLUBS")
-    fun trunc(): Int
+    fun truncClubs(): Int
+
+    @Query("DELETE FROM COURSES_SCHEDULE")
+    fun truncScheduler(): Int
 
     //    @Query("UPDATE CLUBS SET isFavorites = true WHERE id = :id")
     @Query("UPDATE CLUBS SET isFavorites = CASE WHEN isFavorites THEN 0 ELSE 1 END WHERE id = :id")

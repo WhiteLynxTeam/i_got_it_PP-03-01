@@ -1,9 +1,11 @@
 package site.pnpl.igotit.view.catalogue.courses.record
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -34,6 +36,7 @@ class RecordFragment : BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -46,7 +49,9 @@ class RecordFragment : BaseFragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            id?.let { id -> viewModel.setMyCourse(id) }
+            id?.let { id ->
+                viewModel.setMyCourse(id)
+            }
         }
     }
 
