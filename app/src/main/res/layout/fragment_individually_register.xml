@@ -40,41 +40,150 @@
         android:textSize="16sp"
         android:textColor="@color/no_active_lesson"
         android:text="@string/individually_question"
-        app:layout_constraintStart_toStartOf="@id/card_calendar"
-        app:layout_constraintTop_toBottomOf="@id/tl_individually"
-        app:layout_constraintEnd_toEndOf="@id/card_calendar"/>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card_calendar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
-        android:backgroundTint="@color/view_background"
-        app:cardCornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/text">
+        app:layout_constraintTop_toTopOf="parent"/>
 
-        <CalendarView
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:dateTextAppearance="@style/CustomDateTextAppearance"
-            android:gravity="center"
-            android:showWeekNumber="true"
-            android:text="@string/calendar" />
+    <TextView
+        android:id="@+id/month"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="32dp"
+        android:text="Сентябрь"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="@id/text"
+        app:layout_constraintTop_toBottomOf="@id/text"/>
 
-    </androidx.cardview.widget.CardView>
+    <ImageButton
+        android:id="@+id/arrow_left"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/background_ic_play_arrow"
+        android:src="@drawable/ic_arrow_right_24"
+        android:scaleX="-1"
+        app:layout_constraintTop_toTopOf="@id/month"
+        app:layout_constraintEnd_toStartOf="@id/arrow_right"
+        app:layout_constraintBottom_toBottomOf="@id/month"
+        />
+
+    <ImageButton
+        android:id="@+id/arrow_right"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/background_ic_play_arrow"
+        android:src="@drawable/ic_arrow_right_24"
+        app:layout_constraintTop_toTopOf="@id/month"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/month"
+        />
 
     <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/calendar"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.3"
+        app:flow_maxElementsWrap="7"
+        android:background="@drawable/bg_time"
+        app:constraint_referenced_ids="monday,tuesday,wednesday,thursday,friday,saturday,sunday,day_1,day_2,day_3,day_4,day_5,day_6,day_7"
+        app:flow_wrapMode="chain"
+        app:flow_horizontalStyle="spread_inside"
+        app:layout_constraintEnd_toEndOf="@id/arrow_right"
+        app:layout_constraintStart_toStartOf="@+id/text"
+        app:layout_constraintTop_toBottomOf="@id/month"
+        app:layout_constraintBottom_toTopOf="@id/time"/>
+
+    <TextView
+        android:id="@+id/monday"
+        style="@style/weekday"
+        android:text="ПН"/>
+
+    <TextView
+        android:id="@+id/tuesday"
+        style="@style/weekday"
+        android:text="ВТ"/>
+
+    <TextView
+        android:id="@+id/wednesday"
+        style="@style/weekday"
+        android:text="СР"/>
+
+    <TextView
+        android:id="@+id/thursday"
+        style="@style/weekday"
+        android:text="ЧТ"/>
+
+    <TextView
+        android:id="@+id/friday"
+        style="@style/weekday"
+        android:text="ПТ"/>
+
+    <TextView
+        android:id="@+id/saturday"
+        style="@style/weekday"
+        android:text="СБ"/>
+
+    <TextView
+        android:id="@+id/sunday"
+        style="@style/weekday"
+        android:textColor="@color/white"
+        android:text="ВС"/>
+
+    <TextView
+        android:id="@+id/day_1"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="31"/>
+
+    <TextView
+        android:id="@+id/day_2"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="1"/>
+
+    <TextView
+        android:id="@+id/day_3"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="2" />
+
+    <TextView
+        android:id="@+id/day_4"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="3"/>
+
+    <TextView
+        android:id="@+id/day_5"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:background="@drawable/bg_day_of_week"
+        android:textColor="@color/white"
+        android:text="14"/>
+
+    <TextView
+        android:id="@+id/day_6"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="5"/>
+
+    <TextView
+        android:id="@+id/day_7"
+        style="@style/weekday"
+        android:textSize="18sp"
+        android:text="6"/>
+
+    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.3"
         app:constraint_referenced_ids="time_to_record_1,time_to_record_2,time_to_record_3,time_to_record_4,time_to_record_5,time_to_record_6"
         app:flow_wrapMode="chain"
         app:flow_horizontalStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="@id/card_calendar"
-        app:layout_constraintTop_toBottomOf="@id/card_calendar"
-        app:layout_constraintEnd_toEndOf="@id/card_calendar"
+        app:layout_constraintStart_toStartOf="@id/calendar"
+        app:layout_constraintTop_toBottomOf="@id/calendar"
+        app:layout_constraintEnd_toEndOf="@id/calendar"
         app:layout_constraintBottom_toTopOf="@id/btn_register"/>
 
     <TextView
@@ -85,27 +194,27 @@
     <TextView
         android:id="@+id/time_to_record_2"
         style="@style/time_to_record"
-        android:text="9:30"/>
+        android:text="12:00"/>
 
     <TextView
         android:id="@+id/time_to_record_3"
         style="@style/time_to_record"
-        android:text="9:30" />
+        android:text="13:30"/>
 
     <TextView
         android:id="@+id/time_to_record_4"
         style="@style/time_to_record"
-        android:text="9:30"/>
+        android:text="14:00" />
 
     <TextView
         android:id="@+id/time_to_record_5"
         style="@style/time_to_record"
-        android:text="9:30"/>
+        android:text="16:30" />
 
     <TextView
         android:id="@+id/time_to_record_6"
         style="@style/time_to_record"
-        android:text="9:30"/>
+        android:text="17:00" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
@@ -119,8 +228,8 @@
         android:textStyle="bold"
         android:stateListAnimator="@animator/btn_register_anim"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/card_calendar"
-        app:layout_constraintStart_toStartOf="@id/card_calendar" />
+        app:layout_constraintEnd_toEndOf="@id/calendar"
+        app:layout_constraintStart_toStartOf="@id/calendar" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
