@@ -1,5 +1,7 @@
 package site.pnpl.igotit.di.modules
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import dagger.Module
 import dagger.Provides
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
@@ -90,6 +92,7 @@ class AppModule() {
         setCourseAsMyUseCase = setCourseAsMyUseCase,
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     fun provideRecordClubViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
