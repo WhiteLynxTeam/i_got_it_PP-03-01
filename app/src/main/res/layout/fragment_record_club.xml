@@ -31,12 +31,13 @@
         android:id="@+id/arrow_left"
         android:layout_width="24dp"
         android:layout_height="24dp"
-        android:layout_marginEnd="56dp"
+        app:layout_goneMarginEnd="50dp"
+        android:layout_marginEnd="10dp"
         android:background="@drawable/background_ic_play_arrow"
         android:src="@drawable/ic_arrow_right_24"
         android:scaleX="-1"
         app:layout_constraintTop_toTopOf="@id/month"
-        app:layout_constraintEnd_toEndOf="@id/calendar"
+        app:layout_constraintEnd_toStartOf="@id/arrow_right"
         app:layout_constraintBottom_toBottomOf="@id/month"
         />
 
@@ -56,6 +57,7 @@
         android:id="@+id/calendar"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        app:layout_goneMarginEnd="16dp"
         app:layout_constraintHeight_percent="0.3"
         app:flow_maxElementsWrap="7"
         android:background="@drawable/bg_time"
