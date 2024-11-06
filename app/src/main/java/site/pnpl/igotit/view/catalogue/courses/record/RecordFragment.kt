@@ -12,9 +12,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordBinding
-import site.pnpl.igotit.utils.toWeekDay
 import site.pnpl.igotit.view.base.BaseFragment
-import java.time.LocalDate
 import javax.inject.Inject
 
 class RecordFragment : BaseFragment() {
@@ -51,10 +49,8 @@ class RecordFragment : BaseFragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            id?.let {id ->
-                val currentDate = LocalDate.now()
-                println(currentDate.toWeekDay())
-                 viewModel.setMyCourse(id)
+            id?.let { id ->
+                viewModel.setMyCourse(id)
             }
         }
     }
