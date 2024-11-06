@@ -8,16 +8,15 @@
     tools:context=".view.catalogue.courses.CoursesCatalogueFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:layout_marginTop="47dp"
-        android:paddingTop="24dp"
         android:id="@+id/rv_courses_catalogue"
         android:layout_width="match_parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
         android:layout_height="0dp"
+        android:layout_margin="16dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/item_courses_catalogue"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:listitem="@layout/item_courses_catalogue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
