@@ -5,6 +5,8 @@ import kotlinx.coroutines.withContext
 import site.pnpl.igotit.data.api.ClubApi
 import site.pnpl.igotit.data.dbo.dao.ClubsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
+import site.pnpl.igotit.data.dbo.entity.ClubsSample
+import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
@@ -36,11 +38,21 @@ class ClubRepository(
 
     override suspend fun saveSampleClubsToDb(): Boolean {
         val result = withContext(Dispatchers.IO) {
-            clubsDao.trunc()
+            clubsDao.truncClubs()
+            clubsDao.truncScheduler()
 
             sampleListOfClubs.randomUuid()
 
-            clubsDao.insertAll(sampleListOfClubs)
+            val sampleListOfScheduleEntity : MutableList<CoursesScheduleEntity> = mutableListOf()
+            sampleListOfClubs.forEach { parent ->
+                parent.listSchedule.forEach { child ->
+                    sampleListOfScheduleEntity.add(child.copy(uuidCourses = parent.uuid))
+                }
+            }
+            sampleListOfScheduleEntity.randomUuid()
+
+            clubsDao.insertAllClubs(mapperClubsSampleToClubsEntity(sampleListOfClubs))
+            clubsDao.insertAllCorsesScheduler(sampleListOfScheduleEntity)
         }
         return result.isNotEmpty()
     }
@@ -73,6 +85,24 @@ class ClubRepository(
             val countRow = clubsDao.setMyCourse(uuid)
             countRow == 1
         }
+    }
+
+    private fun mapperClubsSampleToClubsEntity(listClubs: List<ClubsSample>): List<ClubEntity> {
+        return listClubs.map {
+            ClubEntity(
+                uuid = it.uuid,
+                clubName = it.clubName,
+                type = it.type,
+                level = it.level,
+                description = it.description,
+                length = it.length,
+                frequency = it.frequency,
+                numberClasses = it.numberClasses,
+                totalQuantity = it.totalQuantity,
+                about = it.about,
+            )
+        }
+
     }
 
     private fun mapperClubsEntityToClubs(listClubs: List<ClubEntity>): List<Clubs> {

@@ -6,20 +6,20 @@ import site.pnpl.igotit.data.dbo.dao.ClubsDao
 import site.pnpl.igotit.data.dbo.dao.CursesDao
 import site.pnpl.igotit.data.dbo.dao.TagsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
+import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 import site.pnpl.igotit.data.dbo.entity.CrossTagClubEntity
 import site.pnpl.igotit.data.dbo.entity.CrossTagCoursEntity
-import site.pnpl.igotit.data.dbo.entity.CoursEntity
 import site.pnpl.igotit.data.dbo.entity.TagEntity
 
 @Database(
     entities = [
         ClubEntity::class,
-        CoursEntity::class,
-        TagEntity::class,
-        CrossTagClubEntity::class,
-        CrossTagCoursEntity::class
+        CoursesScheduleEntity::class,
+//        TagEntity::class,
+//        CrossTagClubEntity::class,
+//        CrossTagCoursEntity::class
     ],
-    version = 3,
+    version = 4,
     exportSchema = false
 )
 abstract class IgotitDatabase : RoomDatabase() {

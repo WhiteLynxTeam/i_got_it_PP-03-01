@@ -1,6 +1,7 @@
 package site.pnpl.igotit.domain
 
-import site.pnpl.igotit.data.dbo.entity.ClubEntity
+import site.pnpl.igotit.data.dbo.entity.ClubsSample
+import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 
 /**
  * APP CONFIG
@@ -38,7 +39,7 @@ const val DATE_PATTERN_WITHOUT_YEAR = "dd MMMM, EEEE"
  * SAMPLE DATE FOR DATABASE
  */
 val sampleListOfClubs = listOf(
-    ClubEntity(
+    ClubsSample(
         type = "club",
         clubName = "Разговорный клуб Extra",
         level = "A1 - A2",
@@ -48,8 +49,40 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "ср",
+                startHour = "13",
+                startMinute = "00",
+                endHour = "14",
+                endMinute = "00",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "ср",
+                startHour = "19",
+                startMinute = "00",
+                endHour = "20",
+                endMinute = "00",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "сб",
+                startHour = "13",
+                startMinute = "00",
+                endHour = "14",
+                endMinute = "00",
+                type = "выходного дня",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "club",
         clubName = "Клуб по книге Бритни",
         level = "A1 - A2",
@@ -59,8 +92,40 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "ср",
+                startHour = "15",
+                startMinute = "00",
+                endHour = "16",
+                endMinute = "00",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "ср",
+                startHour = "17",
+                startMinute = "30",
+                endHour = "18",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "сб",
+                startHour = "15",
+                startMinute = "00",
+                endHour = "16",
+                endMinute = "00",
+                type = "выходного дня",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "club",
         clubName = "Разговорный клуб по новелле «История Кицунэ»",
         level = "A1 - A2",
@@ -70,8 +135,40 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "вт",
+                startHour = "13",
+                startMinute = "30",
+                endHour = "14",
+                endMinute = "30",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "вт",
+                startHour = "17",
+                startMinute = "30",
+                endHour = "18",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "сб",
+                startHour = "13",
+                startMinute = "00",
+                endHour = "14",
+                endMinute = "00",
+                type = "выходного дня",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "club",
         clubName = "Разговорный клуб по новелле «Сквозь время»",
         level = "A1 - A2",
@@ -81,8 +178,40 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пт",
+                startHour = "13",
+                startMinute = "00",
+                endHour = "14",
+                endMinute = "00",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пт",
+                startHour = "17",
+                startMinute = "30",
+                endHour = "18",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "сб",
+                startHour = "17",
+                startMinute = "00",
+                endHour = "18",
+                endMinute = "00",
+                type = "выходного дня",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "course",
         clubName = "Хочу заговорить",
         level = "A1 - A2",
@@ -92,8 +221,50 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пн",
+                startHour = "12",
+                startMinute = "00",
+                endHour = "13",
+                endMinute = "30",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "чт",
+                startHour = "12",
+                startMinute = "00",
+                endHour = "13",
+                endMinute = "30",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пн",
+                startHour = "18",
+                startMinute = "00",
+                endHour = "19",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "чт",
+                startHour = "18",
+                startMinute = "00",
+                endHour = "19",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "course",
         clubName = "Хочу в айти!",
         level = "A1 - A2",
@@ -103,8 +274,50 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пн",
+                startHour = "14",
+                startMinute = "00",
+                endHour = "15",
+                endMinute = "30",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "чт",
+                startHour = "14",
+                startMinute = "00",
+                endHour = "15",
+                endMinute = "30",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пн",
+                startHour = "20",
+                startMinute = "00",
+                endHour = "21",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "чт",
+                startHour = "20",
+                startMinute = "00",
+                endHour = "21",
+                endMinute = "30",
+                type = "вечерняя",
+            ),
+        )
     ),
-    ClubEntity(
+    ClubsSample(
         type = "course",
         clubName = "Качаю софт скиллы",
         level = "A1 - A2",
@@ -114,5 +327,47 @@ val sampleListOfClubs = listOf(
         totalQuantity = "20 занятий",
         description = "Интенсивный разговорный английский для начальных уровней",
         about = "Курс для тех, кто хочет заговорить на английском. На занятиях мы затрагиваем все грамматические и лексические темы уровней A1 и A2 (Beginner и Pre-Intermeiate), при этом акцент делаем на умении говорить. Учимся высказывать своё мнение, обсуждать бытовые ситуации, свои предпочтения. Оттачиваем грамматику в домашних заданиях.",
+        listSchedule = listOf(
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "вт",
+                startHour = "12",
+                startMinute = "00",
+                endHour = "13",
+                endMinute = "00",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пт",
+                startHour = "12",
+                startMinute = "00",
+                endHour = "13",
+                endMinute = "00",
+                type = "дневная",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "вт",
+                startHour = "19",
+                startMinute = "00",
+                endHour = "20",
+                endMinute = "00",
+                type = "вечерняя",
+            ),
+            CoursesScheduleEntity(
+                year = "2024",
+                month = "11",
+                dayOfWeek = "пт",
+                startHour = "19",
+                startMinute = "00",
+                endHour = "20",
+                endMinute = "00",
+                type = "вечерняя",
+            ),
+        )
     ),
 )
