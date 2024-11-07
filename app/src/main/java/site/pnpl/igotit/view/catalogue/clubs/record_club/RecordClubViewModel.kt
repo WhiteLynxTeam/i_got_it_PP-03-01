@@ -10,6 +10,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.domain.models.CoursesSchedule
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
@@ -27,14 +28,15 @@ class RecordClubViewModel(
     val isMyCourse: SharedFlow<Boolean>
         get() = _isMyCourse.asSharedFlow()
 
-    private var _schedule = MutableSharedFlow<List<CoursesSchedule>>()
-    val schedule: SharedFlow<List<CoursesSchedule>>
-        get() = _schedule.asSharedFlow()
-
     private val _firstDayOfWeek = MutableStateFlow<LocalDate>(LocalDate.now())
     val firstDayOfWeek: StateFlow<LocalDate> = _firstDayOfWeek
 
+    private val _schedule = MutableStateFlow<List<CoursesSchedule>>(emptyList())
+    val schedule: StateFlow<List<CoursesSchedule>> = _schedule
+//        get() = _schedule.asSharedFlow()
+
     init {
+        println("schedule - $schedule")
         getFirstDayOfWeek(_firstDayOfWeek.value)
     }
 
@@ -54,6 +56,12 @@ class RecordClubViewModel(
         viewModelScope.launch {
             val list = getCoursesSchedulerByUuidFromDbUseCase(uuid)
             if (list.isNotEmpty()) _schedule.emit(list)
+        }
+    }
+
+    fun selectGroupe(dayOfWeekRuShort: String?) {
+        if (dayOfWeekRuShort != null) {
+//            val timeScheduler = _schedule.value.filter {  }
         }
     }
 

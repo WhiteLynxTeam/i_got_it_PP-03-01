@@ -24,6 +24,7 @@ import java.time.temporal.ChronoUnit
 import java.util.UUID
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 class RecordClubFragment : BaseFragment() {
 
     private var _binding: FragmentRecordClubBinding? = null
@@ -37,30 +38,8 @@ class RecordClubFragment : BaseFragment() {
     private val id: Int? by lazy { arguments?.getInt("id") }
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
-    private val listTVDay: Array<Array<*>> = arrayOf(
-        arrayOf(
-            R.id.day_1,
-            R.id.day_2,
-            R.id.day_3,
-            R.id.day_4,
-            R.id.day_5,
-            R.id.day_6,
-            R.id.day_7,
-        ),
-        arrayOf(
-            EnumWeekCalendar.MONDAY,
-            EnumWeekCalendar.TUESDAY,
-            EnumWeekCalendar.WEDNESDAY,
-            EnumWeekCalendar.THURSDAY,
-            EnumWeekCalendar.FRIDAY,
-            EnumWeekCalendar.SATURDAY,
-            EnumWeekCalendar.SUNDAY,
-        ),
-    )
-
-    val onClickListener = View.OnClickListener { view ->
-
-        viewModel.selectGroupe(view)
+    private val onDayClickListener = View.OnClickListener { view ->
+        viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
     }
 
     override fun onCreateView(
@@ -73,7 +52,6 @@ class RecordClubFragment : BaseFragment() {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -87,7 +65,7 @@ class RecordClubFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.schedule.collect { schedule ->
-                println(schedule)
+                println("schedule - $schedule")
                 hideShowArrow()
 
                 setNowInWeekCalenddar()
@@ -179,11 +157,23 @@ class RecordClubFragment : BaseFragment() {
             id?.let { id -> viewModel.setMyCourse(id) }
         }
 
+        initDayListener()
         hideShowArrow()
         uuid?.let { viewModel.getCoursesScheduler(it) }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
+    private fun initDayListener() {
+        with(binding){
+            day1.setOnClickListener(onDayClickListener)
+            day2.setOnClickListener(onDayClickListener)
+            day3.setOnClickListener(onDayClickListener)
+            day4.setOnClickListener(onDayClickListener)
+            day5.setOnClickListener(onDayClickListener)
+            day6.setOnClickListener(onDayClickListener)
+            day7.setOnClickListener(onDayClickListener)
+        }
+    }
+
     private fun hideShowArrow() {
         if (viewModel.firstDayOfWeek.value.toGetFirstDayOfWeek() <= LocalDate.now()) {
 //            binding.arrowLeft.isEnabled = false
@@ -203,7 +193,6 @@ class RecordClubFragment : BaseFragment() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setNowInWeekCalenddar() {
         val now = LocalDate.now()
         if (now.isAfter(viewModel.firstDayOfWeek.value) &&
@@ -220,30 +209,34 @@ class RecordClubFragment : BaseFragment() {
     }
 
     private fun setPointForNow(day: Int) {
-        val constraintSet = ConstraintSet()
-        constraintSet.clone(binding.root)
+        /*** Увеличиваем на 1, потому что в неделе позицию считаем от 1, а получаем разницу количества дней между
+         * понедельником и сегодня, т.е. если разница 0 - то это понедельник*/
+        val viewDay = EnumWeekCalendar.getTextViewIdByPos(day + 1)
+        if (viewDay != null) {
+            val constraintSet = ConstraintSet()
+            constraintSet.clone(binding.root)
 
-        // Устанавливаем ограничения для вашего View
-        constraintSet.connect(
-            R.id.pointNow,
-            ConstraintSet.START,
-            listTVDay[day],
-            ConstraintSet.START
-        )
-        constraintSet.connect(
-            R.id.pointNow,
-            ConstraintSet.END,
-            listTVDay[day],
-            ConstraintSet.END
-        )
-        constraintSet.connect(
-            R.id.pointNow,
-            ConstraintSet.TOP,
-            listTVDay[day],
-            ConstraintSet.BOTTOM
-        )
+            constraintSet.connect(
+                R.id.pointNow,
+                ConstraintSet.START,
+                viewDay,
+                ConstraintSet.START
+            )
+            constraintSet.connect(
+                R.id.pointNow,
+                ConstraintSet.END,
+                viewDay,
+                ConstraintSet.END
+            )
+            constraintSet.connect(
+                R.id.pointNow,
+                ConstraintSet.TOP,
+                viewDay,
+                ConstraintSet.BOTTOM
+            )
 
-        constraintSet.applyTo(binding.root)
+            constraintSet.applyTo(binding.root)
+        }
     }
 
 
