@@ -40,8 +40,9 @@
         <item name="android:textAlignment">center</item>
         <item name="android:paddingTop">3dp</item>
         <item name="android:paddingBottom">3dp</item>
-        <item name="android:textColor">@color/no_active_lesson</item>
+        <item name="android:textColor">@color/tv_textcolor_calendar</item>
         <item name="layout_constraintWidth_percent">0.08</item>
+<!--        <item name="android:background">@drawable/background_day_of_week</item>-->
     </style>
 
 </resources>

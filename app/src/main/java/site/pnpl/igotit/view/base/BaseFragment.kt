@@ -18,5 +18,4 @@ abstract class BaseFragment : Fragment() {
             throw RuntimeException("$context must implement OnTextChangeListener")
         }
     }
-
 }
