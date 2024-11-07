@@ -1,6 +1,6 @@
 package site.pnpl.igotit.domain.models
 
-enum class WeekCalendar(
+enum class EnumWeekCalendar(
     val RuShort: String,
     val RuLong: String,
     val pos: Int,

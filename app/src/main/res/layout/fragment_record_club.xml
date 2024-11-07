@@ -141,7 +141,6 @@
         android:id="@+id/day_5"
         style="@style/weekday"
         android:textSize="18sp"
-        android:textColor="@color/white"
         android:text="14"/>
 <!--    android:background="@drawable/bg_select_day_of_week"-->
 

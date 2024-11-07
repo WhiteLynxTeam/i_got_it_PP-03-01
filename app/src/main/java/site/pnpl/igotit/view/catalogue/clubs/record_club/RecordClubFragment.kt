@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.lifecycle.ViewModelProvider
@@ -14,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordClubBinding
-import site.pnpl.igotit.domain.models.WeekCalendar
+import site.pnpl.igotit.domain.models.EnumWeekCalendar
 import site.pnpl.igotit.utils.toDayOnly
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
 import site.pnpl.igotit.utils.uiextensions.hide
@@ -22,7 +21,6 @@ import site.pnpl.igotit.utils.uiextensions.show
 import site.pnpl.igotit.view.base.BaseFragment
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
-import java.util.ArrayList
 import java.util.UUID
 import javax.inject.Inject
 
@@ -39,15 +37,31 @@ class RecordClubFragment : BaseFragment() {
     private val id: Int? by lazy { arguments?.getInt("id") }
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
-    private val listTVDay: List<Int> = listOf(
-        R.id.day_1,
-        R.id.day_2,
-        R.id.day_3,
-        R.id.day_4,
-        R.id.day_5,
-        R.id.day_6,
-        R.id.day_7,
+    private val listTVDay: Array<Array<*>> = arrayOf(
+        arrayOf(
+            R.id.day_1,
+            R.id.day_2,
+            R.id.day_3,
+            R.id.day_4,
+            R.id.day_5,
+            R.id.day_6,
+            R.id.day_7,
+        ),
+        arrayOf(
+            EnumWeekCalendar.MONDAY,
+            EnumWeekCalendar.TUESDAY,
+            EnumWeekCalendar.WEDNESDAY,
+            EnumWeekCalendar.THURSDAY,
+            EnumWeekCalendar.FRIDAY,
+            EnumWeekCalendar.SATURDAY,
+            EnumWeekCalendar.SUNDAY,
+        ),
     )
+
+    val onClickListener = View.OnClickListener { view ->
+
+        viewModel.selectGroupe(view)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -77,53 +91,53 @@ class RecordClubFragment : BaseFragment() {
                 hideShowArrow()
 
                 setNowInWeekCalenddar()
-                WeekCalendar.entries.forEach { dayWeek ->
+                EnumWeekCalendar.entries.forEach { dayWeek ->
                     dayWeek.isAvailable =
                         schedule.any { dayScheduler -> dayScheduler.dayOfWeek == dayWeek.RuShort }
                     when (dayWeek) {
-                        WeekCalendar.MONDAY -> {
+                        EnumWeekCalendar.MONDAY -> {
                             with(binding.day1) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.toDayOnly()
                             }
                         }
 
-                        WeekCalendar.TUESDAY -> {
+                        EnumWeekCalendar.TUESDAY -> {
                             with(binding.day2) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(1).toDayOnly()
                             }
                         }
 
-                        WeekCalendar.WEDNESDAY -> {
+                        EnumWeekCalendar.WEDNESDAY -> {
                             with(binding.day3) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(2).toDayOnly()
                             }
                         }
 
-                        WeekCalendar.THURSDAY -> {
+                        EnumWeekCalendar.THURSDAY -> {
                             with(binding.day4) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(3).toDayOnly()
                             }
                         }
 
-                        WeekCalendar.FRIDAY -> {
+                        EnumWeekCalendar.FRIDAY -> {
                             with(binding.day5) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(4).toDayOnly()
                             }
                         }
 
-                        WeekCalendar.SATURDAY -> {
+                        EnumWeekCalendar.SATURDAY -> {
                             with(binding.day6) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(5).toDayOnly()
                             }
                         }
 
-                        WeekCalendar.SUNDAY -> {
+                        EnumWeekCalendar.SUNDAY -> {
                             with(binding.day7) {
                                 isEnabled = dayWeek.isAvailable
                                 text = viewModel.firstDayOfWeek.value.plusDays(6).toDayOnly()
