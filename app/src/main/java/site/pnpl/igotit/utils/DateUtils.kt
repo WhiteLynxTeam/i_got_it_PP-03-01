@@ -47,13 +47,13 @@ fun LocalDate.toGetFirstDayOfWeek(): LocalDate {
     return this.minusDays(this.dayOfWeek.value.toLong() - 1)
 }
 
-/*val currentDate = LocalDate.now()
-println(currentDate.dayOfWeek)
-println(currentDate.dayOfWeek.value)
-println(currentDate.toWeekDay())
-println(currentDate.toRuWeekDay())
-println(currentDate.dayOfMonth)
-println(currentDate.toDayOnly())
-println(currentDate.toStringByFormat(DATE_PATTERN_DEFAULT,Locale("ru", "RU")))
-println(currentDate.toRuStringByFormat(DATE_PATTERN_FULL_DATE_AND_TEXT_MONTH))
-println(currentDate.toStringByFormat(DATE_PATTERN_FULL_DATE_AND_TEXT_MONTH,Locale("ru", "RU")))*/
+//val currentDate = LocalDate.now()
+//println(currentDate.dayOfWeek)
+//println(currentDate.dayOfWeek.value)
+//println(currentDate.toWeekDay())
+//println(currentDate.toRuWeekDay())
+//println(currentDate.dayOfMonth)
+//println(currentDate.toDayOnly())
+//println(currentDate.toStringByFormat(DATE_PATTERN_DEFAULT,Locale("ru", "RU")))
+//println(currentDate.toRuStringByFormat(DATE_PATTERN_FULL_DATE_AND_TEXT_MONTH))
+//println(currentDate.toStringByFormat(DATE_PATTERN_FULL_DATE_AND_TEXT_MONTH,Locale("ru", "RU")))

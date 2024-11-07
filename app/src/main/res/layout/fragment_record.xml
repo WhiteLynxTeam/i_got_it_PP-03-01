@@ -133,7 +133,7 @@
         android:id="@+id/day_5"
         style="@style/weekday"
         android:textSize="18sp"
-        android:background="@drawable/bg_day_of_week"
+        android:background="@drawable/bg_select_day_of_week"
         android:textColor="@color/white"
         android:text="14"/>
 
