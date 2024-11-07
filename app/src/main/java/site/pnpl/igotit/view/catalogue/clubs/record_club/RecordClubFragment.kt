@@ -39,6 +39,7 @@ class RecordClubFragment : BaseFragment() {
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
     private val onDayClickListener = View.OnClickListener { view ->
+        println("onDayClickListener - ${view.id}")
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
     }
 
@@ -66,62 +67,66 @@ class RecordClubFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.schedule.collect { schedule ->
                 println("schedule - $schedule")
-                hideShowArrow()
+                if(schedule.second.isNotEmpty()) {
+                    hideShowArrow()
 
-                setNowInWeekCalenddar()
-                EnumWeekCalendar.entries.forEach { dayWeek ->
-                    dayWeek.isAvailable =
-                        schedule.any { dayScheduler -> dayScheduler.dayOfWeek == dayWeek.RuShort }
-                    when (dayWeek) {
-                        EnumWeekCalendar.MONDAY -> {
-                            with(binding.day1) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.toDayOnly()
+                    setNowInWeekCalenddar()
+                    EnumWeekCalendar.entries.forEach { dayWeek ->
+                        dayWeek.isAvailable =
+                            schedule.second.any { dayScheduler -> dayScheduler.dayOfWeek == dayWeek.RuShort }
+                        when (dayWeek) {
+                            EnumWeekCalendar.MONDAY -> {
+                                with(binding.day1) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.toDayOnly()
+//                                    text = viewModel.firstDayOfWeek.value.toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.TUESDAY -> {
-                            with(binding.day2) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(1).toDayOnly()
+                            EnumWeekCalendar.TUESDAY -> {
+                                with(binding.day2) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(1).toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.WEDNESDAY -> {
-                            with(binding.day3) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(2).toDayOnly()
+                            EnumWeekCalendar.WEDNESDAY -> {
+                                with(binding.day3) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(2).toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.THURSDAY -> {
-                            with(binding.day4) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(3).toDayOnly()
+                            EnumWeekCalendar.THURSDAY -> {
+                                with(binding.day4) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(3).toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.FRIDAY -> {
-                            with(binding.day5) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(4).toDayOnly()
+                            EnumWeekCalendar.FRIDAY -> {
+                                with(binding.day5) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(4).toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.SATURDAY -> {
-                            with(binding.day6) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(5).toDayOnly()
+                            EnumWeekCalendar.SATURDAY -> {
+                                with(binding.day6) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(5).toDayOnly()
+                                }
                             }
-                        }
 
-                        EnumWeekCalendar.SUNDAY -> {
-                            with(binding.day7) {
-                                isEnabled = dayWeek.isAvailable
-                                text = viewModel.firstDayOfWeek.value.plusDays(6).toDayOnly()
+                            EnumWeekCalendar.SUNDAY -> {
+                                with(binding.day7) {
+                                    isEnabled = dayWeek.isAvailable
+                                    text = schedule.first.plusDays(6).toDayOnly()
+                                }
                             }
                         }
                     }
+
                 }
 
             }
@@ -144,11 +149,13 @@ class RecordClubFragment : BaseFragment() {
         }
 
         binding.arrowLeft.setOnClickListener {
+            println("binding.arrowLeft.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.minusDays(7))
             uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }
 
         binding.arrowRight.setOnClickListener {
+            println("binding.arrowRight.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.plusDays(7))
             uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }

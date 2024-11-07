@@ -31,12 +31,12 @@ class RecordClubViewModel(
     private val _firstDayOfWeek = MutableStateFlow<LocalDate>(LocalDate.now())
     val firstDayOfWeek: StateFlow<LocalDate> = _firstDayOfWeek
 
-    private val _schedule = MutableStateFlow<List<CoursesSchedule>>(emptyList())
-    val schedule: StateFlow<List<CoursesSchedule>> = _schedule
-//        get() = _schedule.asSharedFlow()
+    private val _schedule = MutableStateFlow<Pair<LocalDate,List<CoursesSchedule>>>(Pair(LocalDate.now(),emptyList()))
+    val schedule: StateFlow<Pair<LocalDate,List<CoursesSchedule>>> = _schedule
 
     init {
-        println("schedule - $schedule")
+        println("RecordClubViewModel - init - _firstDayOfWeek = ${_firstDayOfWeek.value}")
+        println("RecordClubViewModel - init - _schedule = ${_schedule.value}")
         getFirstDayOfWeek(_firstDayOfWeek.value)
     }
 
@@ -55,13 +55,13 @@ class RecordClubViewModel(
     fun getCoursesScheduler(uuid: UUID) {
         viewModelScope.launch {
             val list = getCoursesSchedulerByUuidFromDbUseCase(uuid)
-            if (list.isNotEmpty()) _schedule.emit(list)
+            if (list.isNotEmpty()) _schedule.emit(Pair(_firstDayOfWeek.value,list))
         }
     }
 
     fun selectGroupe(dayOfWeekRuShort: String?) {
         if (dayOfWeekRuShort != null) {
-//            val timeScheduler = _schedule.value.filter {  }
+            val timeScheduler = _schedule.value.second.filter { it.dayOfWeek == dayOfWeekRuShort }
         }
     }
 
