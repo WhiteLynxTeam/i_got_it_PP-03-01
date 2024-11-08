@@ -59,6 +59,7 @@ val sampleListOfClubs = listOf(
                 endHour = "14",
                 endMinute = "00",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -69,6 +70,7 @@ val sampleListOfClubs = listOf(
                 endHour = "20",
                 endMinute = "00",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -79,6 +81,7 @@ val sampleListOfClubs = listOf(
                 endHour = "14",
                 endMinute = "00",
                 type = "выходного дня",
+                shortType = "вых.дн",
             ),
         )
     ),
@@ -102,6 +105,7 @@ val sampleListOfClubs = listOf(
                 endHour = "16",
                 endMinute = "00",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -112,6 +116,7 @@ val sampleListOfClubs = listOf(
                 endHour = "18",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -122,6 +127,7 @@ val sampleListOfClubs = listOf(
                 endHour = "16",
                 endMinute = "00",
                 type = "выходного дня",
+                shortType = "вых.дн",
             ),
         )
     ),
@@ -145,6 +151,7 @@ val sampleListOfClubs = listOf(
                 endHour = "14",
                 endMinute = "30",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -155,6 +162,7 @@ val sampleListOfClubs = listOf(
                 endHour = "18",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -165,6 +173,7 @@ val sampleListOfClubs = listOf(
                 endHour = "14",
                 endMinute = "00",
                 type = "выходного дня",
+                shortType = "вых.дн",
             ),
         )
     ),
@@ -188,6 +197,7 @@ val sampleListOfClubs = listOf(
                 endHour = "14",
                 endMinute = "00",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -198,6 +208,7 @@ val sampleListOfClubs = listOf(
                 endHour = "18",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -208,6 +219,7 @@ val sampleListOfClubs = listOf(
                 endHour = "18",
                 endMinute = "00",
                 type = "выходного дня",
+                shortType = "вых.дн",
             ),
         )
     ),
@@ -231,6 +243,7 @@ val sampleListOfClubs = listOf(
                 endHour = "13",
                 endMinute = "30",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -241,6 +254,7 @@ val sampleListOfClubs = listOf(
                 endHour = "13",
                 endMinute = "30",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -251,6 +265,7 @@ val sampleListOfClubs = listOf(
                 endHour = "19",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -261,6 +276,7 @@ val sampleListOfClubs = listOf(
                 endHour = "19",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
         )
     ),
@@ -284,6 +300,7 @@ val sampleListOfClubs = listOf(
                 endHour = "15",
                 endMinute = "30",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -294,6 +311,7 @@ val sampleListOfClubs = listOf(
                 endHour = "15",
                 endMinute = "30",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -304,6 +322,7 @@ val sampleListOfClubs = listOf(
                 endHour = "21",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -314,6 +333,7 @@ val sampleListOfClubs = listOf(
                 endHour = "21",
                 endMinute = "30",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
         )
     ),
@@ -337,6 +357,7 @@ val sampleListOfClubs = listOf(
                 endHour = "13",
                 endMinute = "00",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -347,6 +368,7 @@ val sampleListOfClubs = listOf(
                 endHour = "13",
                 endMinute = "00",
                 type = "дневная",
+                shortType = "день",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -357,6 +379,7 @@ val sampleListOfClubs = listOf(
                 endHour = "20",
                 endMinute = "00",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
             CoursesScheduleEntity(
                 year = "2024",
@@ -367,6 +390,7 @@ val sampleListOfClubs = listOf(
                 endHour = "20",
                 endMinute = "00",
                 type = "вечерняя",
+                shortType = "вечер",
             ),
         )
     ),

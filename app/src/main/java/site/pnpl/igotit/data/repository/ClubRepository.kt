@@ -111,6 +111,7 @@ class ClubRepository(
                 endHour = it.endHour,
                 endMinute = it.endMinute,
                 type = it.type,
+                shortType = it.shortType,
             )
         }
     }

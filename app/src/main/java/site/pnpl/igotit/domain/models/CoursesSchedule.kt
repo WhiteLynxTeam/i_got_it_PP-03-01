@@ -14,4 +14,5 @@ data class CoursesSchedule(
     val endHour: String,
     val endMinute: String,
     val type: String,
+    val shortType: String = "",
 )

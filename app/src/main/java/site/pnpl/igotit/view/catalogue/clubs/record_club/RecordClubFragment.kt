@@ -13,7 +13,6 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordClubBinding
-import site.pnpl.igotit.databinding.ItemTimeScedulerBinding
 import site.pnpl.igotit.domain.models.EnumWeekCalendar
 import site.pnpl.igotit.utils.toDayOnly
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
@@ -40,19 +39,8 @@ class RecordClubFragment : BaseFragment() {
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
     private val onDayClickListener = View.OnClickListener { view ->
-//        val view = createItemView()
-//        binding.time.setReferencedIds(intArrayOf(view.id))
-//        binding.time.addView(view)
         println("onDayClickListener - ${view.id}")
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
-    }
-
-    private val createItemView: () -> View = {
-        val inflater = LayoutInflater.from(context)
-        val view = ItemTimeScedulerBinding.inflate(inflater, this.binding.getRoot(), false).root
-        view.id = View.generateViewId()
-        view
-//        val itemView = inflater.inflate(R.layout.item_time_sceduler, null, false)
     }
 
     override fun onCreateView(
@@ -79,7 +67,7 @@ class RecordClubFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.schedule.collect { schedule ->
                 println("schedule - $schedule")
-                if(schedule.second.isNotEmpty()) {
+                if (schedule.second.isNotEmpty()) {
                     hideShowArrow()
 
                     setNowInWeekCalenddar()
@@ -145,6 +133,19 @@ class RecordClubFragment : BaseFragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.timeSchedule.collect { schedule ->
+                println("schedule - $schedule")
+                if (schedule.isNotEmpty()) {
+                    schedule.forEach {
+                        val viewTime = createItemView()
+                        binding.time.referencedIds += viewTime.id
+                        binding.root.addView(viewTime)
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.firstDayOfWeek.collect {
 //                hideShowArrow()
 //
@@ -160,115 +161,125 @@ class RecordClubFragment : BaseFragment() {
             }
         }
 
-        binding.arrowLeft.setOnClickListener {
+
+        binding.arrowLeft.setOnClickListener
+        {
             println("binding.arrowLeft.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.minusDays(7))
             uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }
 
-        binding.arrowRight.setOnClickListener {
+        binding.arrowRight.setOnClickListener
+        {
             println("binding.arrowRight.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.plusDays(7))
             uuid?.let { uuid -> viewModel.getCoursesScheduler(uuid) }
         }
 
-        binding.btnRegister.setOnClickListener {
+        binding.btnRegister.setOnClickListener
+        {
             id?.let { id -> viewModel.setMyCourse(id) }
         }
 
         initDayListener()
         hideShowArrow()
-        uuid?.let { viewModel.getCoursesScheduler(it) }
+        uuid?.let
+        { viewModel.getCoursesScheduler(it) }
     }
 
-    private fun initDayListener() {
-        with(binding){
-            day1.setOnClickListener(onDayClickListener)
-            day2.setOnClickListener(onDayClickListener)
-            day3.setOnClickListener(onDayClickListener)
-            day4.setOnClickListener(onDayClickListener)
-            day5.setOnClickListener(onDayClickListener)
-            day6.setOnClickListener(onDayClickListener)
-            day7.setOnClickListener(onDayClickListener)
-        }
+private fun initDayListener() {
+    with(binding) {
+        day1.setOnClickListener(onDayClickListener)
+        day2.setOnClickListener(onDayClickListener)
+        day3.setOnClickListener(onDayClickListener)
+        day4.setOnClickListener(onDayClickListener)
+        day5.setOnClickListener(onDayClickListener)
+        day6.setOnClickListener(onDayClickListener)
+        day7.setOnClickListener(onDayClickListener)
     }
+}
 
-    private fun hideShowArrow() {
-        if (viewModel.firstDayOfWeek.value.toGetFirstDayOfWeek() <= LocalDate.now()) {
+private fun hideShowArrow() {
+    if (viewModel.firstDayOfWeek.value.toGetFirstDayOfWeek() <= LocalDate.now()) {
 //            binding.arrowLeft.isEnabled = false
-            binding.arrowLeft.hide()
-        } else {
+        binding.arrowLeft.hide()
+    } else {
 //            binding.arrowLeft.isEnabled = true
-            binding.arrowLeft.show()
-        }
-        if (viewModel.firstDayOfWeek.value.plusDays(7)
-                .toGetFirstDayOfWeek().month != LocalDate.now().month
-        ) {
+        binding.arrowLeft.show()
+    }
+    if (viewModel.firstDayOfWeek.value.plusDays(7)
+            .toGetFirstDayOfWeek().month != LocalDate.now().month
+    ) {
 //            binding.arrowRight.isEnabled = false
-            binding.arrowRight.hide()
-        } else {
+        binding.arrowRight.hide()
+    } else {
 //            binding.arrowRight.isEnabled = true
-            binding.arrowRight.show()
-        }
+        binding.arrowRight.show()
     }
+}
 
-    private fun setNowInWeekCalenddar() {
-        val now = LocalDate.now()
-        if (now.isAfter(viewModel.firstDayOfWeek.value) &&
-            now.isBefore(viewModel.firstDayOfWeek.value.plusDays(6))
-        ) {
-            val day = ChronoUnit.DAYS.between(viewModel.firstDayOfWeek.value, now).toInt()
+private fun setNowInWeekCalenddar() {
+    val now = LocalDate.now()
+    if (now.isAfter(viewModel.firstDayOfWeek.value) &&
+        now.isBefore(viewModel.firstDayOfWeek.value.plusDays(6))
+    ) {
+        val day = ChronoUnit.DAYS.between(viewModel.firstDayOfWeek.value, now).toInt()
 //            WeekCalendar.entries[day].isNow = true
-            setPointForNow(day)
-            binding.pointNow.show()
-        } else {
-            binding.pointNow.hide()
+        setPointForNow(day)
+        binding.pointNow.show()
+    } else {
+        binding.pointNow.hide()
 //            WeekCalendar.entries.forEach { it.isNow = false}
-        }
     }
+}
 
-    private fun setPointForNow(day: Int) {
-        /*** Увеличиваем на 1, потому что в неделе позицию считаем от 1, а получаем разницу количества дней между
-         * понедельником и сегодня, т.е. если разница 0 - то это понедельник*/
-        val viewDay = EnumWeekCalendar.getTextViewIdByPos(day + 1)
-        if (viewDay != null) {
-            val constraintSet = ConstraintSet()
-            constraintSet.clone(binding.root)
+private fun setPointForNow(day: Int) {
+    /*** Увеличиваем на 1, потому что в неделе позицию считаем от 1, а получаем разницу количества дней между
+     * понедельником и сегодня, т.е. если разница 0 - то это понедельник*/
+    val viewDay = EnumWeekCalendar.getTextViewIdByPos(day + 1)
+    if (viewDay != null) {
+        val constraintSet = ConstraintSet()
+        constraintSet.clone(binding.root)
 
-            constraintSet.connect(
-                R.id.pointNow,
-                ConstraintSet.START,
-                viewDay,
-                ConstraintSet.START
-            )
-            constraintSet.connect(
-                R.id.pointNow,
-                ConstraintSet.END,
-                viewDay,
-                ConstraintSet.END
-            )
-            constraintSet.connect(
-                R.id.pointNow,
-                ConstraintSet.TOP,
-                viewDay,
-                ConstraintSet.BOTTOM
-            )
+        constraintSet.connect(
+            R.id.pointNow,
+            ConstraintSet.START,
+            viewDay,
+            ConstraintSet.START
+        )
+        constraintSet.connect(
+            R.id.pointNow,
+            ConstraintSet.END,
+            viewDay,
+            ConstraintSet.END
+        )
+        constraintSet.connect(
+            R.id.pointNow,
+            ConstraintSet.TOP,
+            viewDay,
+            ConstraintSet.BOTTOM
+        )
 
-            constraintSet.applyTo(binding.root)
-        }
+        constraintSet.applyTo(binding.root)
     }
+}
 
+private val createItemView: () -> View = {
+    LayoutInflater.from(context).inflate(R.layout.item_time_sceduler, binding.root, false).apply {
+        id = View.generateViewId()
+    }
+}
 
-    companion object {
-        fun newInstance(id: Int?, uuidString: String?): RecordClubFragment =
-            RecordClubFragment().apply {
-                arguments = Bundle().apply {
-                    if (id != null) {
-                        putInt("id", id)
-                    }
-                    putString("uuidString", uuidString)
+companion object {
+    fun newInstance(id: Int?, uuidString: String?): RecordClubFragment =
+        RecordClubFragment().apply {
+            arguments = Bundle().apply {
+                if (id != null) {
+                    putInt("id", id)
                 }
+                putString("uuidString", uuidString)
             }
-    }
+        }
+}
 
 }
