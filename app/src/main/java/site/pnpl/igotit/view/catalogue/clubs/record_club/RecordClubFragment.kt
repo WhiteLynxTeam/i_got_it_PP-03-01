@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordClubBinding
+import site.pnpl.igotit.databinding.ItemTimeScedulerBinding
 import site.pnpl.igotit.domain.models.EnumWeekCalendar
 import site.pnpl.igotit.utils.toDayOnly
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
@@ -39,8 +40,19 @@ class RecordClubFragment : BaseFragment() {
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
     private val onDayClickListener = View.OnClickListener { view ->
+//        val view = createItemView()
+//        binding.time.setReferencedIds(intArrayOf(view.id))
+//        binding.time.addView(view)
         println("onDayClickListener - ${view.id}")
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
+    }
+
+    private val createItemView: () -> View = {
+        val inflater = LayoutInflater.from(context)
+        val view = ItemTimeScedulerBinding.inflate(inflater, this.binding.getRoot(), false).root
+        view.id = View.generateViewId()
+        view
+//        val itemView = inflater.inflate(R.layout.item_time_sceduler, null, false)
     }
 
     override fun onCreateView(
