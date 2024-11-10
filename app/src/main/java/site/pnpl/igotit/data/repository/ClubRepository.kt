@@ -45,7 +45,7 @@ class ClubRepository(
 
             sampleListOfClubs.randomUuid()
 
-            val sampleListOfScheduleEntity : MutableList<CoursesScheduleEntity> = mutableListOf()
+            val sampleListOfScheduleEntity: MutableList<CoursesScheduleEntity> = mutableListOf()
             sampleListOfClubs.forEach { parent ->
                 parent.listSchedule.forEach { child ->
                     sampleListOfScheduleEntity.add(child.copy(uuidCourses = parent.uuid))
@@ -97,11 +97,15 @@ class ClubRepository(
     }
 
     private fun mapperCoursesScheduleEntityToCoursesSchedule(
-        listCoursesSchedule: List<CoursesScheduleEntity>): List<CoursesSchedule> {
+        listCoursesSchedule: List<CoursesScheduleEntity>
+    ): List<CoursesSchedule> {
         return listCoursesSchedule.map {
             CoursesSchedule(
                 id = it.id,
-                uuid = it.uuid  ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+                uuid = it.uuid ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+                idCourses = it.idCourses,
+                uuidCourses = it.uuidCourses
+                    ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
                 year = it.year,
                 month = it.month,
                 day = it.day,
