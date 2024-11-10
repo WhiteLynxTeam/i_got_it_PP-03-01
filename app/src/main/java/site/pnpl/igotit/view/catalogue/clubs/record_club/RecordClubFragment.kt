@@ -1,5 +1,6 @@
 package site.pnpl.igotit.view.catalogue.clubs.record_club
 
+import android.annotation.SuppressLint
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +14,8 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentRecordClubBinding
+import site.pnpl.igotit.databinding.ItemTimeScedulerBinding
+import site.pnpl.igotit.domain.models.CoursesSchedule
 import site.pnpl.igotit.domain.models.EnumWeekCalendar
 import site.pnpl.igotit.utils.toDayOnly
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
@@ -38,8 +41,11 @@ class RecordClubFragment : BaseFragment() {
     private val id: Int? by lazy { arguments?.getInt("id") }
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
 
+    private val listViewScheduleTime = mutableListOf<View>()
+
     private val onDayClickListener = View.OnClickListener { view ->
         println("onDayClickListener - ${view.id}")
+        setSelected(view)
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
     }
 
@@ -67,7 +73,7 @@ class RecordClubFragment : BaseFragment() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.schedule.collect { schedule ->
                 println("schedule - $schedule")
-                if(schedule.second.isNotEmpty()) {
+                if (schedule.second.isNotEmpty()) {
                     hideShowArrow()
 
                     setNowInWeekCalenddar()
@@ -133,6 +139,31 @@ class RecordClubFragment : BaseFragment() {
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.timeSchedule.collect { schedule ->
+                println("schedule - $schedule")
+                if (schedule.isNotEmpty()) {
+                    if (listViewScheduleTime.isNotEmpty()) {
+                        listViewScheduleTime.forEach {
+                            binding.time.referencedIds = intArrayOf()
+                            binding.root.removeView(it)
+                        }
+                        listViewScheduleTime.clear()
+                    }
+
+                    schedule.forEach {
+                        val viewTime = createItemView(it)
+                        listViewScheduleTime.add(viewTime)
+                    }
+
+                    listViewScheduleTime.forEach {
+                        binding.time.referencedIds += it.id
+                        binding.root.addView(it)
+                    }
+                }
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
             viewModel.firstDayOfWeek.collect {
 //                hideShowArrow()
 //
@@ -148,6 +179,7 @@ class RecordClubFragment : BaseFragment() {
             }
         }
 
+
         binding.arrowLeft.setOnClickListener {
             println("binding.arrowLeft.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
             viewModel.getFirstDayOfWeek(viewModel.firstDayOfWeek.value.minusDays(7))
@@ -161,7 +193,8 @@ class RecordClubFragment : BaseFragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            id?.let { id -> viewModel.setMyCourse(id) }
+//            id?.let { id -> viewModel.setMyCourse(id) }
+            viewModel.setMyCourse()
         }
 
         initDayListener()
@@ -170,7 +203,7 @@ class RecordClubFragment : BaseFragment() {
     }
 
     private fun initDayListener() {
-        with(binding){
+        with(binding) {
             day1.setOnClickListener(onDayClickListener)
             day2.setOnClickListener(onDayClickListener)
             day3.setOnClickListener(onDayClickListener)
@@ -246,6 +279,59 @@ class RecordClubFragment : BaseFragment() {
         }
     }
 
+    @SuppressLint("SetTextI18n")
+    private fun createItemView(itemCoursesSchedule: CoursesSchedule): View {
+//         LayoutInflater.from(context).inflate(R.layout.item_time_sceduler, binding.root, false)
+//            .apply {
+//                id = View.generateViewId()
+//            }
+
+        val itemView =
+            ItemTimeScedulerBinding.inflate(LayoutInflater.from(context), binding.root, false)
+                .apply {
+                    tvType.text = itemCoursesSchedule.shortType
+                    tvTime.text =
+                        "${itemCoursesSchedule.startHour} ${itemCoursesSchedule.startMinute}"
+                    root.apply {
+                        id = View.generateViewId()
+                    }
+                }.root
+
+        itemView.setOnClickListener {
+            onTimeSchedulerClick(it, itemCoursesSchedule.uuid)
+        }
+        return itemView
+    }
+
+    private fun setSelected(view: View?) {
+        if (view != null) {
+            with(binding) {
+                day1.isSelected = false
+                day2.isSelected = false
+                day3.isSelected = false
+                day4.isSelected = false
+                day5.isSelected = false
+                day6.isSelected = false
+                day7.isSelected = false
+                view.isSelected = true
+            }
+        }
+    }
+
+    private fun onTimeSchedulerClick(timeSchedulerView: View, uuidTimeSchedule: UUID) {
+        val isSelected = timeSchedulerView.isSelected
+        listViewScheduleTime.forEach {
+            it.isSelected = false
+        }
+
+        if (!isSelected) {
+            binding.btnRegister.isEnabled = true
+            timeSchedulerView.isSelected = true
+            viewModel.uuidTimeSchedule = uuidTimeSchedule
+        } else {
+            binding.btnRegister.isEnabled = false
+        }
+    }
 
     companion object {
         fun newInstance(id: Int?, uuidString: String?): RecordClubFragment =

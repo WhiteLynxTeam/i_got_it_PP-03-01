@@ -7,6 +7,7 @@ import site.pnpl.igotit.data.dbo.dao.ClubsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.ClubsSample
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
+import site.pnpl.igotit.data.dbo.entity.MyCoursesEntity
 import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
@@ -45,7 +46,7 @@ class ClubRepository(
 
             sampleListOfClubs.randomUuid()
 
-            val sampleListOfScheduleEntity : MutableList<CoursesScheduleEntity> = mutableListOf()
+            val sampleListOfScheduleEntity: MutableList<CoursesScheduleEntity> = mutableListOf()
             sampleListOfClubs.forEach { parent ->
                 parent.listSchedule.forEach { child ->
                     sampleListOfScheduleEntity.add(child.copy(uuidCourses = parent.uuid))
@@ -89,6 +90,13 @@ class ClubRepository(
         }
     }
 
+    override suspend fun setMyCourse(uuid: UUID): Boolean {
+        return withContext(Dispatchers.IO) {
+            clubsDao.insertMyCourse(MyCoursesEntity(uuid = uuid))
+            true
+        }
+    }
+
     override suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule> {
         val result = withContext(Dispatchers.IO) {
             clubsDao.getCoursesSchedulerByUuid(uuid)
@@ -97,11 +105,15 @@ class ClubRepository(
     }
 
     private fun mapperCoursesScheduleEntityToCoursesSchedule(
-        listCoursesSchedule: List<CoursesScheduleEntity>): List<CoursesSchedule> {
+        listCoursesSchedule: List<CoursesScheduleEntity>
+    ): List<CoursesSchedule> {
         return listCoursesSchedule.map {
             CoursesSchedule(
                 id = it.id,
-                uuid = it.uuid  ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+                uuid = it.uuid ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+                idCourses = it.idCourses,
+                uuidCourses = it.uuidCourses
+                    ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
                 year = it.year,
                 month = it.month,
                 day = it.day,
@@ -111,6 +123,7 @@ class ClubRepository(
                 endHour = it.endHour,
                 endMinute = it.endMinute,
                 type = it.type,
+                shortType = it.shortType,
             )
         }
     }

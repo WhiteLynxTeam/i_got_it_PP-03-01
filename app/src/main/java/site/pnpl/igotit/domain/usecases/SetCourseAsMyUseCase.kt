@@ -9,4 +9,8 @@ class SetCourseAsMyUseCase(
     suspend operator fun invoke(uuid : Int):Boolean {
         return repository.setMyCourse(uuid)
     }
+
+    suspend  operator fun invoke(uuid : UUID):Boolean {
+        return repository.setMyCourse(uuid)
+    }
 }

@@ -142,8 +142,6 @@
         style="@style/weekday"
         android:textSize="18sp"
         android:text="14"/>
-<!--    android:background="@drawable/bg_select_day_of_week"-->
-
 
     <TextView
         android:id="@+id/day_6"
@@ -170,18 +168,36 @@
 
     <androidx.constraintlayout.helper.widget.Flow
         android:id="@+id/time"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="16dp"
         app:layout_constraintHeight_percent="0.3"
-        app:constraint_referenced_ids="time_to_record_1,time_to_record_2,time_to_record_3,time_to_record_4,time_to_record_5,time_to_record_6"
+        app:flow_maxElementsWrap="3"
+        app:flow_horizontalAlign="center"
+        app:flow_horizontalBias="0.5"
+        app:flow_horizontalStyle="spread"
+        app:flow_verticalBias="0.5"
         app:flow_wrapMode="chain"
-        app:flow_horizontalStyle="spread_inside"
         app:layout_constraintStart_toStartOf="@id/calendar"
         app:layout_constraintTop_toBottomOf="@id/calendar"
         app:layout_constraintEnd_toEndOf="@id/calendar"
         app:layout_constraintBottom_toTopOf="@id/btn_register"/>
 
-    <TextView
+<!--    <androidx.constraintlayout.helper.widget.Flow
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintHeight_percent="0.3"
+        app:flow_wrapMode="chain"
+        app:flow_horizontalStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/calendar"
+        app:layout_constraintTop_toBottomOf="@id/calendar"
+        app:layout_constraintEnd_toEndOf="@id/calendar"
+        app:layout_constraintBottom_toTopOf="@id/btn_register"/>-->
+<!--    app:constraint_referenced_ids="time_to_record_1,time_to_record_2,time_to_record_3,time_to_record_4,time_to_record_5,time_to_record_6"-->
+
+
+<!--    <TextView
         android:id="@+id/time_to_record_1"
         style="@style/time_to_record"
         android:text="9:30"/>
@@ -209,17 +225,18 @@
     <TextView
         android:id="@+id/time_to_record_6"
         style="@style/time_to_record"
-        android:text="17:00" />
+        android:text="17:00" />-->
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_register"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
-        android:background="@drawable/btn_register"
+        android:background="@color/btn_background_big"
         android:text="@string/record"
         android:textColor="@color/btn_text"
         android:textStyle="bold"
+        android:enabled="false"
         android:stateListAnimator="@animator/btn_register_anim"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/calendar"

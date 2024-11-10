@@ -13,5 +13,6 @@ interface IClubRepository {
     suspend fun saveSampleClubsToDb(): Boolean
     suspend fun setFavorites(id : Int): Result<Boolean>
     suspend fun setMyCourse(uuid: Int): Boolean
+    suspend fun setMyCourse(uuid: UUID): Boolean
     suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule>
 }

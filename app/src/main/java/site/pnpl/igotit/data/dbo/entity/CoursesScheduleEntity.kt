@@ -21,4 +21,5 @@ data class CoursesScheduleEntity(
     @field: ColumnInfo(name = "endHour") val endHour: String,
     @field: ColumnInfo(name = "endMinute") val endMinute: String,
     @field: ColumnInfo(name = "type") val type: String,
+    @field: ColumnInfo(name = "shortType") val shortType: String = "",
 ): HasUuid

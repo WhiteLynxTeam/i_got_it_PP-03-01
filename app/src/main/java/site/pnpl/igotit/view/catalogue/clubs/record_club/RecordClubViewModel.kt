@@ -10,7 +10,6 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.domain.models.CoursesSchedule
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
@@ -24,6 +23,8 @@ class RecordClubViewModel(
     private val setCourseAsMyUseCase: SetCourseAsMyUseCase,
     private val getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
 ) : ViewModel() {
+    var uuidTimeSchedule: UUID? = null
+
     private var _isMyCourse = MutableSharedFlow<Boolean>()
     val isMyCourse: SharedFlow<Boolean>
         get() = _isMyCourse.asSharedFlow()
@@ -31,8 +32,12 @@ class RecordClubViewModel(
     private val _firstDayOfWeek = MutableStateFlow<LocalDate>(LocalDate.now())
     val firstDayOfWeek: StateFlow<LocalDate> = _firstDayOfWeek
 
-    private val _schedule = MutableStateFlow<Pair<LocalDate,List<CoursesSchedule>>>(Pair(LocalDate.now(),emptyList()))
-    val schedule: StateFlow<Pair<LocalDate,List<CoursesSchedule>>> = _schedule
+    private val _schedule =
+        MutableStateFlow<Pair<LocalDate, List<CoursesSchedule>>>(Pair(LocalDate.now(), emptyList()))
+    val schedule: StateFlow<Pair<LocalDate, List<CoursesSchedule>>> = _schedule
+
+    private val _timeSchedule = MutableStateFlow<List<CoursesSchedule>>(emptyList())
+    val timeSchedule: StateFlow<List<CoursesSchedule>> = _timeSchedule
 
     init {
         println("RecordClubViewModel - init - _firstDayOfWeek = ${_firstDayOfWeek.value}")
@@ -52,16 +57,29 @@ class RecordClubViewModel(
         }
     }
 
+    fun setMyCourse() {
+        viewModelScope.launch {
+            if (uuidTimeSchedule != null)
+                setCourseAsMyUseCase(uuidTimeSchedule!!)
+
+//            _isMyCourse.emit(setCourseAsMyUseCase())
+//            _isMyCourse.emit(setCourseAsMyUseCase())
+        }
+    }
+
     fun getCoursesScheduler(uuid: UUID) {
         viewModelScope.launch {
             val list = getCoursesSchedulerByUuidFromDbUseCase(uuid)
-            if (list.isNotEmpty()) _schedule.emit(Pair(_firstDayOfWeek.value,list))
+            if (list.isNotEmpty()) _schedule.emit(Pair(_firstDayOfWeek.value, list))
         }
     }
 
     fun selectGroupe(dayOfWeekRuShort: String?) {
         if (dayOfWeekRuShort != null) {
-            val timeScheduler = _schedule.value.second.filter { it.dayOfWeek == dayOfWeekRuShort }
+            viewModelScope.launch {
+                val list = _schedule.value.second.filter { it.dayOfWeek == dayOfWeekRuShort }
+                if (list.isNotEmpty()) _timeSchedule.emit(list)
+            }
         }
     }
 
