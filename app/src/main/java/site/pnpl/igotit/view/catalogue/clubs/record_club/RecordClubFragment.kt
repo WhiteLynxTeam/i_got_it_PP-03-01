@@ -44,11 +44,8 @@ class RecordClubFragment : BaseFragment() {
     private val listViewScheduleTime = mutableListOf<View>()
 
     private val onDayClickListener = View.OnClickListener { view ->
-//        val viewTime = createItemView()
-//        binding.time.referencedIds += viewTime.id
-//        binding.root.addView(viewTime)
-
         println("onDayClickListener - ${view.id}")
+        setSelected(view)
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
     }
 
@@ -158,7 +155,7 @@ class RecordClubFragment : BaseFragment() {
                         listViewScheduleTime.add(viewTime)
                     }
 
-                    listViewScheduleTime.forEach{
+                    listViewScheduleTime.forEach {
                         binding.time.referencedIds += it.id
                         binding.root.addView(it)
                     }
@@ -196,7 +193,8 @@ class RecordClubFragment : BaseFragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            id?.let { id -> viewModel.setMyCourse(id) }
+//            id?.let { id -> viewModel.setMyCourse(id) }
+            viewModel.setMyCourse()
         }
 
         initDayListener()
@@ -282,23 +280,57 @@ class RecordClubFragment : BaseFragment() {
     }
 
     @SuppressLint("SetTextI18n")
-    private val createItemView: (itemCoursesSchedule: CoursesSchedule) -> View = {
+    private fun createItemView(itemCoursesSchedule: CoursesSchedule): View {
 //         LayoutInflater.from(context).inflate(R.layout.item_time_sceduler, binding.root, false)
 //            .apply {
 //                id = View.generateViewId()
 //            }
 
-        ItemTimeScedulerBinding.inflate(LayoutInflater.from(context),binding.root, false).apply {
-            tvType.text = it.shortType
-            tvTime.text = "${it.startHour} ${it.startMinute}"
-            val model = it
-            root.apply {
-                id = View.generateViewId()
-                setOnClickListener {
-                    println("${model.uuid} ${model.id} ${model.idCourses}  ${model.uuidCourses} ")
-                }
+        val itemView =
+            ItemTimeScedulerBinding.inflate(LayoutInflater.from(context), binding.root, false)
+                .apply {
+                    tvType.text = itemCoursesSchedule.shortType
+                    tvTime.text =
+                        "${itemCoursesSchedule.startHour} ${itemCoursesSchedule.startMinute}"
+                    root.apply {
+                        id = View.generateViewId()
+                    }
+                }.root
+
+        itemView.setOnClickListener {
+            onTimeSchedulerClick(it, itemCoursesSchedule.uuid)
+        }
+        return itemView
+    }
+
+    private fun setSelected(view: View?) {
+        if (view != null) {
+            with(binding) {
+                day1.isSelected = false
+                day2.isSelected = false
+                day3.isSelected = false
+                day4.isSelected = false
+                day5.isSelected = false
+                day6.isSelected = false
+                day7.isSelected = false
+                view.isSelected = true
             }
-        }.root
+        }
+    }
+
+    private fun onTimeSchedulerClick(timeSchedulerView: View, uuidTimeSchedule: UUID) {
+        val isSelected = timeSchedulerView.isSelected
+        listViewScheduleTime.forEach {
+            it.isSelected = false
+        }
+
+        if (!isSelected) {
+            binding.btnRegister.isEnabled = true
+            timeSchedulerView.isSelected = true
+            viewModel.uuidTimeSchedule = uuidTimeSchedule
+        } else {
+            binding.btnRegister.isEnabled = false
+        }
     }
 
     companion object {

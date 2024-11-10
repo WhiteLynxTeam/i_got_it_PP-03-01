@@ -7,6 +7,7 @@ import site.pnpl.igotit.data.dbo.dao.ClubsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.ClubsSample
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
+import site.pnpl.igotit.data.dbo.entity.MyCoursesEntity
 import site.pnpl.igotit.data.dto.club.response.ClubDtoOut
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
@@ -86,6 +87,13 @@ class ClubRepository(
         return withContext(Dispatchers.IO) {
             val countRow = clubsDao.setMyCourse(uuid)
             countRow == 1
+        }
+    }
+
+    override suspend fun setMyCourse(uuid: UUID): Boolean {
+        return withContext(Dispatchers.IO) {
+            clubsDao.insertMyCourse(MyCoursesEntity(uuid = uuid))
+            true
         }
     }
 

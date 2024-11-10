@@ -6,11 +6,15 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
+import site.pnpl.igotit.data.dbo.entity.MyCoursesEntity
 import site.pnpl.igotit.domain.models.CoursesSchedule
 import java.util.UUID
 
 @Dao
 interface ClubsDao {
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertMyCourse(myCoursesEntity: MyCoursesEntity)
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllClubs(clubEntity: List<ClubEntity>): List<Long>
 
