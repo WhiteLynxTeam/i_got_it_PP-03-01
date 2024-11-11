@@ -6,6 +6,7 @@ import java.util.UUID
 
 interface IClubRepository {
     suspend fun getEntities(type: String?): List<Clubs>
+    suspend fun getEntities(listMyCourses: List<UUID>): List<Clubs>
     suspend fun getEntityById(type: String, id: Int): Clubs
 
     suspend fun getFromApi(): Result<List<Clubs>>
@@ -15,4 +16,6 @@ interface IClubRepository {
     suspend fun setMyCourse(uuid: Int): Boolean
     suspend fun setMyCourse(uuid: UUID): Boolean
     suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule>
+
+    suspend fun getMyCourses(): List<UUID>
 }

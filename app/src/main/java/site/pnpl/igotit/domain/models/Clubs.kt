@@ -14,5 +14,5 @@ data class Clubs(
     val description: String,
     val about: String = "",
     val isFavorite: Boolean,
-    val isMyCourse: Boolean,
+    var isMyCourse: Boolean,
 )

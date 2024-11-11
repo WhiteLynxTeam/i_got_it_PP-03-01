@@ -13,7 +13,7 @@ import java.util.UUID
 @Dao
 interface ClubsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertMyCourse(myCoursesEntity: MyCoursesEntity)
+    fun insertMyCourse(myCoursesEntity: MyCoursesEntity): Long
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAllClubs(clubEntity: List<ClubEntity>): List<Long>
@@ -27,30 +27,43 @@ interface ClubsDao {
     @Query("SELECT * FROM CLUBS  WHERE type = :type")
     fun getEntities(type: String): List<ClubEntity>
 
+    @Query("SELECT * FROM CLUBS WHERE uuid IN (:listMyCourses)")
+    fun getEntities(listMyCourses: List<UUID>): List<ClubEntity>
+
+    @Query("SELECT uuidCourses FROM COURSES_SCHEDULE WHERE uuid IN (:listMyCourses) GROUP BY uuidCourses")
+    fun getUuidCoursesByUuidScheduler(listMyCourses: List<UUID>): List<UUID>
+
+    @Query("SELECT * FROM MYCOURSES")
+    fun getMyCourses(): List<MyCoursesEntity>
+
     @Query("SELECT * FROM CLUBS  WHERE isFavorites = 1 OR isMyCourse = 1")
-    fun getMyCourses(): List<ClubEntity>
+    fun getMyCoursesByFlag(): List<ClubEntity>
 
     @Query("SELECT * FROM CLUBS  WHERE type = :type AND id = :id")
     fun getEntity(type: String, id: Int): ClubEntity
 
-    @Query("DELETE FROM CLUBS")
-    fun truncClubs(): Int
+    @Query("SELECT isFavorites FROM CLUBS  WHERE id = :id")
+    fun getFavoriteById(id: Int): Boolean
 
-    @Query("DELETE FROM COURSES_SCHEDULE")
-    fun truncScheduler(): Int
+    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuidCourses = :uuid")
+    fun getCoursesSchedulerByUuid(uuid: UUID): List<CoursesScheduleEntity>
+
+    @Query("UPDATE CLUBS SET isMyCourse = 1 WHERE id = :id")
+    fun setMyCourse(id: Int): Int
 
     //    @Query("UPDATE CLUBS SET isFavorites = true WHERE id = :id")
     @Query("UPDATE CLUBS SET isFavorites = CASE WHEN isFavorites THEN 0 ELSE 1 END WHERE id = :id")
     fun setFavorites(id: Int): Int
 
-    @Query("SELECT isFavorites FROM CLUBS  WHERE id = :id")
-    fun getFavoriteById(id: Int): Boolean
+    @Query("DELETE FROM CLUBS")
+    fun truncClubs(): Int
 
-    @Query("UPDATE CLUBS SET isMyCourse = 1 WHERE id = :id")
-    fun setMyCourse(id: Int): Int
+    @Query("DELETE FROM MYCOURSES")
+    fun truncMyCourses(): Int
 
-    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuidCourses = :uuid")
-    fun getCoursesSchedulerByUuid(uuid: UUID): List<CoursesScheduleEntity>
+    @Query("DELETE FROM COURSES_SCHEDULE")
+    fun truncScheduler(): Int
+
 //
 //    @Query("SELECT isMyCourse FROM CLUBS  WHERE id = :id")
 //    fun getMyCourseById(id: Int): Boolean

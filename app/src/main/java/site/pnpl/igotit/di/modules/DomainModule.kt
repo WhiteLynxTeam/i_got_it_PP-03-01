@@ -10,6 +10,8 @@ import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByFlagUseCase
+import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByListUuidUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
@@ -113,8 +115,32 @@ class DomainModule {
     @Provides
     fun provideGetMyCoursesFromDbUseCase(
         repository: IClubRepository,
+        getMyCoursesFromDbByListUuidUseCase: GetMyCoursesFromDbByListUuidUseCase,
     ): GetMyCoursesFromDbUseCase {
         return GetMyCoursesFromDbUseCase(
+            repository = repository,
+            getMyCoursesFromDbByListUuidUseCase = getMyCoursesFromDbByListUuidUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetMyCoursesFromDbByListUuidUseCase(
+        repository: IClubRepository,
+
+    ): GetMyCoursesFromDbByListUuidUseCase {
+        return GetMyCoursesFromDbByListUuidUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetGetMyCoursesFromDbByFlagUseCase(
+        repository: IClubRepository,
+
+    ): GetMyCoursesFromDbByFlagUseCase {
+        return GetMyCoursesFromDbByFlagUseCase(
             repository = repository,
         )
     }
