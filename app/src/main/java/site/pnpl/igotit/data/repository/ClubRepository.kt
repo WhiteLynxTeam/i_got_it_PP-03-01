@@ -24,12 +24,36 @@ class ClubRepository(
     override suspend fun getEntities(type: String?): List<Clubs> {
         val result = withContext(Dispatchers.IO) {
             if (type.isNullOrEmpty()) {
-                clubsDao.getMyCourses()
+                clubsDao.getMyCoursesByFlag()
             } else {
                 clubsDao.getEntities(type)
             }
         }
         return mapperClubsEntityToClubs(result)
+    }
+
+    override suspend fun getEntities(listUuidMyCourses: List<UUID>): List<Clubs> {
+        val result = withContext(Dispatchers.IO) {
+
+            val listUuid = clubsDao.getUuidCoursesByUuidScheduler(listUuidMyCourses)
+//            if (listMyCourses.isNotEmpty()) {
+            clubsDao.getEntities(listUuid)
+//            }
+        }
+        val listClub = mapperClubsEntityToClubs(result).map {
+            it.apply { isMyCourse = true }
+        }
+        return listClub
+    }
+
+    override suspend fun getMyCourses(): List<UUID> {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getMyCourses()
+        }
+
+        println("ClubRepository - listMyCourses = $result")
+
+        return mapperMyCoursesEntityToListUUID(result)
     }
 
     override suspend fun getEntityById(type: String, id: Int): Clubs {
@@ -43,6 +67,8 @@ class ClubRepository(
         val result = withContext(Dispatchers.IO) {
             clubsDao.truncClubs()
             clubsDao.truncScheduler()
+            clubsDao.truncMyCourses()
+
 
             sampleListOfClubs.randomUuid()
 
@@ -91,9 +117,13 @@ class ClubRepository(
     }
 
     override suspend fun setMyCourse(uuid: UUID): Boolean {
-        return withContext(Dispatchers.IO) {
-            clubsDao.insertMyCourse(MyCoursesEntity(uuid = uuid))
-            true
+        try {
+            withContext(Dispatchers.IO) {
+                clubsDao.insertMyCourse(MyCoursesEntity(uuid = uuid))
+            }
+            return true
+        } catch (e: Exception) {
+            return false
         }
     }
 
@@ -102,6 +132,14 @@ class ClubRepository(
             clubsDao.getCoursesSchedulerByUuid(uuid)
         }
         return mapperCoursesScheduleEntityToCoursesSchedule(result)
+    }
+
+    private fun mapperMyCoursesEntityToListUUID(
+        lisMyCoursesEntity: List<MyCoursesEntity>
+    ): List<UUID> {
+        return lisMyCoursesEntity.map {
+            it.uuid
+        }
     }
 
     private fun mapperCoursesScheduleEntityToCoursesSchedule(

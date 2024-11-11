@@ -60,7 +60,7 @@ class RecordClubViewModel(
     fun setMyCourse() {
         viewModelScope.launch {
             if (uuidTimeSchedule != null)
-                setCourseAsMyUseCase(uuidTimeSchedule!!)
+                _isMyCourse.emit(setCourseAsMyUseCase(uuidTimeSchedule!!))
 
 //            _isMyCourse.emit(setCourseAsMyUseCase())
 //            _isMyCourse.emit(setCourseAsMyUseCase())
