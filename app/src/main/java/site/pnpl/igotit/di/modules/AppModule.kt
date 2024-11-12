@@ -22,7 +22,7 @@ import site.pnpl.igotit.view.catalogue.clubs.about_club.AboutClubViewModel
 import site.pnpl.igotit.view.catalogue.clubs.record_club.RecordClubViewModel
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseViewModel
-import site.pnpl.igotit.view.catalogue.courses.record.RecordViewModel
+import site.pnpl.igotit.view.catalogue.courses.record_course.RecordCourseViewModel
 import site.pnpl.igotit.view.courses.lessons.LessonsViewModel
 import site.pnpl.igotit.view.home.HomeViewModel
 
@@ -85,11 +85,14 @@ class AppModule() {
         getClubByIdFromDbUseCase = getClubByIdFromDbUseCase
     )
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
-    fun provideRecordViewModel(
+    fun provideRecordCourseViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
-    ) = RecordViewModel.Factory(
+        getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+    ) = RecordCourseViewModel.Factory(
         setCourseAsMyUseCase = setCourseAsMyUseCase,
+        getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
     )
 
     @RequiresApi(Build.VERSION_CODES.O)

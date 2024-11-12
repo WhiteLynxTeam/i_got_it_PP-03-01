@@ -19,10 +19,6 @@ class CoursesCatalogueViewModel(private val getCoursesFromDbUseCase: GetCoursesF
         viewModelScope.launch {
             val result = getCoursesFromDbUseCase()
             _courses.emit(result)
-
-//            if (result.isSuccess) {
-//                result.getOrNull()?.let { _courses.emit(it) }
-//            }
         }
     }
 

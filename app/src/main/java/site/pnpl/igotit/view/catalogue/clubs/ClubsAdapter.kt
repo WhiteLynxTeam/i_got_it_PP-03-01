@@ -8,7 +8,7 @@ import site.pnpl.igotit.domain.models.Clubs
 import java.util.UUID
 
 class ClubsAdapter(
-    private val onImgClick: (title:String, id: Int, uuid: UUID?) -> Unit,
+    private val onImgClick: (id: Int, uuid: UUID?) -> Unit,
 ): RecyclerView.Adapter<ClubsAdapter.InnerClubsViewHolder>() {
     private var clubs: MutableList<Clubs> = mutableListOf()
 
@@ -39,7 +39,7 @@ class ClubsAdapter(
         holder.description.text = clubs[position].description
 
         holder.root.setOnClickListener {
-            onImgClick(clubs[position].title, clubs[position].id, clubs[position].uuid)
+            onImgClick(clubs[position].id, clubs[position].uuid)
         }
 
     }
@@ -47,8 +47,8 @@ class ClubsAdapter(
     override fun getItemCount(): Int  = clubs.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(title: List<Clubs>){
-        this.clubs = title.toMutableList()
+    fun setData(listClubs: List<Clubs>){
+        this.clubs = listClubs.toMutableList()
         notifyDataSetChanged()
     }
 }

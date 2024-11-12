@@ -23,12 +23,11 @@ class ClubsFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: ClubsViewModel.Factory
 
-    private val clubsAdapter = ClubsAdapter() { title, id, uuid ->
+    private val clubsAdapter = ClubsAdapter() { id, uuid ->
 
         findNavController().navigate(
             R.id.action_catalogueFragment_to_detailsClubsFragment,
             Bundle().apply {
-                putString("title", title)
                 putInt("id", id)
                 putString("uuidString", uuid.toString())
             })
@@ -49,18 +48,13 @@ class ClubsFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.clubs.collect {
-
-                println("List<Clubs> $it")
-
                 clubsAdapter.setData(it)
-
             }
         }
 
         binding.rv.adapter = clubsAdapter
 
         viewModel.getCoursesFromDb()
-//        initClubsRV()
     }
 
     companion object {

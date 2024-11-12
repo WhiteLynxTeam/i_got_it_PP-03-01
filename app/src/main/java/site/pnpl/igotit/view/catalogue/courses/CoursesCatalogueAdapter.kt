@@ -9,7 +9,7 @@ import site.pnpl.igotit.domain.models.Clubs
 import site.pnpl.igotit.domain.models.Courses
 import java.util.UUID
 
-class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) -> Unit,) :
+class CoursesCatalogueAdapter(private val onImgClick:(id : Int, uuid: UUID?) -> Unit,) :
     RecyclerView.Adapter<CoursesCatalogueAdapter.InnerCoursesCatalogueViewHolder>() {
     private var coursesCatalogue: MutableList<Clubs> = mutableListOf()
 
@@ -48,8 +48,8 @@ class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) ->
 
         holder.root.setOnClickListener {
             onImgClick(
-                coursesCatalogue[position].title,
                 coursesCatalogue[position].id,
+                coursesCatalogue[position].uuid,
                 )
         }
     }
@@ -57,8 +57,8 @@ class CoursesCatalogueAdapter(private val onImgClick:(title:String, id : Int) ->
     override fun getItemCount(): Int = coursesCatalogue.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(title: List<Clubs>) {
-        this.coursesCatalogue = title.toMutableList()
+    fun setData(listCourses: List<Clubs>) {
+        this.coursesCatalogue = listCourses.toMutableList()
         notifyDataSetChanged()
     }
 }

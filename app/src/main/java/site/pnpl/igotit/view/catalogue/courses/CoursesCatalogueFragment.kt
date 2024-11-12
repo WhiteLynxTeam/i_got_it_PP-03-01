@@ -25,11 +25,11 @@ class CoursesCatalogueFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: CoursesCatalogueViewModel.Factory
 
-    private val coursesCatalogue = CoursesCatalogueAdapter { title , id ->
+    private val coursesCatalogueAdapter = CoursesCatalogueAdapter { id, uuid ->
         findNavController().navigate(R.id.action_catalogueFragment_to_detailsCoursesCatalogueFragment,
             Bundle().apply {
-                putString("title", title)
                 putInt("id", id)
+                putString("uuidString", uuid.toString())
             })
     }
 
@@ -48,18 +48,13 @@ class CoursesCatalogueFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.courses.collect {
-
-                println("List<Clubs> $it")
-
-                coursesCatalogue.setData(it)
-
+                coursesCatalogueAdapter.setData(it)
             }
         }
 
-        binding.rvCoursesCatalogue.adapter = coursesCatalogue
+        binding.rvCoursesCatalogue.adapter = coursesCatalogueAdapter
 
         viewModel.getCoursesFromDb()
-//        initRV()
     }
 
     private fun initRV() {

@@ -13,7 +13,6 @@ import site.pnpl.igotit.view.base.BaseFragment
 import javax.inject.Inject
 
 class AboutClubFragment : BaseFragment() {
-
     private var _binding: FragmentAboutClubsBinding? = null
     private val binding get() = _binding!!
     private lateinit var viewModel : AboutClubViewModel
@@ -21,13 +20,7 @@ class AboutClubFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: AboutClubViewModel.Factory
 
-    private val title: String? by lazy { arguments?.getString("title") }
     private val id: Int? by lazy { arguments?.getInt("id") }
-
-//    override fun onAttach(context: Context) {
-//        AndroidSupportInjection.inject(this)
-//        super.onAttach(context)
-//    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,8 +37,6 @@ class AboutClubFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.club.collect {
-
-                println("Clubs $it")
 
                 with(binding) {
                     numberClasses.text = it.numberClasses
@@ -88,10 +79,9 @@ class AboutClubFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(title: String?, id: Int?): AboutClubFragment =
+        fun newInstance(id: Int?): AboutClubFragment =
             AboutClubFragment().apply {
                 arguments = Bundle().apply {
-                    putString("title", title)
                     if (id != null) {
                         putInt("id", id)
                     }
