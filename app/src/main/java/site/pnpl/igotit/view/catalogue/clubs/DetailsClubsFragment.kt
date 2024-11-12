@@ -1,9 +1,11 @@
 package site.pnpl.igotit.view.catalogue.clubs
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.google.android.material.tabs.TabLayoutMediator
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentDetailsClubsBinding
@@ -12,12 +14,12 @@ import site.pnpl.igotit.view.base.BaseViewPagerAdapter
 import site.pnpl.igotit.view.catalogue.clubs.about_club.AboutClubFragment
 import site.pnpl.igotit.view.catalogue.clubs.record_club.RecordClubFragment
 
+@RequiresApi(Build.VERSION_CODES.O)
 class DetailsClubsFragment : BaseFragment() {
 
     private var _binding: FragmentDetailsClubsBinding? = null
     private val binding get() = _binding!!
 
-    private val title: String? by lazy { arguments?.getString("title") }
     private val uuidString: String? by lazy { arguments?.getString("uuidString") }
     private val id: Int? by lazy { arguments?.getInt("id") }
 
@@ -38,7 +40,7 @@ class DetailsClubsFragment : BaseFragment() {
     private fun addViewPager(){
         binding.vpDetailsClubs.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                AboutClubFragment.newInstance(title,id),
+                AboutClubFragment.newInstance(id),
                 RecordClubFragment.newInstance(id, uuidString)
             )
         )

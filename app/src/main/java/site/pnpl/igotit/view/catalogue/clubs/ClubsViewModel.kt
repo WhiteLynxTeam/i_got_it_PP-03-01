@@ -21,10 +21,6 @@ class ClubsViewModel(private val getClubsFromDbUseCase: GetClubsFromDbUseCase)  
         viewModelScope.launch {
             val result = getClubsFromDbUseCase()
             _clubs.emit(result)
-
-//            if (result.isSuccess) {
-//                result.getOrNull()?.let { _courses.emit(it) }
-//            }
         }
     }
 

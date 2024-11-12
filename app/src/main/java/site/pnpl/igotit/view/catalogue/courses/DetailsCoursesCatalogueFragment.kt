@@ -1,30 +1,24 @@
 package site.pnpl.igotit.view.catalogue.courses
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import com.google.android.material.tabs.TabLayoutMediator
-import dagger.android.support.AndroidSupportInjection
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentDetailsCoursesCatalogueBinding
+import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.base.BaseViewPagerAdapter
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
-import site.pnpl.igotit.view.catalogue.courses.record.RecordFragment
+import site.pnpl.igotit.view.catalogue.courses.record_course.RecordCourseFragment
 
-class DetailsCoursesCatalogueFragment : Fragment() {
+class DetailsCoursesCatalogueFragment : BaseFragment() {
     private var _binding: FragmentDetailsCoursesCatalogueBinding? = null
     private val binding get() = _binding!!
 
-    private val title: String? by lazy { arguments?.getString("title") }
+    private val uuidString: String? by lazy { arguments?.getString("uuidString") }
     private val id: Int? by lazy { arguments?.getInt("id") }
 
-    override fun onAttach(context: Context) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
-    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,8 +35,8 @@ class DetailsCoursesCatalogueFragment : Fragment() {
     private fun addViewPager(){
         binding.vpDetailsCourses.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                AboutCourseFragment.newInstance(title,id),
-                RecordFragment.newInstance(id)
+                AboutCourseFragment.newInstance(id),
+                RecordCourseFragment.newInstance(id, uuidString)
             )
         )
 

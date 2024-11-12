@@ -45,19 +45,16 @@ class CatalogueFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.courses.collect {
-
-                println("List<Clubs> $it")
-
-                addViewPager(it)
+                addViewPager()
             }
         }
 
         viewModel.getCourses()
 
-        addViewPager(null)
+        addViewPager()
     }
 
-    private fun addViewPager(listClubs: List<Clubs>?){
+    private fun addViewPager(){
         binding.vpCatalog.adapter = BaseViewPagerAdapter(
             this, arrayOf(
                 CoursesCatalogueFragment.newInstance(),

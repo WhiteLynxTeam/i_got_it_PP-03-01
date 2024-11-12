@@ -1,7 +1,6 @@
 package site.pnpl.igotit.view.catalogue.courses.about_course
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,11 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentAboutCourseBinding
-import site.pnpl.igotit.databinding.FragmentAuthBinding
-import site.pnpl.igotit.databinding.FragmentCoursesCatalogueBinding
 import site.pnpl.igotit.view.base.BaseFragment
-import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
-import site.pnpl.igotit.view.courses.lessons.LessonsFragment
 import javax.inject.Inject
 
 class AboutCourseFragment : BaseFragment() {
@@ -26,7 +21,6 @@ class AboutCourseFragment : BaseFragment() {
     @Inject
     lateinit var vmFactory: AboutCourseViewModel.Factory
 
-    private val title: String? by lazy { arguments?.getString("title") }
     private val id: Int? by lazy { arguments?.getInt("id") }
 
     override fun onCreateView(
@@ -44,8 +38,6 @@ class AboutCourseFragment : BaseFragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.club.collect {
-
-                println("Clubs $it")
 
                 with(binding) {
                     numberClasses.text = it.numberClasses
@@ -87,10 +79,9 @@ class AboutCourseFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(title: String?, id: Int?): AboutCourseFragment =
+        fun newInstance(id: Int?): AboutCourseFragment =
             AboutCourseFragment().apply {
                 arguments = Bundle().apply {
-                    putString("title", title)
                     if (id != null) {
                         putInt("id", id)
                     }

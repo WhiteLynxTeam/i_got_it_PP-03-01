@@ -1,4 +1,4 @@
-package site.pnpl.igotit.view.catalogue.clubs.record_club
+package site.pnpl.igotit.view.catalogue.courses.record_course
 
 import android.annotation.SuppressLint
 import android.os.Build
@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
-import site.pnpl.igotit.databinding.FragmentRecordClubBinding
+import site.pnpl.igotit.databinding.FragmentRecordCourseBinding
 import site.pnpl.igotit.databinding.ItemTimeScedulerBinding
 import site.pnpl.igotit.domain.models.CoursesSchedule
 import site.pnpl.igotit.domain.models.EnumWeekCalendar
@@ -27,16 +27,14 @@ import java.time.temporal.ChronoUnit
 import java.util.UUID
 import javax.inject.Inject
 
-@RequiresApi(Build.VERSION_CODES.O)
-class RecordClubFragment : BaseFragment() {
-
-    private var _binding: FragmentRecordClubBinding? = null
+class RecordCourseFragment : BaseFragment() {
+    private var _binding: FragmentRecordCourseBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var viewModel: RecordClubViewModel
+    private lateinit var viewModel: RecordCourseViewModel
 
     @Inject
-    lateinit var vmFactory: RecordClubViewModel.Factory
+    lateinit var vmFactory: RecordCourseViewModel.Factory
 
     private val id: Int? by lazy { arguments?.getInt("id") }
     private val uuid: UUID? by lazy { UUID.fromString(arguments?.getString("uuidString")) }
@@ -44,7 +42,6 @@ class RecordClubFragment : BaseFragment() {
     private val listViewScheduleTime = mutableListOf<View>()
 
     private val onDayClickListener = View.OnClickListener { view ->
-        println("onDayClickListener - ${view.id}")
         setSelected(view)
         viewModel.selectGroupe(EnumWeekCalendar.getRuShortByTextViewId(view.id))
     }
@@ -55,18 +52,19 @@ class RecordClubFragment : BaseFragment() {
     ): View {
         listener?.onTitleTextChange(R.string.record)
 
-        _binding = FragmentRecordClubBinding.inflate(inflater, container, false)
+        _binding = FragmentRecordCourseBinding.inflate(inflater, container, false)
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(this, vmFactory)[RecordClubViewModel::class.java]
+        viewModel = ViewModelProvider(this, vmFactory)[RecordCourseViewModel::class.java]
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isMyCourse.collect {
-                if (it) findNavController().navigate(R.id.action_detailsClubsFragment_to_homeFragment)
+                if (it) findNavController().navigate(R.id.action_detailsCoursesCatalogueFragment_to_homeFragment)
             }
         }
 
@@ -162,23 +160,6 @@ class RecordClubFragment : BaseFragment() {
                 }
             }
         }
-
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.firstDayOfWeek.collect {
-//                hideShowArrow()
-//
-//                with(binding){
-//                    day1.text = it.toDayOnly()
-//                    day2.text = it.plusDays(1).toDayOnly()
-//                    day3.text = it.plusDays(2).toDayOnly()
-//                    day4.text = it.plusDays(3).toDayOnly()
-//                    day5.text = it.plusDays(4).toDayOnly()
-//                    day6.text = it.plusDays(5).toDayOnly()
-//                    day7.text = it.plusDays(6).toDayOnly()
-//                }
-            }
-        }
-
 
         binding.arrowLeft.setOnClickListener {
             println("binding.arrowLeft.setOnClickListener - ${viewModel.firstDayOfWeek.value}")
@@ -334,8 +315,8 @@ class RecordClubFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(id: Int?, uuidString: String?): RecordClubFragment =
-            RecordClubFragment().apply {
+        fun newInstance(id: Int?, uuidString: String?): RecordCourseFragment =
+            RecordCourseFragment().apply {
                 arguments = Bundle().apply {
                     if (id != null) {
                         putInt("id", id)
@@ -344,5 +325,4 @@ class RecordClubFragment : BaseFragment() {
                 }
             }
     }
-
 }

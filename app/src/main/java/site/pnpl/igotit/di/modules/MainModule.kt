@@ -12,7 +12,7 @@ import site.pnpl.igotit.view.catalogue.clubs.record_club.RecordClubFragment
 import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueFragment
 import site.pnpl.igotit.view.catalogue.courses.DetailsCoursesCatalogueFragment
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
-import site.pnpl.igotit.view.catalogue.courses.record.RecordFragment
+import site.pnpl.igotit.view.catalogue.courses.record_course.RecordCourseFragment
 import site.pnpl.igotit.view.catalogue.individually.IndividuallyFragment
 import site.pnpl.igotit.view.catalogue.individually.record.IndividuallyRegisterFragment
 import site.pnpl.igotit.view.courses.CoursesFragment
@@ -100,7 +100,7 @@ interface MainModule {
     fun bindRecordClubFragment(): RecordClubFragment
 
     @ContributesAndroidInjector
-    fun bindRecordFragment(): RecordFragment
+    fun bindRecordCourseFragment(): RecordCourseFragment
 
     @ContributesAndroidInjector
     fun bindAboutCourseFragment(): AboutCourseFragment
