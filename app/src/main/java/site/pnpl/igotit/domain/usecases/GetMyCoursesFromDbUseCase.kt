@@ -1,22 +1,30 @@
 package site.pnpl.igotit.domain.usecases
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.Clubs
 
 class GetMyCoursesFromDbUseCase(
     private val repository: IClubRepository,
     private val getMyCoursesFromDbByListUuidUseCase: GetMyCoursesFromDbByListUuidUseCase,
+    private val getMyCoursesFromDbByFlagUseCase: GetMyCoursesFromDbByFlagUseCase,
 
 ) {
-    suspend operator fun invoke(): List<Clubs> {
-        val listMyCourses = repository.getMyCourses()
+    suspend operator fun invoke(): Pair<List<Clubs>,List<Clubs>> {
+        var listClubs: List<Clubs>
+        var listFavorites: List<Clubs>
+        val lessons = withContext(Dispatchers.IO) {
+            val listMyCourses = repository.getMyCourses()
 
-        println("GetMyCoursesFromDbUseCase - listMyCourses = $listMyCourses")
+            println("GetMyCoursesFromDbUseCase - listMyCourses = $listMyCourses")
 
-        val listClubs = getMyCoursesFromDbByListUuidUseCase(listMyCourses)
+            listClubs = getMyCoursesFromDbByListUuidUseCase(listMyCourses)
+            listFavorites = getMyCoursesFromDbByFlagUseCase()
 
-        println("GetMyCoursesFromDbUseCase - listClubs = $listClubs")
+            println("GetMyCoursesFromDbUseCase - listClubs = $listClubs")
+        }
 
-        return listClubs
+        return Pair(listClubs, listFavorites)
     }
 }

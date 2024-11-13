@@ -124,10 +124,13 @@ class DomainModule {
     fun provideGetMyCoursesFromDbUseCase(
         repository: IClubRepository,
         getMyCoursesFromDbByListUuidUseCase: GetMyCoursesFromDbByListUuidUseCase,
+        getMyCoursesFromDbByFlagUseCase: GetMyCoursesFromDbByFlagUseCase,
+
     ): GetMyCoursesFromDbUseCase {
         return GetMyCoursesFromDbUseCase(
             repository = repository,
             getMyCoursesFromDbByListUuidUseCase = getMyCoursesFromDbByListUuidUseCase,
+            getMyCoursesFromDbByFlagUseCase = getMyCoursesFromDbByFlagUseCase,
         )
     }
 
