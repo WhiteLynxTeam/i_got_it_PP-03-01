@@ -29,6 +29,7 @@ import site.pnpl.igotit.view.home.HomeViewModel
 
 @Module
 class AppModule() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     fun provideHomeViewModelFactory(
         getMyCoursesFromDbUseCase: GetMyCoursesFromDbUseCase,
