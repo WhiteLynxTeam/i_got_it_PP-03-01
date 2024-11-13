@@ -23,7 +23,8 @@ class SetCourseAsMyUseCase(
     @RequiresApi(Build.VERSION_CODES.O)
     suspend  operator fun invoke(uuid : UUID):Boolean {
         if (repository.setMyCourse(uuid)) {
-            val moscowOffset = ZoneOffset.ofHours(3)
+//            val moscowOffset = ZoneOffset.ofHours(3)
+            val moscowOffset = ZoneOffset.UTC
             val courseSchedule = getCourseScheduleByUuidFromDbUseCase(uuid)
             val listDaysOfWeekInMonth = LocalDate.now().toGetDaysOfWeekInMonth(courseSchedule.dayOfWeek)
 

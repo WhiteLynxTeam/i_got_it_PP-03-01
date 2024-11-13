@@ -20,8 +20,8 @@ class HomeViewModel(
     private val getFirstNextLessonUseCase: GetFirstNextLessonUseCase,
     ) :
     ViewModel() {
-    private var _myCourses = MutableSharedFlow<List<Clubs>>()
-    val myCourses: SharedFlow<List<Clubs>>
+    private var _myCourses = MutableSharedFlow<Pair<List<Clubs>,List<Clubs>>>()
+    val myCourses: SharedFlow<Pair<List<Clubs>,List<Clubs>>>
         get() = _myCourses.asSharedFlow()
 
     private var _lesson = MutableSharedFlow<Lesson>()

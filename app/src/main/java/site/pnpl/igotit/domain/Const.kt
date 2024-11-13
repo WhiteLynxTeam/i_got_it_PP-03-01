@@ -30,6 +30,7 @@ const val ID = "id"
  */
 const val DATE_PATTERN_DEFAULT = "dd.MM.yyyy"
 const val DATE_PATTERN_WITH_ZONE = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+const val DATE_PATTERN_WITHOUT_ZONE = "yyyy-MM-dd'T'HH:mm:ss'Z'"
 const val DATE_PATTERN_FULL_DATE_AND_TEXT_MONTH = "dd MMMM yyyy"
 const val DATE_PATTERN_WEEK_DAY = "EE"
 const val DATE_PATTERN_DAY_ONLY = "dd"

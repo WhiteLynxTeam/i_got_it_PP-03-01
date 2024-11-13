@@ -41,7 +41,7 @@ interface ClubsDao {
     @Query("SELECT * FROM MYCOURSES")
     fun getMyCourses(): List<MyCoursesEntity>
 
-    @Query("SELECT * FROM CLUBS  WHERE isFavorites = 1 OR isMyCourse = 1")
+    @Query("SELECT * FROM CLUBS  WHERE isFavorites = 1 OR isFavorites = 1")
     fun getMyCoursesByFlag(): List<ClubEntity>
 
     @Query("SELECT * FROM CLUBS  WHERE type = :type AND id = :id")

@@ -99,14 +99,14 @@ class HomeFragment : BaseFragment() {
             viewModel.myCourses.collect {
 
                 println("List<Clubs> $it")
-                if (it.isEmpty()) {
+                if (it.first.isEmpty() && it.second.isEmpty()) {
                     binding.homeLayout.root.hide()
                     binding.emptyHomeLayout.root.show()
                 } else {
                     binding.homeLayout.root.show()
                     binding.emptyHomeLayout.root.hide()
-                    myCoursesAdapter.setData(it)
-                    favoritesCoursesAdapter.setData(it)
+                    myCoursesAdapter.setData(it.first)
+                    favoritesCoursesAdapter.setData(it.second)
                 }
             }
         }
@@ -131,11 +131,11 @@ class HomeFragment : BaseFragment() {
         val instant = Instant.ofEpochMilli(dateMilis)
         val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate()
         val day = localDate.toDayOnly()
-        val month = localDate.monthValue.toString()
+        val month = String.format("%02d", localDate.monthValue)
         val year = localDate.year.toString()
         val localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime()
-        val hour = localDateTime.hour
-        val minute = localDateTime.minute
+        val hour = String.format("%02d", localDateTime.hour)
+        val minute = String.format("%02d", localDateTime.minute)
         return "$day.$month.$year - $hour:$minute"
     }
 
