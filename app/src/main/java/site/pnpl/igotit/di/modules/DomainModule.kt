@@ -3,13 +3,18 @@ package site.pnpl.igotit.di.modules
 import dagger.Module
 import dagger.Provides
 import site.pnpl.igotit.domain.irepository.IClubRepository
+import site.pnpl.igotit.domain.irepository.ILessonRepository
+import site.pnpl.igotit.domain.usecases.CreateLessonsBySheduleUseCase
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
 import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseClubByUuidDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseScheduleByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
-import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetFirstNextLessonUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByFlagUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByListUuidUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
@@ -105,10 +110,13 @@ class DomainModule {
     @Provides
     fun provideSetCourseAsMyUseCase(
         repository: IClubRepository,
+        getCourseScheduleByUuidFromDbUseCase: GetCourseScheduleByUuidFromDbUseCase,
+        createLessonsBySheduleUseCase: CreateLessonsBySheduleUseCase,
     ): SetCourseAsMyUseCase {
         return SetCourseAsMyUseCase(
             repository = repository,
-        )
+            getCourseScheduleByUuidFromDbUseCase = getCourseScheduleByUuidFromDbUseCase,
+            createLessonsBySheduleUseCase = createLessonsBySheduleUseCase,)
     }
 
     @Singleton
@@ -147,11 +155,55 @@ class DomainModule {
 
     @Singleton
     @Provides
-    fun provideGetCoursesSchedulerByUuidFromDbUseCase(
+    fun provideGetCoursesSchedulerByUuidCoursesFromDbUseCase(
         repository: IClubRepository,
-    ): GetCoursesSchedulerByUuidFromDbUseCase {
-        return GetCoursesSchedulerByUuidFromDbUseCase(
+    ): GetCoursesSchedulerByUuidCoursesFromDbUseCase {
+        return GetCoursesSchedulerByUuidCoursesFromDbUseCase(
             repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetCourseScheduleByUuidFromDbUseCase(
+        repository: IClubRepository,
+    ): GetCourseScheduleByUuidFromDbUseCase {
+        return GetCourseScheduleByUuidFromDbUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetCourseClubByUuidDbUseCase(
+        repository: IClubRepository,
+    ): GetCourseClubByUuidDbUseCase {
+        return GetCourseClubByUuidDbUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideCreateLessonsBySheduleUseCase(
+        repository: ILessonRepository,
+    ): CreateLessonsBySheduleUseCase {
+        return CreateLessonsBySheduleUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetFirstNextLessonUseCase(
+        repository: ILessonRepository,
+        getCourseScheduleByUuidFromDbUseCase: GetCourseScheduleByUuidFromDbUseCase,
+        getCourseClubByUuidDbUseCase: GetCourseClubByUuidDbUseCase,
+    ): GetFirstNextLessonUseCase {
+        return GetFirstNextLessonUseCase(
+            repository = repository,
+            getCourseScheduleByUuidFromDbUseCase = getCourseScheduleByUuidFromDbUseCase,
+            getCourseClubByUuidDbUseCase = getCourseClubByUuidDbUseCase,
         )
     }
 

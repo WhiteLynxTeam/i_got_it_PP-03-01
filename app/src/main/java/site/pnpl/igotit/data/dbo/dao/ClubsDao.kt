@@ -7,7 +7,6 @@ import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
 import site.pnpl.igotit.data.dbo.entity.MyCoursesEntity
-import site.pnpl.igotit.domain.models.CoursesSchedule
 import java.util.UUID
 
 @Dao
@@ -33,6 +32,12 @@ interface ClubsDao {
     @Query("SELECT uuidCourses FROM COURSES_SCHEDULE WHERE uuid IN (:listMyCourses) GROUP BY uuidCourses")
     fun getUuidCoursesByUuidScheduler(listMyCourses: List<UUID>): List<UUID>
 
+    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuidCourses = :uuidCourse")
+    fun getCoursesSchedulerByUuidCourse(uuidCourse: UUID): List<CoursesScheduleEntity>
+
+    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuid = :uuid")
+    fun getCoursesSchedulerByUuid(uuid: UUID): CoursesScheduleEntity
+
     @Query("SELECT * FROM MYCOURSES")
     fun getMyCourses(): List<MyCoursesEntity>
 
@@ -42,11 +47,12 @@ interface ClubsDao {
     @Query("SELECT * FROM CLUBS  WHERE type = :type AND id = :id")
     fun getEntity(type: String, id: Int): ClubEntity
 
+    @Query("SELECT * FROM CLUBS  WHERE uuid = :uuid")
+    fun getEntity(uuid: UUID): ClubEntity
+
     @Query("SELECT isFavorites FROM CLUBS  WHERE id = :id")
     fun getFavoriteById(id: Int): Boolean
 
-    @Query("SELECT * FROM COURSES_SCHEDULE  WHERE uuidCourses = :uuid")
-    fun getCoursesSchedulerByUuid(uuid: UUID): List<CoursesScheduleEntity>
 
     @Query("UPDATE CLUBS SET isMyCourse = 1 WHERE id = :id")
     fun setMyCourse(id: Int): Int

@@ -1,22 +1,25 @@
 package site.pnpl.igotit.view.home
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentHomeBinding
-import site.pnpl.igotit.domain.models.FavoritesCourses
-import site.pnpl.igotit.domain.models.MyCourses
+import site.pnpl.igotit.utils.toDayOnly
 import site.pnpl.igotit.utils.uiextensions.hide
 import site.pnpl.igotit.utils.uiextensions.show
 import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.home.favorites_courses.FavoritesCoursesAdapter
 import site.pnpl.igotit.view.home.my_courses.MyCoursesAdapter
+import java.time.Instant
+import java.time.ZoneId
 import javax.inject.Inject
 
 class HomeFragment : BaseFragment() {
@@ -45,6 +48,7 @@ class HomeFragment : BaseFragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -106,6 +110,33 @@ class HomeFragment : BaseFragment() {
                 }
             }
         }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.lesson.collect {
+
+                println("Lesson $it")
+
+                if (it != null) {
+                    binding.homeLayout.dateLesson.text = dateMilisToDateString(it.dateMilis)
+                    binding.homeLayout.titleLesson.text = it.title
+                } else {
+
+                }
+            }
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    private fun dateMilisToDateString(dateMilis: Long): String {
+        val instant = Instant.ofEpochMilli(dateMilis)
+        val localDate = instant.atZone(ZoneId.systemDefault()).toLocalDate()
+        val day = localDate.toDayOnly()
+        val month = localDate.monthValue.toString()
+        val year = localDate.year.toString()
+        val localDateTime = instant.atZone(ZoneId.systemDefault()).toLocalDateTime()
+        val hour = localDateTime.hour
+        val minute = localDateTime.minute
+        return "$day.$month.$year - $hour:$minute"
     }
 
     private fun initCoursesRV() {

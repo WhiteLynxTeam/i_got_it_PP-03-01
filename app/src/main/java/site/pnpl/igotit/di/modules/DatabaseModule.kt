@@ -26,5 +26,9 @@ class DatabaseModule {
     @Singleton
     @Provides
     fun provideTagsDao(context: Context) = provideDb(context).tagsDao()
+
+    @Singleton
+    @Provides
+    fun provideLessonsDao(context: Context) = provideDb(context).lessonsDao()
 }
 

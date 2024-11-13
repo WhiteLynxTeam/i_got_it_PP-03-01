@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.domain.models.CoursesSchedule
-import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
 import site.pnpl.igotit.utils.toGetFirstDayOfWeek
 import java.time.LocalDate
@@ -21,7 +21,7 @@ import java.util.UUID
 @RequiresApi(Build.VERSION_CODES.O)
 class RecordClubViewModel(
     private val setCourseAsMyUseCase: SetCourseAsMyUseCase,
-    private val getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+    private val getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
 ) : ViewModel() {
     var uuidTimeSchedule: UUID? = null
 
@@ -69,7 +69,7 @@ class RecordClubViewModel(
 
     fun getCoursesScheduler(uuid: UUID) {
         viewModelScope.launch {
-            val list = getCoursesSchedulerByUuidFromDbUseCase(uuid)
+            val list = getCoursesSchedulerByUuidCoursesFromDbUseCase(uuid)
             if (list.isNotEmpty()) _schedule.emit(Pair(_firstDayOfWeek.value, list))
         }
     }
@@ -85,7 +85,7 @@ class RecordClubViewModel(
 
     class Factory(
         private val setCourseAsMyUseCase: SetCourseAsMyUseCase,
-        private val getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+        private val getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
     ) :
         ViewModelProvider.Factory {
 
@@ -93,7 +93,7 @@ class RecordClubViewModel(
             if (modelClass.isAssignableFrom(RecordClubViewModel::class.java)) {
                 return RecordClubViewModel(
                     setCourseAsMyUseCase = setCourseAsMyUseCase,
-                    getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
+                    getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
                 ) as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")

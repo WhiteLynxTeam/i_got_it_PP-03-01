@@ -31,11 +31,11 @@ class LessonAdapter(
     override fun onBindViewHolder(holder: InnerLessonViewHolder, position: Int) {
 
         holder.id.text = lessons[position].id.toString()
-        holder.date.text = lessons[position].date.toTextDateByFormat("yyyy-MM-dd")
+        holder.date.text = lessons[position].dateMilis.toTextDateByFormat("yyyy-MM-dd")
         holder.title.text = lessons[position].title
 
         holder.title.setOnClickListener{
-            onImgClick(lessons[position].id)
+            lessons[position].id?.let { it1 -> onImgClick(it1) }
             println("LessonAdapter onImgClick: title id =  ${lessons[position].title}")
         }
 

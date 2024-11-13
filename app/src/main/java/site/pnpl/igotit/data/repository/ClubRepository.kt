@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import site.pnpl.igotit.data.api.ClubApi
 import site.pnpl.igotit.data.dbo.dao.ClubsDao
+import site.pnpl.igotit.data.dbo.dao.LessonsDao
 import site.pnpl.igotit.data.dbo.entity.ClubEntity
 import site.pnpl.igotit.data.dbo.entity.ClubsSample
 import site.pnpl.igotit.data.dbo.entity.CoursesScheduleEntity
@@ -18,8 +19,37 @@ import java.util.UUID
 
 class ClubRepository(
     private val clubApi: ClubApi,
-    private val clubsDao: ClubsDao
+    private val clubsDao: ClubsDao,
+    private val lessonsDao: LessonsDao
 ) : IClubRepository {
+
+    override suspend fun getCourseScheduleByUuidFromDb(uuid: UUID): CoursesSchedule {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getCoursesSchedulerByUuid(uuid)
+        }
+        return mapperCourseScheduleEntityToCourseSchedule(result)
+    }
+
+    override suspend fun getCoursesSchedulerByUuidCourseFromDb(uuidCourse: UUID): List<CoursesSchedule> {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getCoursesSchedulerByUuidCourse(uuidCourse)
+        }
+        return mapperCoursesScheduleEntityToCoursesSchedule(result)
+    }
+
+    override suspend fun getEntityByUuid(uuid: UUID): Clubs  {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getEntity(uuid)
+        }
+        return mapperClubEntityToClub(result)
+    }
+
+    override suspend fun getEntityById(type: String, id: Int): Clubs {
+        val result = withContext(Dispatchers.IO) {
+            clubsDao.getEntity(type, id)
+        }
+        return mapperClubEntityToClub(result)
+    }
 
     override suspend fun getEntities(type: String?): List<Clubs> {
         val result = withContext(Dispatchers.IO) {
@@ -56,19 +86,14 @@ class ClubRepository(
         return mapperMyCoursesEntityToListUUID(result)
     }
 
-    override suspend fun getEntityById(type: String, id: Int): Clubs {
-        val result = withContext(Dispatchers.IO) {
-            clubsDao.getEntity(type, id)
-        }
-        return mapperClubEntityToClub(result)
-    }
-
     override suspend fun saveSampleClubsToDb(): Boolean {
         val result = withContext(Dispatchers.IO) {
             clubsDao.truncClubs()
             clubsDao.truncScheduler()
             clubsDao.truncMyCourses()
-
+            /***В будущем убрать в свое место, а сейчас пусть будет все вместе*/
+            lessonsDao.trunc()
+            /****/
 
             sampleListOfClubs.randomUuid()
 
@@ -127,19 +152,34 @@ class ClubRepository(
         }
     }
 
-    override suspend fun getCoursesSchedulerByUuidFromDb(uuid: UUID): List<CoursesSchedule> {
-        val result = withContext(Dispatchers.IO) {
-            clubsDao.getCoursesSchedulerByUuid(uuid)
-        }
-        return mapperCoursesScheduleEntityToCoursesSchedule(result)
-    }
-
     private fun mapperMyCoursesEntityToListUUID(
         lisMyCoursesEntity: List<MyCoursesEntity>
     ): List<UUID> {
         return lisMyCoursesEntity.map {
             it.uuid
         }
+    }
+
+    private fun mapperCourseScheduleEntityToCourseSchedule(
+        coursesScheduleEntity: CoursesScheduleEntity
+    ): CoursesSchedule {
+        return CoursesSchedule(
+            id = coursesScheduleEntity.id,
+            uuid = coursesScheduleEntity.uuid ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+            idCourses = coursesScheduleEntity.idCourses,
+            uuidCourses = coursesScheduleEntity.uuidCourses
+                ?: UUID.fromString("00000000-0000-0000-0000-000000000000"),
+            year = coursesScheduleEntity.year,
+            month = coursesScheduleEntity.month,
+            day = coursesScheduleEntity.day,
+            dayOfWeek = coursesScheduleEntity.dayOfWeek,
+            startHour = coursesScheduleEntity.startHour,
+            startMinute = coursesScheduleEntity.startMinute,
+            endHour = coursesScheduleEntity.endHour,
+            endMinute = coursesScheduleEntity.endMinute,
+            type = coursesScheduleEntity.type,
+            shortType = coursesScheduleEntity.shortType,
+        )
     }
 
     private fun mapperCoursesScheduleEntityToCoursesSchedule(
