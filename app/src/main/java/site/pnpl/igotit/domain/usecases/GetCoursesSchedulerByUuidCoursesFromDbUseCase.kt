@@ -4,11 +4,11 @@ import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.models.CoursesSchedule
 import java.util.UUID
 
-class GetCoursesSchedulerByUuidFromDbUseCase(
+class GetCoursesSchedulerByUuidCoursesFromDbUseCase(
     private val repository: IClubRepository,
 ) {
-    suspend operator fun invoke(uuid: UUID): List<CoursesSchedule> {
-        val result = repository.getCoursesSchedulerByUuidFromDb(uuid)
+    suspend operator fun invoke(uuidCourses: UUID): List<CoursesSchedule> {
+        val result = repository.getCoursesSchedulerByUuidCourseFromDb(uuidCourses)
         return result
     }
 }

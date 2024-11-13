@@ -10,7 +10,8 @@ import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
-import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetFirstNextLessonUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
@@ -28,11 +29,15 @@ import site.pnpl.igotit.view.home.HomeViewModel
 
 @Module
 class AppModule() {
+    @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     fun provideHomeViewModelFactory(
-        getMyCoursesFromDbUseCase: GetMyCoursesFromDbUseCase
+        getMyCoursesFromDbUseCase: GetMyCoursesFromDbUseCase,
+        getFirstNextLessonUseCase: GetFirstNextLessonUseCase,
     ) = HomeViewModel.Factory(
-        getMyCoursesFromDbUseCase = getMyCoursesFromDbUseCase
+        getMyCoursesFromDbUseCase = getMyCoursesFromDbUseCase,
+        getFirstNextLessonUseCase = getFirstNextLessonUseCase,
+
     )
 
     @Provides
@@ -89,20 +94,20 @@ class AppModule() {
     @Provides
     fun provideRecordCourseViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
-        getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
     ) = RecordCourseViewModel.Factory(
         setCourseAsMyUseCase = setCourseAsMyUseCase,
-        getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
     )
 
     @RequiresApi(Build.VERSION_CODES.O)
     @Provides
     fun provideRecordClubViewModel(
         setCourseAsMyUseCase: SetCourseAsMyUseCase,
-        getCoursesSchedulerByUuidFromDbUseCase: GetCoursesSchedulerByUuidFromDbUseCase,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
     ) = RecordClubViewModel.Factory(
         setCourseAsMyUseCase = setCourseAsMyUseCase,
-        getCoursesSchedulerByUuidFromDbUseCase = getCoursesSchedulerByUuidFromDbUseCase,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
     )
 
 }
