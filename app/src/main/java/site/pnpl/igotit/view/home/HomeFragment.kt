@@ -33,7 +33,14 @@ class HomeFragment : BaseFragment() {
     lateinit var vmFactory: HomeViewModel.Factory
 
     private val myCoursesAdapter =
-        MyCoursesAdapter() { id -> println("MyCoursesFragment id_courses = $id") }
+        MyCoursesAdapter() {
+            uuidCourse -> println("MyCoursesFragment id_courses = $uuidCourse")
+
+            findNavController().navigate(R.id.action_homeFragment_to_coursesFragment,
+                Bundle().apply {
+                    putString("uuidString", uuidCourse.toString())
+                })
+        }
 
     private val favoritesCoursesAdapter =
         FavoritesCoursesAdapter() { id -> println("FavoritesCoursesFragment id_courses = $id") }
@@ -137,88 +144,5 @@ class HomeFragment : BaseFragment() {
         val hour = String.format("%02d", localDateTime.hour)
         val minute = String.format("%02d", localDateTime.minute)
         return "$day.$month.$year - $hour:$minute"
-    }
-
-    private fun initCoursesRV() {
-//        val list: List<MyCourses> = listOf(
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//            MyCourses("Например - Клуб по новелле «История Кицунэ»"),
-//        )
-//        myCoursesAdapter.setData(list)//изменить setData на логичное название
-    }
-
-    private fun initFavorRV() {
-//        val list: List<FavoritesCourses> = listOf(
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//            FavoritesCourses(
-//                "Например - Клуб по новелле «История Кицунэ»",
-//                "Интенсивный разговорный английский для начальных уровней"
-//            ),
-//        )
-//        favoritesCoursesAdapter.setData(list)//изменить setData на логичное название
     }
 }

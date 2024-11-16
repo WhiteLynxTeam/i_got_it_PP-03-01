@@ -20,6 +20,7 @@
     <color name="divider">#989DA0</color>
 
     <color name="no_active_lesson">#666666</color>
+    <color name="active_lesson">#FFFFFFFF</color>
     <color name="no_act_btn">#7D7D7D</color>
 
     <color name="description_skill">#C1C0C6</color>

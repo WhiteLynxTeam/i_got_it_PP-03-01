@@ -15,6 +15,8 @@ import site.pnpl.igotit.domain.usecases.GetCourseScheduleByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetFirstNextLessonUseCase
+import site.pnpl.igotit.domain.usecases.GetLessonsByListSchedulesBDUseCase
+import site.pnpl.igotit.domain.usecases.GetLessonsByUuidCourseBDUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByFlagUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbByListUuidUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
@@ -207,6 +209,30 @@ class DomainModule {
             repository = repository,
             getCourseScheduleByUuidFromDbUseCase = getCourseScheduleByUuidFromDbUseCase,
             getCourseClubByUuidDbUseCase = getCourseClubByUuidDbUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetLessonsByListSchedulesBDUseCase(
+        repository: ILessonRepository,
+    ): GetLessonsByListSchedulesBDUseCase {
+        return GetLessonsByListSchedulesBDUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetLessonsByUuidCourseBDUseCase(
+        repository: ILessonRepository,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
+        getLessonsByListSchedulesBDUseCase: GetLessonsByListSchedulesBDUseCase,
+    ): GetLessonsByUuidCourseBDUseCase {
+        return GetLessonsByUuidCourseBDUseCase(
+            repository = repository,
+            getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
+            getLessonsByListSchedulesBDUseCase = getLessonsByListSchedulesBDUseCase,
         )
     }
 

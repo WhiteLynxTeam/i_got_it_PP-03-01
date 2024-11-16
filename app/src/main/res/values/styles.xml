@@ -45,4 +45,14 @@
         <item name="android:background">@drawable/background_calendar_select</item>
     </style>
 
+    <style name="no_active_lesson">
+        <item name="android:textColor">@color/no_active_lesson</item>
+    </style>
+
+    <style name="active_lesson">
+        <item name="android:textColor">@color/active_lesson</item>
+    </style>
+
+
+
 </resources>

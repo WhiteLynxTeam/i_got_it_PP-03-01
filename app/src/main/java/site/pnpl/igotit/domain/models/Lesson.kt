@@ -8,4 +8,5 @@ data class Lesson(
     val uuidSchedule: UUID,
     val dateMilis: Long,
     var title: String = "",
+    var isActive: Boolean = false,
 )

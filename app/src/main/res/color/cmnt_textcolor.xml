@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:color="@color/btn_disable" android:state_enabled="false" />
+    <item android:color="@color/no_active_lesson" android:state_enabled="false" />
     <item android:color="@color/main_green" android:state_enabled="true" />
 </selector>
 <!--/*** Поменять state_enabled на state_selected проверить код по кнопкам во фрагменте*/-->

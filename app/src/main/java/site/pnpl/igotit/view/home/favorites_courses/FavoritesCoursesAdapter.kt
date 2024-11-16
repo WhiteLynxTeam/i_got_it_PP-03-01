@@ -8,7 +8,7 @@ import site.pnpl.igotit.databinding.ItemFavoritesCoursesBinding
 import site.pnpl.igotit.domain.models.Clubs
 
 class FavoritesCoursesAdapter(
-    private val onImgClick: (id: Long) -> Unit,
+    private val onClick: (id: Long) -> Unit,
 ) : RecyclerView.Adapter<FavoritesCoursesAdapter.InnerFavoritesCoursesViewHolder>() {
     private var favoritesCourses: MutableList<Clubs> = mutableListOf()
 //    private var favoritesCourses: MutableList<FavoritesCourses> = mutableListOf()
@@ -29,8 +29,8 @@ class FavoritesCoursesAdapter(
         holder.title.text = favoritesCourses[position].title
         holder.description.text = favoritesCourses[position].description
 
-        holder.title.setOnClickListener {
-            println("FavoritesCoursesAdapter onImgClick: id = ${favoritesCourses[position].title}")
+        holder.root.setOnClickListener {
+            println("FavoritesCoursesAdapter onClick: title = ${favoritesCourses[position].title}")
         }
     }
 

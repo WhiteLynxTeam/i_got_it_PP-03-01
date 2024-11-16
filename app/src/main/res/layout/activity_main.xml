@@ -73,6 +73,8 @@
         android:background="@color/bottom_bar"
         android:clickable="false"
         android:focusable="true"
+        app:itemIconTint="@color/tlbr_bottom"
+        app:itemTextColor="@color/tlbr_bottom"
         app:itemActiveIndicatorStyle="@android:color/transparent"
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"

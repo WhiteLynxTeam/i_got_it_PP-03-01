@@ -6,9 +6,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import site.pnpl.igotit.databinding.ItemMyCoursesBinding
 import site.pnpl.igotit.domain.models.Clubs
+import java.util.UUID
 
 class MyCoursesAdapter(
-    private val onImgClick: (id: Long) -> Unit,
+    private val onClick: (uuidCourse: UUID) -> Unit,
 ) : RecyclerView.Adapter<MyCoursesAdapter.InnerMyCoursesViewHolder>() {
     private var myCourses: MutableList<Clubs> = mutableListOf()
 //    private var myCourses: MutableList<MyCourses> = mutableListOf()
@@ -30,8 +31,9 @@ class MyCoursesAdapter(
 
         holder.title.text = myCourses[position].title
 
-        holder.title.setOnClickListener {
-            println("MyCoursesAdapter onImgClick: id = ${myCourses[position].title}")
+        holder.root.setOnClickListener {
+            println("MyCoursesAdapter onClick: title = ${myCourses[position].title}")
+            myCourses[position].uuid?.let { uuidCourse -> onClick(uuidCourse) }
         }
     }
 

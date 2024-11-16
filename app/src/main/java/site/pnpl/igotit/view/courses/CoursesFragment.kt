@@ -19,6 +19,8 @@ class CoursesFragment : Fragment() {
     private var _binding: FragmentCoursesBinding? = null
     private val binding get() = _binding!!
 
+    private val uuidString: String? by lazy { arguments?.getString("uuidString") }
+
     private lateinit var viewModel: CoursesViewModel
 
     override fun onAttach(context: Context) {
@@ -43,7 +45,7 @@ class CoursesFragment : Fragment() {
     private fun addViewPager() {
         binding.vpCourses.adapter = BaseViewPagerAdapter(
             this, arrayOf(
-                LessonsFragment.newInstance(),
+                LessonsFragment.newInstance(uuidString),
                 CalendarFragment.newInstance(),
                 RemoveCourseFragment.newInstance()
             )
