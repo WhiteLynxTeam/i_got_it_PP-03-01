@@ -1,17 +1,24 @@
 package site.pnpl.igotit.view.courses.lessons
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.ItemLessonsBinding
+import site.pnpl.igotit.domain.DATE_PATTERN_LESSON_IGOTIT
+import site.pnpl.igotit.domain.DATE_PATTERN_WITH_ZONE
 import site.pnpl.igotit.domain.models.Lesson
 import site.pnpl.igotit.utils.toTextDateByFormat
 
 class LessonAdapter(
-    private val onImgClick: (id: Long) -> Unit,
+    private val context: Context,
+    private val onClick: (id: Long) -> Unit,
 ) : RecyclerView.Adapter<LessonAdapter.InnerLessonViewHolder>() {
     private var lessons: MutableList<Lesson> = mutableListOf()
+    private var lessonsTitle: String = ""
 
     inner class InnerLessonViewHolder(binding: ItemLessonsBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -19,6 +26,7 @@ class LessonAdapter(
         var id = binding.tvId
         var date = binding.dateLesson
         var title = binding.titleLesson
+        var comment = binding.comment
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InnerLessonViewHolder {
@@ -30,25 +38,42 @@ class LessonAdapter(
 
     override fun onBindViewHolder(holder: InnerLessonViewHolder, position: Int) {
 
-        holder.id.text = lessons[position].id.toString()
-        holder.date.text = lessons[position].dateMilis.toTextDateByFormat("yyyy-MM-dd")
-        holder.title.text = lessons[position].title
+        with(holder) {
+            id.text = lessons[position].id.toString()
+//            date.text = lessons[position].dateMilis.toTextDateByFormat("yyyy-MM-dd")
+            date.text = lessons[position].dateMilis.toTextDateByFormat(DATE_PATTERN_LESSON_IGOTIT)
+            title.text = lessonsTitle
+            if (lessons[position].isActive) {
+                comment.text = "Предстоящее"
+                comment.isEnabled = true
 
-        holder.title.setOnClickListener{
-            lessons[position].id?.let { it1 -> onImgClick(it1) }
-            println("LessonAdapter onImgClick: title id =  ${lessons[position].title}")
-        }
+                date.setTextColor(ContextCompat.getColor(context, R.color.active_lesson))
+                title.setTextColor(ContextCompat.getColor(context, R.color.active_lesson))
+            } else {
+                comment.text = "Нет задания"
+                comment.isEnabled = false
 
-        holder.root.setOnClickListener {
-            println("LessonAdapter onImgClick root id =  ${lessons[position].id}")
+                date.setTextColor(ContextCompat.getColor(context, R.color.no_active_lesson))
+                title.setTextColor(ContextCompat.getColor(context, R.color.no_active_lesson))
+            }
+
+            title.setOnClickListener {
+                lessons[position].id?.let { it1 -> onClick(it1) }
+                println("LessonAdapter onImgClick: title id =  ${lessons[position].title}")
+            }
+
+            root.setOnClickListener {
+                println("LessonAdapter onImgClick root id =  ${lessons[position].id}")
+            }
         }
-     }
+    }
 
     override fun getItemCount(): Int = lessons.size
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setData(images: List<Lesson>) {
-        this.lessons = images.toMutableList()
+    fun setData(lessons: List<Lesson>, title: String) {
+        this.lessons = lessons.toMutableList()
+        this.lessonsTitle = title
         notifyDataSetChanged()
     }
 }

@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import site.pnpl.igotit.data.dbo.entity.LessonEntity
+import java.util.UUID
 
 @Dao
 interface LessonsDao {
@@ -25,6 +26,9 @@ interface LessonsDao {
 
     @Query("SELECT * FROM LESSON WHERE dateMilis >= :nowMilis ORDER BY dateMilis ASC")
     fun getFirstNextLesson(nowMilis: Long): List<LessonEntity>
+
+    @Query("SELECT * FROM LESSON WHERE uuidSchedule IN (:listUuid) ORDER BY dateMilis ASC")
+    fun getLessonsBySchedules(listUuid: List<UUID>): List<LessonEntity>
 
     @Query("DELETE FROM LESSON")
     fun trunc(): Int

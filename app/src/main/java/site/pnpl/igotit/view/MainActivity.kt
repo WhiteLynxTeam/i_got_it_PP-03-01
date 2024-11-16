@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
         R.id.homeFragment,
         R.id.catalogueFragment,
         R.id.profileFragment,
-        R.id.coursesFragment,
+        R.id.myLessonFragment,
 
     )
 
@@ -74,8 +74,8 @@ class MainActivity : AppCompatActivity(), OnHeaderChangeListener {
                         true
                     }
 
-                    R.id.coursesFragment -> {
-                        navController.navigate(R.id.coursesFragment)
+                    R.id.myLessonFragment -> {
+                        navController.navigate(R.id.myLessonFragment)
                         true
                     }
 

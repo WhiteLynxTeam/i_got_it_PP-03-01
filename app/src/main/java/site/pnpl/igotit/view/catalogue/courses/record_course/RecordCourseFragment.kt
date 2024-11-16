@@ -27,6 +27,7 @@ import java.time.temporal.ChronoUnit
 import java.util.UUID
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 class RecordCourseFragment : BaseFragment() {
     private var _binding: FragmentRecordCourseBinding? = null
     private val binding get() = _binding!!

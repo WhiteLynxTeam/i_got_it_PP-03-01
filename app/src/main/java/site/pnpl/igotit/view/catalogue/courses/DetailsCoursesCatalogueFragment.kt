@@ -1,9 +1,11 @@
 package site.pnpl.igotit.view.catalogue.courses
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import com.google.android.material.tabs.TabLayoutMediator
 import site.pnpl.igotit.R
 import site.pnpl.igotit.databinding.FragmentDetailsCoursesCatalogueBinding
@@ -12,6 +14,7 @@ import site.pnpl.igotit.view.base.BaseViewPagerAdapter
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseFragment
 import site.pnpl.igotit.view.catalogue.courses.record_course.RecordCourseFragment
 
+@RequiresApi(Build.VERSION_CODES.O)
 class DetailsCoursesCatalogueFragment : BaseFragment() {
     private var _binding: FragmentDetailsCoursesCatalogueBinding? = null
     private val binding get() = _binding!!

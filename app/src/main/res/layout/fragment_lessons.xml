@@ -7,7 +7,7 @@
     tools:context=".view.courses.lessons.LessonsFragment">
 
     <TextView
-        android:id="@+id/title_lesson"
+        android:id="@+id/tv_title_lesson"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -22,13 +22,17 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_lessons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:gravity="center"
-        android:text="@string/lesson"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintTop_toBottomOf="@+id/title_lesson"
+        android:paddingBottom="16dp"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_lesson"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         tools:listitem="@layout/item_lessons" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+

@@ -9,9 +9,12 @@ import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
 import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseClubByUuidDbUseCase
+import site.pnpl.igotit.domain.usecases.GetCourseScheduleByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetFirstNextLessonUseCase
+import site.pnpl.igotit.domain.usecases.GetLessonsByUuidCourseBDUseCase
 import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
@@ -42,7 +45,12 @@ class AppModule() {
 
     @Provides
     fun provideLessonsViewModelFactory(
-    ) = LessonsViewModel.Factory(
+        getCourseClubByUuidDbUseCase: GetCourseClubByUuidDbUseCase,
+        getLessonsByUuidCourseBDUseCase: GetLessonsByUuidCourseBDUseCase,
+
+        ) = LessonsViewModel.Factory(
+        getCourseClubByUuidDbUseCase = getCourseClubByUuidDbUseCase,
+        getLessonsByUuidCourseBDUseCase = getLessonsByUuidCourseBDUseCase,
     )
 
     @Provides

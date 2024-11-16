@@ -68,6 +68,9 @@
         <action
             android:id="@+id/action_homeFragment_to_coursesFragment"
             app:destination="@id/coursesFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_myLessonFragment"
+            app:destination="@id/myLessonFragment" />
     </fragment>
     <fragment
         android:id="@+id/catalogueFragment"
@@ -89,6 +92,9 @@
         <action
             android:id="@+id/action_catalogueFragment_to_detailsClubsFragment"
             app:destination="@id/detailsClubsFragment" />
+        <action
+            android:id="@+id/action_catalogueFragment_to_myLessonFragment"
+            app:destination="@id/myLessonFragment" />
     </fragment>
     <fragment
         android:id="@+id/profileFragment"
@@ -101,6 +107,9 @@
         <action
             android:id="@+id/action_profileFragment_to_catalogueFragment"
             app:destination="@id/catalogueFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_myLessonFragment"
+            app:destination="@id/myLessonFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeFavoritesCoursesFragment"
@@ -142,5 +151,20 @@
         <action
             android:id="@+id/action_detailsClubsFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/myLessonFragment"
+        android:name="site.pnpl.igotit.view.mylesson.MyLessonFragment"
+        android:label="fragment_my_lesson"
+        tools:layout="@layout/fragment_my_lesson" >
+        <action
+            android:id="@+id/action_myLessonFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_myLessonFragment_to_profileFragment"
+            app:destination="@id/profileFragment" />
+        <action
+            android:id="@+id/action_myLessonFragment_to_catalogueFragment"
+            app:destination="@id/catalogueFragment" />
     </fragment>
 </navigation>

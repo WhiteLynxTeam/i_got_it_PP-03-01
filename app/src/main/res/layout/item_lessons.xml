@@ -7,6 +7,7 @@
     android:layout_height="112dp"
     android:layout_marginTop="16dp"
     android:backgroundTint="@color/view_background"
+    android:textColor="@color/no_active_lesson"
     app:cardCornerRadius="20dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,7 +19,6 @@
             android:id="@+id/date_lesson"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/no_active_lesson"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -28,7 +28,6 @@
             android:id="@+id/tv_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/no_active_lesson"
             android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -39,7 +38,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="20dp"
-            android:textColor="@color/no_active_lesson"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,10 +45,11 @@
             tools:text="Здесь будет выбранный урок" />
 
         <TextView
+            android:id="@+id/comment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            android:textColor="@color/no_active_lesson"
+            android:textColor="@color/cmnt_textcolor"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
