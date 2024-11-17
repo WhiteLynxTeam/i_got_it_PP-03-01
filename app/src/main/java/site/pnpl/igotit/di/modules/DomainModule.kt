@@ -5,8 +5,11 @@ import dagger.Provides
 import site.pnpl.igotit.domain.irepository.IClubRepository
 import site.pnpl.igotit.domain.irepository.ILessonRepository
 import site.pnpl.igotit.domain.usecases.CreateLessonsBySheduleUseCase
+import site.pnpl.igotit.domain.usecases.DelMyCourseClubDbUseCase
+import site.pnpl.igotit.domain.usecases.DeleteLessonsByShedulesUseCase
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
+import site.pnpl.igotit.domain.usecases.GetAllLessonsBdUseCase
 import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
@@ -23,6 +26,7 @@ import site.pnpl.igotit.domain.usecases.GetMyCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.SetClubsFavoriteUseCase
 import site.pnpl.igotit.domain.usecases.SetCourseAsMyUseCase
 import site.pnpl.igotit.domain.usecases.SetCoursesFavoriteUseCase
+import site.pnpl.igotit.domain.usecases.SetTitleCourseForLessonsUseCase
 import javax.inject.Singleton
 
 @Module
@@ -233,6 +237,56 @@ class DomainModule {
             repository = repository,
             getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
             getLessonsByListSchedulesBDUseCase = getLessonsByListSchedulesBDUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeleteLessonsByShedulesUseCase(
+        repository: ILessonRepository,
+    ): DeleteLessonsByShedulesUseCase {
+        return DeleteLessonsByShedulesUseCase(
+            repository = repository,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideDelMyCourseClubDbUseCase(
+        repository: IClubRepository,
+        getCoursesSchedulerByUuidCoursesFromDbUseCase: GetCoursesSchedulerByUuidCoursesFromDbUseCase,
+        deleteLessonsByShedulesUseCase: DeleteLessonsByShedulesUseCase,
+    ): DelMyCourseClubDbUseCase {
+        return DelMyCourseClubDbUseCase(
+            repository = repository,
+            getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
+            deleteLessonsByShedulesUseCase = deleteLessonsByShedulesUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideGetAllLessonsBdUseCase(
+        repository: ILessonRepository,
+        setTitleCourseForLessonsUseCase: SetTitleCourseForLessonsUseCase,
+    ): GetAllLessonsBdUseCase {
+        return GetAllLessonsBdUseCase(
+            repository = repository,
+            setTitleCourseForLessonsUseCase = setTitleCourseForLessonsUseCase,
+        )
+    }
+
+    @Singleton
+    @Provides
+    fun provideSetTitleCourseForLessonsUseCase(
+        repository: IClubRepository,
+        getCourseScheduleByUuidFromDbUseCase: GetCourseScheduleByUuidFromDbUseCase,
+        getCourseClubByUuidDbUseCase: GetCourseClubByUuidDbUseCase,
+    ): SetTitleCourseForLessonsUseCase {
+        return SetTitleCourseForLessonsUseCase(
+            repository = repository,
+            getCourseScheduleByUuidFromDbUseCase = getCourseScheduleByUuidFromDbUseCase,
+            getCourseClubByUuidDbUseCase = getCourseClubByUuidDbUseCase,
         )
     }
 

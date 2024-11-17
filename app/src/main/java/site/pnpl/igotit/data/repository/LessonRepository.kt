@@ -29,6 +29,13 @@ class LessonRepository(
         return true
     }
 
+    override suspend fun delLessons(schedules: List<CoursesSchedule>): Boolean {
+        withContext(Dispatchers.IO) {
+            lessonsDao.delLessons(mapperListCoursesScheduleToListUUID(schedules))
+        }
+        return true
+    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override suspend fun getFirstNextLesson(nowMilis: Long): Lesson? {
         val lessons = withContext(Dispatchers.IO) {
@@ -49,7 +56,23 @@ class LessonRepository(
         return mapperLessonsEntityToLessons(lessons)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    override suspend fun getAllLessons(): List<Lesson> {
+        val lessons = withContext(Dispatchers.IO) {
+            lessonsDao.getAllLessons()
+        }
+        return mapperLessonsEntityToLessons(lessons)
+    }
+
     private fun mapperSchedulesToListUUID(
+        schedules: List<CoursesSchedule>
+    ): List<UUID> {
+        return schedules.map {
+            it.uuid
+        }
+    }
+
+    private fun mapperListCoursesScheduleToListUUID(
         schedules: List<CoursesSchedule>
     ): List<UUID> {
         return schedules.map {

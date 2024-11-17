@@ -17,7 +17,7 @@ import site.pnpl.igotit.utils.uiextensions.hide
 import site.pnpl.igotit.utils.uiextensions.show
 import site.pnpl.igotit.view.base.BaseFragment
 import site.pnpl.igotit.view.home.favorites_courses.FavoritesCoursesAdapter
-import site.pnpl.igotit.view.home.my_courses.MyCoursesAdapter
+import site.pnpl.igotit.view.my_courses.MyCoursesAdapter
 import java.time.Instant
 import java.time.ZoneId
 import javax.inject.Inject

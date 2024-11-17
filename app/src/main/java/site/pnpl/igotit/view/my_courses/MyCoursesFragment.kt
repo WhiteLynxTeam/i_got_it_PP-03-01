@@ -1,4 +1,4 @@
-package site.pnpl.igotit.view.home.my_courses
+package site.pnpl.igotit.view.my_courses
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

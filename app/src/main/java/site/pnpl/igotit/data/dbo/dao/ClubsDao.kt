@@ -67,6 +67,9 @@ interface ClubsDao {
     @Query("DELETE FROM MYCOURSES")
     fun truncMyCourses(): Int
 
+    @Query("DELETE FROM MYCOURSES  WHERE uuid IN (:listMyCourses)")
+    fun deleteMyCourse(listMyCourses: List<UUID>): Int
+
     @Query("DELETE FROM COURSES_SCHEDULE")
     fun truncScheduler(): Int
 

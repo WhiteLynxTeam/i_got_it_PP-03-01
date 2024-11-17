@@ -10,13 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.launch
 import site.pnpl.igotit.databinding.FragmentLessonsBinding
-import site.pnpl.igotit.domain.models.Lesson
 import site.pnpl.igotit.view.base.BaseFragment
 import java.util.UUID
 import javax.inject.Inject
 
 class LessonsFragment : BaseFragment() {
-
     private var _binding: FragmentLessonsBinding? = null
     private val binding get() = _binding!!
 
