@@ -152,6 +152,28 @@ class ClubRepository(
         }
     }
 
+    override suspend fun delMyCourse(schedules: List<CoursesSchedule>): Boolean {
+        /***по быстрому накинул код. взял из insert
+         * перепроверить как отрабатывает удаление и что возвращает
+         * */
+        try {
+            withContext(Dispatchers.IO) {
+                clubsDao.deleteMyCourse(mapperListCoursesScheduleToListUUID(schedules))
+            }
+            return true
+        } catch (e: Exception) {
+            return false
+        }
+    }
+
+    private fun mapperListCoursesScheduleToListUUID(
+        schedules: List<CoursesSchedule>
+    ): List<UUID> {
+        return schedules.map {
+            it.uuid
+        }
+    }
+
     private fun mapperMyCoursesEntityToListUUID(
         lisMyCoursesEntity: List<MyCoursesEntity>
     ): List<UUID> {

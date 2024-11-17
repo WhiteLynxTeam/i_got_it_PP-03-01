@@ -1,31 +1,57 @@
 package site.pnpl.igotit.view.mylesson
 
-import androidx.fragment.app.viewModels
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import site.pnpl.igotit.R
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
+import site.pnpl.igotit.databinding.FragmentMyLessonBinding
+import site.pnpl.igotit.view.base.BaseFragment
+import site.pnpl.igotit.view.courses.lessons.LessonsViewModel
+import javax.inject.Inject
 
-class MyLessonFragment : Fragment() {
+class MyLessonFragment : BaseFragment() {
 
-    companion object {
-        fun newInstance() = MyLessonFragment()
+    private var _binding: FragmentMyLessonBinding? = null
+    private val binding get() = _binding!!
+
+    private lateinit var viewModel: MyLessonViewModel
+
+    private val myLessonAdapter by lazy {
+        MyLessonAdapter(requireContext()) { id ->
+            println("LessonsFragment id_lesson = $id")
+        }
     }
 
-    private val viewModel: MyLessonViewModel by viewModels()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // TODO: Use the ViewModel
-    }
+    @Inject
+    lateinit var vmFactory: MyLessonViewModel.Factory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_my_lesson, container, false)
+        listener?.onTitleTextChange("+7 (999) 999-99-99")
+
+        _binding = FragmentMyLessonBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        viewModel =
+            ViewModelProvider(this, vmFactory)[MyLessonViewModel::class.java]
+
+        binding.rvLessons.adapter = myLessonAdapter
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewModel.lesson.collect {
+                myLessonAdapter.setData(it)
+            }
+        }
+
+        viewModel.getLessons()
     }
 }

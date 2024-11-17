@@ -24,5 +24,6 @@ interface IClubRepository {
 
     suspend fun setMyCourse(id: Int): Boolean
     suspend fun setMyCourse(uuid: UUID): Boolean
+    suspend fun delMyCourse(schedules: List<CoursesSchedule>): Boolean
 
 }

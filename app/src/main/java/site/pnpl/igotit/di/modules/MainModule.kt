@@ -21,6 +21,7 @@ import site.pnpl.igotit.view.courses.lessons.LessonsFragment
 import site.pnpl.igotit.view.courses.remove.RemoveCourseFragment
 import site.pnpl.igotit.view.home.HomeFragment
 import site.pnpl.igotit.view.intro.IntroFragment
+import site.pnpl.igotit.view.mylesson.MyLessonFragment
 import site.pnpl.igotit.view.profile.ProfileFragment
 import site.pnpl.igotit.view.profile.about.AboutFragment
 import site.pnpl.igotit.view.profile.data.UserDataFragment
@@ -104,4 +105,7 @@ interface MainModule {
 
     @ContributesAndroidInjector
     fun bindAboutCourseFragment(): AboutCourseFragment
+
+    @ContributesAndroidInjector
+    fun bindMyLessonFragment(): MyLessonFragment
 }

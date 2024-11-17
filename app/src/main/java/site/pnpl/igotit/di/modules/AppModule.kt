@@ -4,13 +4,14 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import dagger.Module
 import dagger.Provides
+import site.pnpl.igotit.domain.usecases.DelMyCourseClubDbUseCase
 import site.pnpl.igotit.domain.usecases.DownloadCoursesUseCase
 import site.pnpl.igotit.domain.usecases.FilDbWithSampleDataUseCase
+import site.pnpl.igotit.domain.usecases.GetAllLessonsBdUseCase
 import site.pnpl.igotit.domain.usecases.GetClubByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetClubsFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseByIdFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCourseClubByUuidDbUseCase
-import site.pnpl.igotit.domain.usecases.GetCourseScheduleByUuidFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetCoursesSchedulerByUuidCoursesFromDbUseCase
 import site.pnpl.igotit.domain.usecases.GetFirstNextLessonUseCase
@@ -28,7 +29,9 @@ import site.pnpl.igotit.view.catalogue.courses.CoursesCatalogueViewModel
 import site.pnpl.igotit.view.catalogue.courses.about_course.AboutCourseViewModel
 import site.pnpl.igotit.view.catalogue.courses.record_course.RecordCourseViewModel
 import site.pnpl.igotit.view.courses.lessons.LessonsViewModel
+import site.pnpl.igotit.view.courses.remove.RemoveCourseViewModel
 import site.pnpl.igotit.view.home.HomeViewModel
+import site.pnpl.igotit.view.mylesson.MyLessonViewModel
 
 @Module
 class AppModule() {
@@ -41,7 +44,7 @@ class AppModule() {
         getMyCoursesFromDbUseCase = getMyCoursesFromDbUseCase,
         getFirstNextLessonUseCase = getFirstNextLessonUseCase,
 
-    )
+        )
 
     @Provides
     fun provideLessonsViewModelFactory(
@@ -80,6 +83,7 @@ class AppModule() {
     ) = AuthViewModel.Factory(
         filDbWithSampleDataUseCase = filDbWithSampleDataUseCase
     )
+
     @Provides
     fun provideAboutCourseViewModel(
         setCoursesFavoriteUseCase: SetCoursesFavoriteUseCase,
@@ -117,5 +121,23 @@ class AppModule() {
         setCourseAsMyUseCase = setCourseAsMyUseCase,
         getCoursesSchedulerByUuidCoursesFromDbUseCase = getCoursesSchedulerByUuidCoursesFromDbUseCase,
     )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    fun provideRemoveCourseViewModel(
+        getCourseClubByUuidDbUseCase: GetCourseClubByUuidDbUseCase,
+        delMyCourseClubDbUseCase: DelMyCourseClubDbUseCase,
+        ) = RemoveCourseViewModel.Factory(
+        getCourseClubByUuidDbUseCase = getCourseClubByUuidDbUseCase,
+        delMyCourseClubDbUseCase = delMyCourseClubDbUseCase,
+        )
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @Provides
+    fun provideMyLessonViewModel(
+        getAllLessonsBdUseCase: GetAllLessonsBdUseCase,
+        ) = MyLessonViewModel.Factory(
+        getAllLessonsBdUseCase = getAllLessonsBdUseCase,
+        )
 
 }

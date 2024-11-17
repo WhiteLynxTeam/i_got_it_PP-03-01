@@ -47,7 +47,7 @@ class CoursesFragment : Fragment() {
             this, arrayOf(
                 LessonsFragment.newInstance(uuidString),
                 CalendarFragment.newInstance(),
-                RemoveCourseFragment.newInstance()
+                RemoveCourseFragment.newInstance(uuidString)
             )
         )
 
